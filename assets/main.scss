@@ -1,0 +1,60 @@
+.v-application,
+.v-list {
+  background: unset !important;
+}
+.background {
+  &--gradient::before {
+    content: '';
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    height: 100vh;
+    background: -webkit-gradient(
+      linear,
+      left top,
+      right bottom,
+      from(#6d327c),
+      color-stop(#485da6),
+      color-stop(#00a1ba),
+      color-stop(#01b18e),
+      to(#32b37b)
+    );
+    background: linear-gradient(
+      to right bottom,
+      #6d327c,
+      #485da6,
+      #00a1ba,
+      #01b18e,
+      #32b37b
+    );
+  }
+}
+
+.app-border {
+  border-bottom: 2px solid rgba(255, 255, 255, 0.25);
+}
+
+.home-page {
+  .pagination {
+    margin: 30px 0 40px;
+  }
+}
+
+.app-header {
+  &__border {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.25);
+    margin-top: 40px;
+    margin-bottom: 60px;
+  }
+}
+
+.app-footer {
+  &__recent-posts {
+    .v-list-item__title {
+      white-space: unset;
+    }
+  }
+}
