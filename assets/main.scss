@@ -1,3 +1,6 @@
+@import './mixin.scss';
+@import './variables.scss';
+
 .v-application,
 .v-list {
   background: unset !important;
@@ -12,7 +15,8 @@
     width: 100%;
     height: 100%;
     height: 100vh;
-    background: -webkit-gradient(
+
+    @include background-gradient(
       linear,
       left top,
       right bottom,
@@ -22,7 +26,8 @@
       color-stop(#01b18e),
       to(#32b37b)
     );
-    background: linear-gradient(
+
+    @include background-linear-gradient(
       to right bottom,
       #6d327c,
       #485da6,
@@ -52,9 +57,68 @@
 }
 
 .app-footer {
+  padding-bottom: 60px;
   &__recent-posts {
-    .v-list-item__title {
-      white-space: unset;
+    .v-list-item {
+      *,
+      .v-list-item__subtitle {
+        color: white;
+      }
+
+      &__title {
+        white-space: unset;
+      }
+
+      &:hover::before {
+        opacity: 0 !important;
+      }
+
+      &:hover .v-list-item__title {
+        color: $primary-color--light;
+      }
+    }
+  }
+
+  &__about-me {
+    *,
+    .v-list-item__subtitle {
+      color: white;
+    }
+
+    .v-avatar {
+      :hover {
+        @include transform(translateY(-3px));
+        @include transition(all ease 0.5s);
+      }
+    }
+    .v-image {
+      @include transition(all ease 0.5s);
+      border: 4px solid $secondary-color;
+    }
+    .v-list-item {
+      &:hover::before {
+        opacity: 0 !important;
+      }
+
+      &__subtitle {
+        color: #bfeae6 !important;
+      }
+    }
+
+    &__associate {
+      flex: unset !important;
+      background-color: $secondary-color--light;
+      padding: 5px 25px;
+      @include border-radius(25px);
+      @include box-shadow(
+        0 3px 12px -1px rgba(7, 10, 25, 0.05),
+        0 22px 27px -20px rgba(7, 10, 25, 0.05)
+      );
+
+      .v-icon:hover {
+        @include transform(translateY(-3px));
+        @include transition(all ease 0.5s);
+      }
     }
   }
 }

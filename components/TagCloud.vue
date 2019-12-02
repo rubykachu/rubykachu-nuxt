@@ -1,19 +1,15 @@
 <template>
   <div>
-    <v-list>
-      <v-list-item>
-        <v-list-item-content>
-          <v-list-item-title class="white--text headline"
-            >Cloud Tags</v-list-item-title
-          >
-          <div class="app-border"></div>
-        </v-list-item-content>
-      </v-list-item>
-    </v-list>
+    <div class="mb-8">
+      <p class="headline white--text">Cloud tags</p>
+      <div class="app-border"></div>
+    </div>
     <v-chip
       class="ma-2 white--text font-weight-bold"
       :color="tag.color"
-      v-for="tag in tags"
+      v-for="(tag, index) in tags"
+      :key="index"
+      transition="slide-y-transition"
     >
       {{ tag.text }}
     </v-chip>
