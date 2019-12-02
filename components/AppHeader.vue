@@ -5,7 +5,7 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn href="/" text color="white">Home</v-btn>
+      <v-btn to="/inspire" nuxt text color="white">inspire</v-btn>
 
       <div>
         <v-menu
@@ -35,7 +35,7 @@
         </v-menu>
       </div>
 
-      <v-btn href="/" text color="white">Profile / CV</v-btn>
+      <v-btn to="/" nuxt text color="white">Profile / CV</v-btn>
 
       <v-avatar color="pink">
         <v-icon dark>mdi-account-circle</v-icon>

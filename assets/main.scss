@@ -1,6 +1,17 @@
 @import './mixin.scss';
 @import './variables.scss';
 
+.page-enter-active,
+.page-leave-active {
+  transition-property: 1;
+  transition-timing-function: ease-in-out;
+  transition-duration: 800ms;
+}
+
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+}
 .v-application,
 .v-list {
   background: unset !important;
