@@ -1,22 +1,7 @@
 <template>
   <v-container class="home-page">
     <v-row>
-      <v-col class="mb-8">
-        <article-item />
-      </v-col>
-      <v-col class="mb-8">
-        <article-item />
-      </v-col>
-      <v-col class="mb-8">
-        <article-item />
-      </v-col>
-      <v-col class="mb-8">
-        <article-item />
-      </v-col>
-      <v-col class="mb-8">
-        <article-item />
-      </v-col>
-      <v-col class="mb-8">
+      <v-col class="mb-8" cols="md-4" sm="6" v-for="n in 7" :key="n">
         <article-item />
       </v-col>
     </v-row>

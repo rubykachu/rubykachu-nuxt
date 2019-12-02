@@ -11,11 +11,11 @@
       </v-list-item>
     </v-list>
 
-    <v-list two-line>
+    <v-list two-line class="py-0">
       <template v-for="(item, index) in items">
         <v-list-item :key="item.title" @click="">
-          <v-list-item-avatar size="80">
-            <v-img :src="item.avatar"></v-img>
+          <v-list-item-avatar size="60" class="mr-3 mt-0">
+            <v-img :src="item.avatar" class="mt-4"></v-img>
           </v-list-item-avatar>
 
           <v-list-item-content>
@@ -23,6 +23,7 @@
               v-html="item.subtitle"
               class="white--text pb-3"
             ></v-list-item-subtitle>
+
             <v-list-item-title
               v-html="item.title"
               class="white--text font-weight-bold"

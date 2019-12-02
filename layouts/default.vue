@@ -8,10 +8,10 @@
       </v-content>
 
       <footer class="app-footer">
-        <v-row>
-          <v-col cols="4"><recent-posts /></v-col>
-          <v-col cols="4"><tag-cloud /></v-col>
-          <v-col cols="4"><about-me /></v-col>
+        <v-row no-gutters="">
+          <v-col cols="md-5" lg="4" sm="12"><recent-posts /></v-col>
+          <v-col cols="md-3" lg="4" sm="12"><tag-cloud /></v-col>
+          <v-col cols="md-4" lg="4" sm="12"><tag-cloud /></v-col>
         </v-row>
       </footer>
     </v-container>

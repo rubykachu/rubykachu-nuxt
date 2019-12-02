@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto article-item" max-width="350" hover>
+  <v-card class="mx-auto article-item" hover>
     <v-chip
       class="article-item__category px-5 py-3 font-weight-bold"
       color="indigo"
@@ -9,9 +9,19 @@
     </v-chip>
     <v-img
       class="white--text align-end article-item__image"
-      height="200px"
+      max-height="200px"
       src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+      lazy-src="https://picsum.photos/id/11/100/60"
+      aspect-ratio="1"
     >
+      <template v-slot:placeholder>
+        <v-row class="fill-height ma-0" align="center" justify="center">
+          <v-progress-circular
+            indeterminate
+            color="grey lighten-5"
+          ></v-progress-circular>
+        </v-row>
+      </template>
     </v-img>
 
     <div class="white">
