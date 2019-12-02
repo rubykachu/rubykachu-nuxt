@@ -1,6 +1,11 @@
 @import './mixin.scss';
 @import './variables.scss';
 
+body {
+  color: $primary-color--text;
+}
+
+// Transition
 .page-enter-active,
 .page-leave-active {
   transition-property: 1;
@@ -16,6 +21,8 @@
 .v-list {
   background: unset !important;
 }
+
+// Common
 .background {
   &--gradient::before {
     content: '';
@@ -53,12 +60,18 @@
   border-bottom: 2px solid rgba(255, 255, 255, 0.25);
 }
 
+.rounded-15 {
+  @include border-radius(15px !important);
+}
+
+// Home page
 .home-page {
   .pagination {
     margin: 30px 0 40px;
   }
 }
 
+// App Header
 .app-header {
   &__border {
     border-bottom: 2px solid rgba(255, 255, 255, 0.25);
@@ -67,6 +80,7 @@
   }
 }
 
+// App Footer
 .app-footer {
   padding-bottom: 60px;
   &__recent-posts {
@@ -129,6 +143,33 @@
       .v-icon:hover {
         @include transform(translateY(-3px));
         @include transition(all ease 0.5s);
+      }
+    }
+  }
+}
+
+// Article Page
+.article-page {
+  &__content-wrapper {
+    @include border-radius(15px);
+    background-color: white;
+    font-size: 18px;
+    color: $primary-color--text;
+    line-height: 30px;
+    p {
+      margin-bottom: 24px;
+    }
+
+    .text-field-copy-link {
+      .v-text-field__slot {
+        input {
+          color: #666666 !important;
+        }
+      }
+
+      .v-icon {
+        color: $primary-color;
+        font-size: 17px;
       }
     }
   }

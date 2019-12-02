@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto article-item" hover>
+  <v-card class="mx-auto article-item" hover to="/article/1" nuxt>
     <v-chip
       class="article-item__category px-5 py-3 font-weight-bold"
       color="indigo"
