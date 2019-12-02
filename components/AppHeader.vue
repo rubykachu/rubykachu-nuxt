@@ -6,8 +6,35 @@
       <v-spacer></v-spacer>
 
       <v-btn href="/" text color="white">Home</v-btn>
-      <v-btn href="/" text color="white">Categories</v-btn>
-      <v-btn href="/" text color="white">Write for blog</v-btn>
+
+      <div>
+        <v-menu
+          open-on-hover
+          bottom
+          offset-y
+          light
+          min-width="200"
+          max-width="280"
+        >
+          <template v-slot:activator="{ on }">
+            <v-btn text color="white" v-on="on">
+              Categories
+            </v-btn>
+          </template>
+
+          <v-list color="white">
+            <v-list-item
+              v-for="(item, index) in items"
+              :key="index"
+              @click=""
+              href="/"
+            >
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </div>
+
       <v-btn href="/" text color="white">Profile / CV</v-btn>
 
       <v-avatar color="pink">
@@ -21,6 +48,14 @@
 
 <script>
 export default {
-  name: 'AppHeader'
+  name: 'AppHeader',
+  data: () => ({
+    items: [
+      { title: 'Click Me' },
+      { title: 'Click Me' },
+      { title: 'Click Me' },
+      { title: 'Click Me 2' }
+    ]
+  })
 }
 </script>
