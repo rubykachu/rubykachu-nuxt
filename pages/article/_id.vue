@@ -15,7 +15,7 @@
             >
             <span class="subheading white--text">June 5, 2019</span>
             <v-icon color="white" class="icon-size ml-5 mr-1"
-              >mdi-account-clock-outline</v-icon
+              >mdi-circle-slice-5</v-icon
             >
             <span class="subheading white--text">4 mins</span>
           </v-card-text>
@@ -55,9 +55,9 @@
       </div>
     </v-row>
 
-    <v-row class="article-page__author-wraper rounded-15" justify="center">
-      <div class="article-page__author-wraper__info">
-        <div class="article-page__author-wraper__avatar">
+    <v-row class="section section--transparent author-info rounded-15" justify="center">
+      <div class="section__content--w75">
+        <div class="section__avatar">
           <v-avatar size="80">
             <img
               src="http://estudiopatagon.com/themes/wordpress/breek/wp-content/uploads/2019/06/avatar-op2.jpg"
@@ -65,8 +65,8 @@
             ></img>
           </v-avatar>
         </div>
-        <p class="article-page__author-wraper__title hover-link"><a class="white--text">Minh Tang Q.</a></p>
-        <p class="article-page__author-wraper__content">
+        <p class="section__title hover-link"><a class="white--text">Minh Tang Q.</a></p>
+        <p class="section__content">
           We are a team working from Chile. We create some Ghost and Wordpress
           themes for differents markets, also, we offer live support via our
           ticket system.

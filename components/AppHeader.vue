@@ -39,7 +39,7 @@
 
       <v-btn to="/" nuxt text color="white">Profile / CV</v-btn>
 
-      <v-avatar color="pink">
+      <v-avatar color="pink" class="ml-2">
         <v-icon dark>mdi-account-circle</v-icon>
       </v-avatar>
     </v-app-bar>

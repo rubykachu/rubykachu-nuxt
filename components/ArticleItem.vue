@@ -54,7 +54,7 @@
           </div>
           <div>
             <v-icon color="primary" class="icon-size"
-              >mdi-account-clock-outline</v-icon
+              >mdi-circle-slice-5</v-icon
             >
             4 mins
           </div>
