@@ -19,7 +19,7 @@
             ></v-list-item-subtitle>
 
             <v-list-item-title
-              v-html="`<a>${item.title}</a>`"
+              v-html="item.title"
               class="font-weight-bold hover-link"
             ></v-list-item-title>
           </v-list-item-content>
