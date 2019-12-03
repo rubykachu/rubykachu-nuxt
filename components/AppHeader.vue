@@ -2,12 +2,14 @@
   <header class="app-header pt-5">
     <v-app-bar color="transparent" flat class="white--text">
       <v-toolbar-title
-        ><h1 class="font-weight-black">Rubykachu</h1></v-toolbar-title
+        ><h1 class="font-weight-black hover-link">
+          <nuxt-link to="/" class="white--text">Rubykachu</nuxt-link>
+        </h1></v-toolbar-title
       >
 
       <v-spacer></v-spacer>
 
-      <v-btn to="/inspire" nuxt text color="white">inspire</v-btn>
+      <v-btn to="/" nuxt text color="white">Trang chủ</v-btn>
 
       <div>
         <v-menu
@@ -20,7 +22,7 @@
         >
           <template v-slot:activator="{ on }">
             <v-btn text color="white" v-on="on">
-              Categories
+              Danh mục
             </v-btn>
           </template>
 
@@ -37,7 +39,8 @@
         </v-menu>
       </div>
 
-      <v-btn to="/" nuxt text color="white">Profile / CV</v-btn>
+      <v-btn to="/article/new" nuxt text color="white">Viết bài</v-btn>
+      <v-btn to="" nuxt text color="white" class="ml-2">Về tôi / CV</v-btn>
 
       <v-avatar color="pink" class="ml-2">
         <v-icon dark>mdi-account-circle</v-icon>

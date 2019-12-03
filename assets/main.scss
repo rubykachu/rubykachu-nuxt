@@ -5,6 +5,10 @@ body {
   color: $primary-color--text;
 }
 
+a {
+  text-decoration: unset;
+}
+
 // Transition
 .page-enter-active,
 .page-leave-active {
