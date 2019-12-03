@@ -7,7 +7,7 @@
 
     <v-list two-line class="py-0">
       <template v-for="(item, index) in items">
-        <v-list-item :key="item.title" @click="" class="px-0 mb-3" href="/">
+        <v-list-item :key="index" @click="" class="px-0 mb-3" href="/">
           <v-list-item-avatar size="60" class="mr-3 mt-2" color="grey darken-3">
             <v-img :src="item.avatar"></v-img>
           </v-list-item-avatar>

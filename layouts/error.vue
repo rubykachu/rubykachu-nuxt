@@ -22,15 +22,14 @@
         <p class="subtitle-1 font-weight-regular">
           Chúng tôi không thể tìm thấy trang bạn đang tìm kiếm.
         </p>
-        <v-btn to="/" nuxt color="secondary" rounded depressed>
+        <v-btn to="/" nuxt color="secondary" rounded depressed class="px-5">
+          <v-icon class="mr-2">mdi-reply-circle</v-icon>
+
           Trở lại trang chủ
         </v-btn>
       </v-col>
     </v-row>
   </v-container>
-  <!--<NuxtLink to="/">
-      Home page
-    </NuxtLink> -->
 </template>
 
 <script>
