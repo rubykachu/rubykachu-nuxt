@@ -8,8 +8,8 @@
     <v-list two-line class="py-0">
       <template v-for="(item, index) in items">
         <v-list-item :key="item.title" @click="" class="px-0 mb-3" href="/">
-          <v-list-item-avatar size="60" class="mr-3 mt-0">
-            <v-img :src="item.avatar" class="mt-4"></v-img>
+          <v-list-item-avatar size="60" class="mr-3 mt-2" color="grey darken-3">
+            <v-img :src="item.avatar"></v-img>
           </v-list-item-avatar>
 
           <v-list-item-content>
@@ -19,8 +19,8 @@
             ></v-list-item-subtitle>
 
             <v-list-item-title
-              v-html="item.title"
-              class="font-weight-bold"
+              v-html="`<a>${item.title}</a>`"
+              class="font-weight-bold hover-link"
             ></v-list-item-title>
           </v-list-item-content>
         </v-list-item>

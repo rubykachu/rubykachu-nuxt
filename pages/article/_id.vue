@@ -38,7 +38,7 @@
           <div v-html="content"></div>
         </v-col>
 
-        <v-col sm="4" offset-sm="4" class="text-center my-10">
+        <v-col sm="4" offset-sm="4" class="my-10">
           <v-text-field
             outlined
             dense
@@ -52,6 +52,25 @@
             class="text-field-copy-link"
           ></v-text-field>
         </v-col>
+      </div>
+    </v-row>
+
+    <v-row class="article-page__author-wraper rounded-15" justify="center">
+      <div class="article-page__author-wraper__info">
+        <div class="article-page__author-wraper__avatar">
+          <v-avatar size="80">
+            <img
+              src="http://estudiopatagon.com/themes/wordpress/breek/wp-content/uploads/2019/06/avatar-op2.jpg"
+              alt="Minh Tang Q."
+            ></img>
+          </v-avatar>
+        </div>
+        <p class="article-page__author-wraper__title hover-link"><a class="white--text">Minh Tang Q.</a></p>
+        <p class="article-page__author-wraper__content">
+          We are a team working from Chile. We create some Ghost and Wordpress
+          themes for differents markets, also, we offer live support via our
+          ticket system.
+        </p>
       </div>
     </v-row>
   </v-container>

@@ -6,16 +6,15 @@
     </div>
     <v-list three-line>
       <v-list-item @click="" class="px-0">
-        <v-list-item-avatar size="90" class="mr-3 mt-0">
+        <v-list-item-avatar size="90" class="mr-3 mt-0" color="grey darken-3">
           <v-img
             src="http://estudiopatagon.com/themes/wordpress/breek/wp-content/uploads/2019/06/avatar-op2.jpg"
-            class="mt-4"
           ></v-img>
         </v-list-item-avatar>
 
         <v-list-item-content>
-          <v-list-item-title class="font-weight-bold"
-            >Minh Tang Q.</v-list-item-title
+          <v-list-item-title class="font-weight-bold hover-link"
+            ><a class="white--text">Minh Tang Q.</a></v-list-item-title
           >
 
           <v-list-item-subtitle class="py-2"

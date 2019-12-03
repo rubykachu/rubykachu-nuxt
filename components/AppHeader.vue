@@ -1,7 +1,9 @@
 <template>
   <header class="app-header pt-5">
     <v-app-bar color="transparent" flat class="white--text">
-      <v-toolbar-title><b>Rubykachu</b></v-toolbar-title>
+      <v-toolbar-title
+        ><h1 class="font-weight-black">Rubykachu</h1></v-toolbar-title
+      >
 
       <v-spacer></v-spacer>
 

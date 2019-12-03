@@ -39,3 +39,10 @@
   background: -moz-gradient($parameters);
   background: -ms-gradient($parameters);
 }
+
+@mixin box-sizing($parameters) {
+  box-sizing: $parameters;
+  -webkit-box-sizing: $parameters;
+  -moz-box-sizing: $parameters;
+  -ms-box-sizing: $parameters;
+}
