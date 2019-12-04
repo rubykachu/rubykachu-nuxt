@@ -13,37 +13,100 @@
           <v-divider></v-divider>
 
           <v-card-text>
+            <!-- Category -->
             <v-select
-              :items="['Foo', 'Bar', 'Fizz', 'Buzz']"
+              v-model="article.category_id"
+              :items="categories"
+              item-text="name"
+              item-value="id"
               prepend-icon="mdi-equal-box"
               label="Danh mục"
+              :error-messages="msgCategoryInvalid"
+              @blur="$v.article.category_id.$touch()"
             ></v-select>
 
+            <!-- Title -->
             <v-text-field
-              ref="name"
+              v-model="article.title"
               label="Tiêu đề"
               prepend-icon="mdi-format-title"
               class="mt-0 pt-0"
+              :error-messages="msgTitleInvalid"
+              @blur="$v.article.title.$touch()"
             ></v-text-field>
 
-            <created-field></created-field>
+            <!-- Created At -->
+            <v-menu
+              v-model="toggleDatePicker"
+              :close-on-content-click="false"
+              max-width="290"
+            >
+              <template v-slot:activator="{ on }">
+                <v-text-field
+                  :value="formatCreatedAt"
+                  clearable
+                  label="Ngày tạo"
+                  readonly
+                  v-on="on"
+                  @click:clear="article.created_at = null"
+                  prepend-icon="mdi-calendar"
+                ></v-text-field>
+              </template>
+              <v-date-picker
+                v-model="article.created_at"
+                @change="toggleDatePicker = false"
+              ></v-date-picker>
+            </v-menu>
 
+            <!-- Reading time -->
             <v-text-field
-              ref="time"
+              v-model="article.read_time"
               label="Thời gian đọc"
               value="8 phút"
               prepend-icon="mdi-circle-slice-5"
+              :error-messages="msgReadingTimeInvalid"
+              @blur="$v.article.reading_time.$touch()"
             ></v-text-field>
 
-            <cloud-tag-field></cloud-tag-field>
+            <!-- Cloud tags -->
+            <v-combobox
+              v-model="article.tags"
+              :items="tags"
+              item-text="name"
+              item-value="id"
+              :search-input.sync="searchTag"
+              hide-selected
+              hint="Tối đa 5 tags"
+              label="Cloud tags"
+              prepend-icon="mdi-tag-multiple"
+              multiple
+              persistent-hint
+              small-chips
+              :error-messages="msgTagsInvalid"
+              @change="$v.article.tags.$touch()"
+            >
+              <template v-slot:no-data>
+                <v-list-item>
+                  <v-list-item-content>
+                    <v-list-item-title>
+                      No results matching "<strong>{{ searchTag }}</strong
+                      >". Press <kbd>enter</kbd> to create a new one
+                    </v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+              </template>
+            </v-combobox>
 
+            <!-- Image -->
             <v-file-input
               show-size
               label="Ảnh bài viêt"
               prepend-icon="mdi-image"
             ></v-file-input>
 
+            <!-- Content -->
             <editor
+              v-model="article.content"
               api-key="no-api-key"
               initialValue="<p>This is the initial content of the editor</p>"
               :init="{
@@ -56,9 +119,9 @@
                   'codesample'
                 ],
                 toolbar:
-                  'undo redo | formatselect | bold italic backcolor | \
+                  'undo redo | formatselect | codesample | bold italic backcolor | \
            alignleft aligncenter alignright alignjustify | \
-           bullist numlist outdent indent | removeformat | help | codesample'
+           bullist numlist outdent indent | removeformat | preview | help'
               }"
             ></editor>
 
@@ -77,15 +140,90 @@
 </template>
 
 <script>
-import CreatedField from '@/components/article/CreatedField.vue'
-import CloudTagField from '@/components/article/CloudTagField.vue'
+import moment from 'moment'
+import { required, minLength, maxLength } from 'vuelidate/lib/validators'
 import Editor from '@tinymce/tinymce-vue'
 
 export default {
   components: {
-    CreatedField,
-    CloudTagField,
     Editor
+  },
+  data() {
+    return {
+      toggleDatePicker: false,
+      searchTag: null,
+      tags: [
+        { id: 1, name: 'technical' },
+        { id: 2, name: 'html' },
+        { id: 3, name: 'vue' }
+      ],
+      categories: [
+        { id: 1, name: 'Ruby' },
+        { id: 2, name: 'Category' },
+        { id: 3, name: 'JS' }
+      ],
+      article: this.articleObject()
+    }
+  },
+  validations: {
+    article: {
+      title: {
+        required,
+        minLength: minLength(10)
+      },
+      category_id: { required },
+      created_at: { required },
+      reading_time: { required },
+      tags: { maxLength: maxLength(5) },
+      content: {
+        required,
+        minLength: minLength(30)
+      }
+    }
+  },
+  watch: {
+    'article.tags': function(val) {
+      if (val.length > 5) {
+        this.$nextTick(() => this.article.tags.pop())
+      }
+    }
+  },
+  computed: {
+    formatCreatedAt() {
+      return this.article.created_at
+        ? moment(this.article.created_at).format('dddd, MMMM Do YYYY')
+        : ''
+    },
+    msgCategoryInvalid() {
+      if (!this.$v.article.category_id.$error) return
+      if (!this.$v.article.category_id.required) return 'Vui lòng chọn danh mục'
+    },
+    msgTitleInvalid() {
+      if (!this.$v.article.title.$error) return
+      if (!this.$v.article.title.required) return 'Vui lòng nhập tiêu đề'
+    },
+    msgTagsInvalid() {
+      if (!this.$v.article.tags.$error) return
+      if (!this.$v.article.tags.maxLength) return 'Chỉ có thể nhập tối đa 5 tag'
+    },
+    msgReadingTimeInvalid() {
+      if (!this.$v.article.reading_time.$error) return
+      if (!this.$v.article.reading_time.required)
+        return 'Vui lòng nhập thời lượng đọc bài'
+    }
+  },
+  methods: {
+    articleObject() {
+      return {
+        title: '',
+        category_id: '',
+        created_at: new Date().toISOString().substr(0, 10),
+        reading_time: '',
+        tags: [],
+        image: '',
+        content: ''
+      }
+    }
   }
 }
 </script>
