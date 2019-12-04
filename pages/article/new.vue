@@ -143,6 +143,7 @@
 import moment from 'moment'
 import { required, minLength, maxLength } from 'vuelidate/lib/validators'
 import Editor from '@tinymce/tinymce-vue'
+import CategoryApi from '@/apis/ApiCategory.js'
 
 export default {
   components: {
@@ -224,7 +225,10 @@ export default {
         content: ''
       }
     },
-    submitForm() {
+    async submitForm() {
+      const i = await CategoryApi.get()
+      console.log(i)
+      // ====
       this.$v.$touch()
       if (!this.$v.invalid) {
       }
