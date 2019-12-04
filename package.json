@@ -11,11 +11,12 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/axios": "^5.8.0",
     "@nuxtjs/dotenv": "^1.4.0",
     "@tinymce/tinymce-vue": "^3.0.1",
     "moment": "^2.24.0",
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.0.0",
+    "vuelidate": "^0.7.4"
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.0.0",
