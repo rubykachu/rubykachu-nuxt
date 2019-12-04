@@ -13,7 +13,11 @@
           <v-divider></v-divider>
 
           <v-card-text>
-            <categories-field></categories-field>
+            <v-select
+              :items="['Foo', 'Bar', 'Fizz', 'Buzz']"
+              prepend-icon="mdi-equal-box"
+              label="Danh mục"
+            ></v-select>
 
             <v-text-field
               ref="name"
@@ -33,13 +37,38 @@
 
             <cloud-tag-field></cloud-tag-field>
 
-            <v-text-field ref="name" label="Nội dung"></v-text-field>
-
             <v-file-input
               show-size
               label="Ảnh bài viêt"
               prepend-icon="mdi-image"
             ></v-file-input>
+
+            <editor
+              api-key="no-api-key"
+              initialValue="<p>This is the initial content of the editor</p>"
+              :init="{
+                height: 500,
+                menubar: false,
+                plugins: [
+                  'advlist autolink lists link image charmap print preview anchor',
+                  'searchreplace visualblocks code fullscreen',
+                  'insertdatetime media table paste code help wordcount',
+                  'codesample'
+                ],
+                toolbar:
+                  'undo redo | formatselect | bold italic backcolor | \
+           alignleft aligncenter alignright alignjustify | \
+           bullist numlist outdent indent | removeformat | help | codesample'
+              }"
+            ></editor>
+
+            <div class="d-flex justify-end my-5">
+              <v-btn class="mr-4">Cancel</v-btn>
+              <v-btn color="secondary">
+                <v-icon>mdi-plus</v-icon>
+                Submit
+              </v-btn>
+            </div>
           </v-card-text>
         </v-card>
       </v-col>
@@ -50,13 +79,13 @@
 <script>
 import CreatedField from '@/components/article/CreatedField.vue'
 import CloudTagField from '@/components/article/CloudTagField.vue'
-import CategoriesField from '@/components/article/CategoriesField.vue'
+import Editor from '@tinymce/tinymce-vue'
 
 export default {
   components: {
     CreatedField,
     CloudTagField,
-    CategoriesField
+    Editor
   }
 }
 </script>
