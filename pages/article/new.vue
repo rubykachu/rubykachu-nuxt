@@ -21,6 +21,7 @@
               item-value="id"
               prepend-icon="mdi-equal-box"
               label="Danh mục"
+              class="pb-2"
               :error-messages="msgCategoryInvalid"
               @blur="$v.article.category_id.$touch()"
             ></v-select>
@@ -30,7 +31,7 @@
               v-model="article.title"
               label="Tiêu đề"
               prepend-icon="mdi-format-title"
-              class="mt-0 pt-0"
+              class="pb-2"
               :error-messages="msgTitleInvalid"
               @blur="$v.article.title.$touch()"
             ></v-text-field>
@@ -50,6 +51,7 @@
                   v-on="on"
                   @click:clear="article.created_at = null"
                   prepend-icon="mdi-calendar"
+                  class="pb-2"
                 ></v-text-field>
               </template>
               <v-date-picker
@@ -64,6 +66,7 @@
               label="Thời gian đọc"
               value="8 phút"
               prepend-icon="mdi-circle-slice-5"
+              class="pb-2"
               :error-messages="msgReadingTimeInvalid"
               @blur="$v.article.reading_time.$touch()"
             ></v-text-field>
@@ -79,6 +82,7 @@
               hint="Tối đa 5 tags"
               label="Cloud tags"
               prepend-icon="mdi-tag-multiple"
+              class="pb-2"
               multiple
               persistent-hint
               small-chips
@@ -104,27 +108,15 @@
               label="Ảnh bài viêt"
               prepend-icon="mdi-image"
               accept="image/*"
+              class="pb-2"
             ></v-file-input>
 
             <!-- Content -->
             <editor
+              initialValue=""
               v-model="article.content"
-              api-key="no-api-key"
-              initialValue="<p>This is the initial content of the editor</p>"
-              :init="{
-                height: 500,
-                menubar: false,
-                plugins: [
-                  'advlist autolink lists link image charmap print preview anchor',
-                  'searchreplace visualblocks code fullscreen',
-                  'insertdatetime media table paste code help wordcount',
-                  'codesample'
-                ],
-                toolbar:
-                  'undo redo | formatselect | codesample | bold italic backcolor | \
-           alignleft aligncenter alignright alignjustify | \
-           bullist numlist outdent indent | removeformat | preview | help'
-              }"
+              @blur="$v.article.content.$touch()"
+              :error-messages="msgContentInvalid"
             ></editor>
 
             <div class="d-flex justify-end my-5">
@@ -144,7 +136,7 @@
 <script>
 import moment from 'moment'
 import { required, minLength, maxLength } from 'vuelidate/lib/validators'
-import Editor from '@tinymce/tinymce-vue'
+import Editor from '@/components/Editor.vue'
 
 export default {
   components: {
@@ -204,7 +196,7 @@ export default {
       if (!this.$v.article.title.$error) return
       if (!this.$v.article.title.required) return 'Vui lòng nhập tiêu đề'
       if (!this.$v.article.title.minLength)
-        return 'Tiêu đề quá ngắn (Ít nhất 10 ký tự)'
+        return 'Tiêu đề quá ngắn (tối thiểu 10 ký tự)'
     },
     msgTagsInvalid() {
       if (!this.$v.article.tags.$error) return
@@ -214,6 +206,12 @@ export default {
       if (!this.$v.article.reading_time.$error) return
       if (!this.$v.article.reading_time.required)
         return 'Vui lòng nhập thời gian đọc bài'
+    },
+    msgContentInvalid() {
+      if (!this.$v.article.content.$error) return
+      if (!this.$v.article.content.required) return 'Vui lòng nhập nội dung'
+      if (!this.$v.article.content.minLength)
+        return 'Nội dung quá ngắn (tối thiểu 30 ký tự)'
     }
   },
   methods: {
