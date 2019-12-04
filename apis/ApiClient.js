@@ -2,7 +2,6 @@ let client
 
 export function setClient(newclient) {
   client = newclient
-  return client
 }
 
 // Request helpers

@@ -30,10 +30,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [
-    '~/plugins/vuelidate',
-    { src: '~/plugins/axios', ssr: false, mode: 'client' }
-  ],
+  plugins: ['~/plugins/vuelidate', '~/plugins/axios'],
   /*
    ** Nuxt.js dev-modules
    */

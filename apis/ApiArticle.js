@@ -5,7 +5,7 @@ export default {
     return ApiClient.get('/articles')
   },
   find(id) {
-    return ApiClient.get('/articles' + id)
+    return ApiClient.get('/articles/' + id)
   },
   create(article) {
     return ApiClient.post('/articles', article)
