@@ -60,7 +60,7 @@
 
             <!-- Reading time -->
             <v-text-field
-              v-model="article.read_time"
+              v-model="article.reading_time"
               label="Thời gian đọc"
               value="8 phút"
               prepend-icon="mdi-circle-slice-5"
@@ -99,9 +99,11 @@
 
             <!-- Image -->
             <v-file-input
+              v-model="article.image"
               show-size
               label="Ảnh bài viêt"
               prepend-icon="mdi-image"
+              accept="image/*"
             ></v-file-input>
 
             <!-- Content -->
@@ -143,7 +145,6 @@
 import moment from 'moment'
 import { required, minLength, maxLength } from 'vuelidate/lib/validators'
 import Editor from '@tinymce/tinymce-vue'
-import CategoryApi from '@/apis/ApiCategory.js'
 
 export default {
   components: {
@@ -163,7 +164,7 @@ export default {
         { id: 2, name: 'Category' },
         { id: 3, name: 'JS' }
       ],
-      article: this.articleObject()
+      article: this.newArticleObject()
     }
   },
   validations: {
@@ -202,6 +203,8 @@ export default {
     msgTitleInvalid() {
       if (!this.$v.article.title.$error) return
       if (!this.$v.article.title.required) return 'Vui lòng nhập tiêu đề'
+      if (!this.$v.article.title.minLength)
+        return 'Tiêu đề quá ngắn (Ít nhất 10 ký tự)'
     },
     msgTagsInvalid() {
       if (!this.$v.article.tags.$error) return
@@ -210,27 +213,39 @@ export default {
     msgReadingTimeInvalid() {
       if (!this.$v.article.reading_time.$error) return
       if (!this.$v.article.reading_time.required)
-        return 'Vui lòng nhập thời lượng đọc bài'
+        return 'Vui lòng nhập thời gian đọc bài'
     }
   },
   methods: {
-    articleObject() {
+    newArticleObject() {
       return {
         title: '',
         category_id: '',
         created_at: new Date().toISOString().substr(0, 10),
         reading_time: '',
         tags: [],
-        image: '',
+        image: null,
         content: ''
       }
     },
     async submitForm() {
-      const i = await CategoryApi.get()
-      console.log(i)
-      // ====
       this.$v.$touch()
-      if (!this.$v.invalid) {
+      if (!this.$v.$invalid) {
+        try {
+          let result = await this.$store.dispatch(
+            'article/createArticle',
+            this.article
+          )
+          debugger
+          this.$router.push({
+            name: 'article-id',
+            params: { id: result.id }
+          })
+          this.article = this.newArticleObject()
+        } catch (e) {
+          alert('Error: Please check console log')
+          console.log(e)
+        }
       }
     }
   }
