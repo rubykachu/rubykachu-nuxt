@@ -127,7 +127,7 @@
 
             <div class="d-flex justify-end my-5">
               <v-btn class="mr-4">Cancel</v-btn>
-              <v-btn color="secondary">
+              <v-btn color="secondary" @click="submitForm">
                 <v-icon>mdi-plus</v-icon>
                 Submit
               </v-btn>
@@ -222,6 +222,11 @@ export default {
         tags: [],
         image: '',
         content: ''
+      }
+    },
+    submitForm() {
+      this.$v.$touch()
+      if (!this.$v.invalid) {
       }
     }
   }
