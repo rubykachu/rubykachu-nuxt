@@ -6,5 +6,8 @@ export default {
   },
   find(id) {
     return ApiClient.get('/categories/' + id)
+  },
+  create(category) {
+    return ApiClient.post('/categories', category)
   }
 }

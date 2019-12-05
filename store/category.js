@@ -11,6 +11,9 @@ export const mutations = {
   },
   SET_CATEGORY(state, category) {
     state.category = category
+  },
+  ADD_CATEGORY(state, category) {
+    state.categories.push(category)
   }
 }
 
@@ -19,6 +22,15 @@ export const actions = {
     try {
       const result = await ApiCategory.get()
       commit('SET_CATEGORIES', result.data)
+      return result.data
+    } catch (e) {
+      throw e
+    }
+  },
+  async createCategory({ commit }, category) {
+    try {
+      const result = await ApiCategory.create(category)
+      commit('ADD_CATEGORY', result.data)
       return result.data
     } catch (e) {
       throw e

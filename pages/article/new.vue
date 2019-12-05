@@ -19,11 +19,13 @@
               :items="categories"
               item-text="name"
               item-value="id"
-              prepend-icon="mdi-equal-box"
+              prepend-icon="mdi-folder"
+              append-icon="mdi-plus-circle"
               label="Danh mục"
               class="pb-2"
               :error-messages="msgCategoryInvalid"
               @blur="$v.article.category_id.$touch()"
+              @click:append="openDialog"
             ></v-select>
 
             <!-- Title -->
@@ -100,6 +102,37 @@
         </v-card>
       </v-col>
     </v-row>
+
+    <!-- Dialog -->
+    <v-dialog v-model="dialog" persistent max-width="600px">
+      <v-card>
+        <v-card-title>
+          <p class="headline">Thêm danh mục</p>
+        </v-card-title>
+        <v-divider></v-divider>
+        <v-card-text>
+          <v-container>
+            <v-row>
+              <v-col cols="12">
+                <v-text-field
+                  v-model="category"
+                  label="Tên danh mục"
+                  prepend-icon="mdi-folder"
+                ></v-text-field>
+              </v-col>
+            </v-row>
+          </v-container>
+          <small class="success--text">{{ msgCreateSuccessCategory }}</small>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" text @click="dialog = false">Đóng</v-btn>
+          <v-btn color="blue darken-1" text @click="createCategory"
+            >Tạo danh mục</v-btn
+          >
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -115,7 +148,10 @@ export default {
   },
   data() {
     return {
+      dialog: false,
+      msgCreateSuccessCategory: '',
       toggleDatePicker: false,
+      category: null,
       article: this.newArticleObject()
     }
   },
@@ -201,6 +237,20 @@ export default {
           alert('Error: Please check console log')
           console.log(e)
         }
+      }
+    },
+    openDialog() {
+      this.dialog = !this.dialog
+    },
+    async createCategory() {
+      try {
+        await this.$store.dispatch('category/createCategory', {
+          name: this.category
+        })
+        this.msgCreateSuccessCategory = '* Tạo danh mục thành công'
+        this.category = ''
+      } catch (e) {
+        alert('Error: Please check console log')
       }
     }
   }
