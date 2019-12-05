@@ -71,36 +71,6 @@
               @blur="$v.article.reading_time.$touch()"
             ></v-text-field>
 
-            <!-- Cloud tags -->
-            <v-combobox
-              v-model="article.tags"
-              :items="tags"
-              item-text="name"
-              item-value="id"
-              :search-input.sync="searchTag"
-              hide-selected
-              hint="Tối đa 5 tags"
-              label="Cloud tags"
-              prepend-icon="mdi-tag-multiple"
-              class="pb-2"
-              multiple
-              persistent-hint
-              small-chips
-              :error-messages="msgTagsInvalid"
-              @change="$v.article.tags.$touch()"
-            >
-              <template v-slot:no-data>
-                <v-list-item>
-                  <v-list-item-content>
-                    <v-list-item-title>
-                      No results matching "<strong>{{ searchTag }}</strong
-                      >". Press <kbd>enter</kbd> to create a new one
-                    </v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-              </template>
-            </v-combobox>
-
             <!-- Image -->
             <v-file-input
               v-model="article.image"
@@ -137,6 +107,7 @@
 import moment from 'moment'
 import { required, minLength, maxLength } from 'vuelidate/lib/validators'
 import Editor from '@/components/Editor.vue'
+import { resolve, reject } from 'q'
 
 export default {
   components: {
@@ -145,17 +116,6 @@ export default {
   data() {
     return {
       toggleDatePicker: false,
-      searchTag: null,
-      tags: [
-        { id: 1, name: 'technical' },
-        { id: 2, name: 'html' },
-        { id: 3, name: 'vue' }
-      ],
-      categories: [
-        { id: 1, name: 'Ruby' },
-        { id: 2, name: 'Category' },
-        { id: 3, name: 'JS' }
-      ],
       article: this.newArticleObject()
     }
   },
@@ -168,24 +128,20 @@ export default {
       category_id: { required },
       created_at: { required },
       reading_time: { required },
-      tags: { maxLength: maxLength(5) },
       content: {
         required,
         minLength: minLength(30)
       }
     }
   },
-  watch: {
-    'article.tags': function(val) {
-      if (val.length > 5) {
-        this.$nextTick(() => this.article.tags.pop())
-      }
-    }
+  async asyncData({ store }) {
+    const resultCategories = await store.dispatch('category/getCategories')
+    return { categories: resultCategories }
   },
   computed: {
     formatCreatedAt() {
       return this.article.created_at
-        ? moment(this.article.created_at).format('dddd, MMMM Do YYYY')
+        ? moment(this.article.created_at).format('MMM D, YYYY')
         : ''
     },
     msgCategoryInvalid() {
@@ -197,10 +153,6 @@ export default {
       if (!this.$v.article.title.required) return 'Vui lòng nhập tiêu đề'
       if (!this.$v.article.title.minLength)
         return 'Tiêu đề quá ngắn (tối thiểu 10 ký tự)'
-    },
-    msgTagsInvalid() {
-      if (!this.$v.article.tags.$error) return
-      if (!this.$v.article.tags.maxLength) return 'Chỉ có thể nhập tối đa 5 tag'
     },
     msgReadingTimeInvalid() {
       if (!this.$v.article.reading_time.$error) return
@@ -221,7 +173,6 @@ export default {
         category_id: '',
         created_at: new Date().toISOString().substr(0, 10),
         reading_time: '',
-        tags: [],
         image: null,
         content: ''
       }
@@ -230,15 +181,19 @@ export default {
       this.$v.$touch()
       if (!this.$v.$invalid) {
         try {
+          // Call Api create article
           let result = await this.$store.dispatch(
             'article/createArticle',
             this.article
           )
-          debugger
+
+          // Redirect to detail page
           this.$router.push({
             name: 'article-id',
             params: { id: result.id }
           })
+
+          // Clear form
           this.article = this.newArticleObject()
         } catch (e) {
           alert('Error: Please check console log')
