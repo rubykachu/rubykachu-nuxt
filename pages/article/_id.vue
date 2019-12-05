@@ -6,7 +6,7 @@
         color="grey"
         min-width="100%"
         min-height="400"
-        img="http://estudiopatagon.com/themes/wordpress/breek/wp-content/uploads/2019/06/2004612-1601x500.jpg"
+        :img="featureImage"
       >
         <v-card class="pa-2 mb-auto" color="transparent" outlined>
           <v-card-text>
@@ -17,13 +17,13 @@
             <v-icon color="white" class="icon-size ml-5 mr-1"
               >mdi-circle-slice-5</v-icon
             >
-            <span class="subheading white--text">{{ article.reading_time }}</span>
+            <span class="subheading white--text">{{ article.reading_time }} phút</span>
           </v-card-text>
         </v-card>
 
         <v-card class="pa-2" color="transparent" outlined>
           <v-card-text>
-            <v-chip color="primary" class="px-8 font-weight-bold">Cloud</v-chip>
+            <v-chip color="primary" class="px-8 font-weight-bold">{{ category.name }}</v-chip>
             <h1 class="py-5 white--text display-2">
               {{ article.title }}
             </h1>
@@ -50,9 +50,9 @@
             background-color="grey lighten-4"
             append-icon="mdi-content-copy"
             label="Copy link and share article"
-            :value="fullPath"
             @click:append=""
             class="text-field-copy-link"
+            :value="articleLink"
           ></v-text-field>
         </v-col>
       </v-row>
@@ -83,21 +83,28 @@
 import moment from 'moment'
 
 export default {
+  data: () => ({
+    articleLink: ''
+  }),
   async asyncData({ store, params }) {
     try {
-      let result = await store.dispatch('article/getArticle', params.id)
-      return { article: result }
+      let article = await store.dispatch('article/getArticle', params.id)
+      let category = await store.dispatch('category/findCategory', article.category_id)
+      return { article, category }
     } catch(e) {
       console.log(e)
     }
+  },
+  mounted() {
+    this.articleLink = this.$el.baseURI
   },
   computed: {
     formatCreatedAt() {
       let created_at = this.article.created_at
       return created_at ? moment(created_at).format('MMM D, YYYY') : ''
     },
-    fullPath() {
-      return window.location.origin + this.$route.fullPath
+    featureImage() {
+      return this.article.image ? this.article.image : '/bg_default_post_detail_1600x500.jpg'
     }
   }
 }

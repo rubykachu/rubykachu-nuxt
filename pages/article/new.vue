@@ -64,7 +64,9 @@
             <v-text-field
               v-model="article.reading_time"
               label="Thời gian đọc"
-              value="8 phút"
+              value="15"
+              hint="Thời gian tính bằng phút"
+              type="number"
               prepend-icon="mdi-circle-slice-5"
               class="pb-2"
               :error-messages="msgReadingTimeInvalid"
@@ -72,14 +74,12 @@
             ></v-text-field>
 
             <!-- Image -->
-            <v-file-input
+            <v-text-field
               v-model="article.image"
-              show-size
-              label="Ảnh bài viêt"
+              label="Url hình ảnh"
               prepend-icon="mdi-image"
-              accept="image/*"
               class="pb-2"
-            ></v-file-input>
+            ></v-text-field>
 
             <!-- Content -->
             <editor
@@ -105,7 +105,7 @@
 
 <script>
 import moment from 'moment'
-import { required, minLength, maxLength } from 'vuelidate/lib/validators'
+import { required, minLength, numeric } from 'vuelidate/lib/validators'
 import Editor from '@/components/Editor.vue'
 import { resolve, reject } from 'q'
 
@@ -127,7 +127,7 @@ export default {
       },
       category_id: { required },
       created_at: { required },
-      reading_time: { required },
+      reading_time: { required, numeric },
       content: {
         required,
         minLength: minLength(30)
@@ -158,6 +158,8 @@ export default {
       if (!this.$v.article.reading_time.$error) return
       if (!this.$v.article.reading_time.required)
         return 'Vui lòng nhập thời gian đọc bài'
+      if (!this.$v.article.reading_time.numeric)
+        return 'Giá trị nhập vào phải là số nguyên'
     },
     msgContentInvalid() {
       if (!this.$v.article.content.$error) return
