@@ -7,36 +7,37 @@
     >
       Ruby on Rails
     </v-chip>
-    <v-img
-      class="white--text align-end article-item__image"
-      max-height="200px"
-      src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-      lazy-src="https://picsum.photos/id/11/100/60"
-      aspect-ratio="1"
-    >
-      <template v-slot:placeholder>
-        <v-row class="fill-height ma-0" align="center" justify="center">
-          <v-progress-circular
-            indeterminate
-            color="grey lighten-5"
-          ></v-progress-circular>
-        </v-row>
-      </template>
-    </v-img>
+    <v-hover v-slot:default="{ hover }">
+      <v-img
+        class="white--text align-end article-item__image"
+        :class="{ 'on-hover': hover }"
+        max-height="200px"
+        src="/articles/bg_article_1.jpg"
+        lazy-src="/bg_lazy.svg"
+        color="grey dark-3"
+        aspect-ratio="1"
+      >
+        <template v-slot:placeholder>
+          <v-row class="fill-height ma-0" align="center" justify="center">
+            <v-progress-circular
+              indeterminate
+              color="grey lighten-5"
+            ></v-progress-circular>
+          </v-row>
+        </template>
+      </v-img>
+    </v-hover>
 
     <div class="white">
       <v-card-title class="pb-2">{{ article.title }}</v-card-title>
 
-      <v-card-text class="text--primary" v-html="articleContent"> </v-card-text>
+      <v-card-text class="text--primary" v-html="Content"> </v-card-text>
 
       <v-divider></v-divider>
 
       <v-card-actions class="px-3">
         <v-avatar size="36px" color="grey darken-3" class="elevation-3">
-          <img
-            alt="Avatar"
-            src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
-          />
+          <img alt="Avatar" src="/avatar-author.svg" />
         </v-avatar>
 
         <span class="ml-3">Minh Tang Q.</span>
@@ -46,13 +47,13 @@
         <div class="caption">
           <div>
             <v-icon color="primary" class="icon-size">mdi-calendar-week</v-icon>
-            <span class="subheading">June 5, 2019</span>
+            <span class="subheading">{{ CreatedAt }}</span>
           </div>
           <div>
             <v-icon color="primary" class="icon-size"
               >mdi-circle-slice-5</v-icon
             >
-            4 mins
+            {{ article.reading_time }} phút
           </div>
         </div>
       </v-card-actions>
@@ -61,6 +62,7 @@
 </template>
 
 <script>
+import moment from 'moment'
 import truncate from 'lodash/truncate'
 
 export default {
@@ -71,8 +73,11 @@ export default {
     }
   },
   computed: {
-    articleContent() {
+    Content() {
       return truncate(this.article.content, { length: 50 })
+    },
+    CreatedAt() {
+      return moment(this.article.created_at).format('MMM D, YYYY')
     }
   }
 }
@@ -99,6 +104,20 @@ export default {
 
   .icon-size {
     font-size: 15px;
+  }
+
+  .v-image {
+    position: relative;
+    &.on-hover::after {
+      content: ' ';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 2;
+      background-color: rgba(0, 0, 0, 0.2);
+    }
   }
 }
 </style>
