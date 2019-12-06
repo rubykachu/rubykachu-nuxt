@@ -25,13 +25,9 @@
     </v-img>
 
     <div class="white">
-      <v-card-title class="pb-2">Top 10 Australian beaches</v-card-title>
+      <v-card-title class="pb-2">{{ article.title }}</v-card-title>
 
-      <v-card-text class="text--primary">
-        <div>Whitehaven Beach</div>
-
-        <div>Whitsunday Island, Whitsunday Islands</div>
-      </v-card-text>
+      <v-card-text class="text--primary" v-html="articleContent"> </v-card-text>
 
       <v-divider></v-divider>
 
@@ -63,6 +59,24 @@
     </div>
   </v-card>
 </template>
+
+<script>
+import truncate from 'lodash/truncate'
+
+export default {
+  props: {
+    article: {
+      required: true,
+      type: Object
+    }
+  },
+  computed: {
+    articleContent() {
+      return truncate(this.article.content, { length: 50 })
+    }
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .article-item {

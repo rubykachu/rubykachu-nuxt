@@ -88,7 +88,7 @@ export default {
   }),
   async asyncData({ store, params }) {
     try {
-      let article = await store.dispatch('article/getArticle', params.id)
+      let article = await store.dispatch('article/findArticle', params.id)
       let category = await store.dispatch('category/findCategory', article.category_id)
       return { article, category }
     } catch(e) {
