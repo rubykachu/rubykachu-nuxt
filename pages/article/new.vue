@@ -20,13 +20,17 @@
               item-text="name"
               item-value="id"
               prepend-icon="mdi-folder"
-              append-icon="mdi-plus-circle"
               label="Danh mục"
               class="pb-2"
-              :error-messages="msgCategoryInvalid"
+              :error-messages="msgSelectCategoryInvalid"
               @blur="$v.article.category_id.$touch()"
-              @click:append="openDialog"
-            ></v-select>
+            >
+              <template v-slot:append-outer>
+                <v-btn color="secondary" @click="openDialog" x-small dense text>
+                  <v-icon color="secondary">mdi-plus-circle</v-icon>
+                </v-btn>
+              </template>
+            </v-select>
 
             <!-- Title -->
             <v-text-field
@@ -118,15 +122,18 @@
                   v-model="category"
                   label="Tên danh mục"
                   prepend-icon="mdi-folder"
+                  :error-messages="msgCategoryInvalid"
+                  :success-messages="msgCreateSuccessCategory"
+                  @focus="resetCategory"
                 ></v-text-field>
               </v-col>
             </v-row>
           </v-container>
-          <small class="success--text">{{ msgCreateSuccessCategory }}</small>
+          <!-- <small class="success--text">{{ msgCreateSuccessCategory }}</small> -->
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="dialog = false">Đóng</v-btn>
+          <v-btn color="blue darken-1" text @click="closeDialog">Đóng</v-btn>
           <v-btn color="blue darken-1" text @click="createCategory"
             >Tạo danh mục</v-btn
           >
@@ -149,6 +156,7 @@ export default {
   data() {
     return {
       dialog: false,
+      msgCategoryInvalid: '',
       msgCreateSuccessCategory: '',
       toggleDatePicker: false,
       category: null,
@@ -156,6 +164,7 @@ export default {
     }
   },
   validations: {
+    category: { required },
     article: {
       title: {
         required,
@@ -180,7 +189,7 @@ export default {
         ? moment(this.article.created_at).format('MMM D, YYYY')
         : ''
     },
-    msgCategoryInvalid() {
+    msgSelectCategoryInvalid() {
       if (!this.$v.article.category_id.$error) return
       if (!this.$v.article.category_id.required) return 'Vui lòng chọn danh mục'
     },
@@ -216,8 +225,8 @@ export default {
       }
     },
     async submitForm() {
-      this.$v.$touch()
-      if (!this.$v.$invalid) {
+      this.$v.article.$touch()
+      if (!this.$v.article.$invalid) {
         try {
           // Call Api create article
           let result = await this.$store.dispatch(
@@ -239,18 +248,33 @@ export default {
         }
       }
     },
+    // Category Dialog
     openDialog() {
-      this.dialog = !this.dialog
+      this.dialog = true
+    },
+    closeDialog() {
+      this.dialog = false
+      this.resetCategory()
+    },
+    resetCategory() {
+      this.msgCreateSuccessCategory = ''
+      this.msgCategoryInvalid = ''
+      this.category = ''
     },
     async createCategory() {
-      try {
-        await this.$store.dispatch('category/createCategory', {
-          name: this.category
-        })
-        this.msgCreateSuccessCategory = '* Tạo danh mục thành công'
-        this.category = ''
-      } catch (e) {
-        alert('Error: Please check console log')
+      this.$v.category.$touch()
+      if (!this.$v.category.$invalid) {
+        try {
+          await this.$store.dispatch('category/createCategory', {
+            name: this.category
+          })
+          this.msgCreateSuccessCategory = '* Tạo danh mục thành công'
+          this.category = ''
+        } catch (e) {
+          alert('Error: Please check console log')
+        }
+      } else {
+        this.msgCategoryInvalid = 'Vui lòng nhập danh mục'
       }
     }
   }
