@@ -66,5 +66,10 @@ export default {
       if (!this.$v.article.content.minLength)
         return 'Nội dung quá ngắn (tối thiểu 30 ký tự)'
     }
+  },
+  methods: {
+    selectedColor(defaultColor) {
+      return this.article.color ? this.article.color : defaultColor
+    }
   }
 }

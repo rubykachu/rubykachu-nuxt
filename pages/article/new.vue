@@ -26,13 +26,20 @@
               @blur="$v.article.category.$touch()"
             >
               <template v-slot:append-outer>
+                <!-- button add color -->
                 <v-btn
-                  color="secondary"
-                  @click="dialog = true"
-                  x-small
-                  dense
                   text
+                  dense
+                  x-small
+                  @click="toggleDialogColorPicker = true"
                 >
+                  <v-icon :color="selectedColor(defaultColor)"
+                    >mdi-circle</v-icon
+                  >
+                </v-btn>
+
+                <!-- button add category -->
+                <v-btn @click="dialogCategory = true" x-small dense text>
                   <v-icon color="secondary">mdi-plus-circle</v-icon>
                 </v-btn>
               </template>
@@ -135,28 +142,40 @@
       </v-col>
     </v-row>
 
-    <dialog-create-category :dialog="dialog" @click:close="dialog = false" />
+    <dialog-create-category
+      :dialog="dialogCategory"
+      @click:close="dialogCategory = false"
+    />
+    <dialog-color-picker
+      :dialog="toggleDialogColorPicker"
+      @click:close="toggleDialogColorPicker = false"
+      v-model="article.color"
+    ></dialog-color-picker>
   </v-container>
 </template>
 
 <script>
 import Editor from '@/components/Editor.vue'
 import DialogCreateCategory from '@/components/article/DialogCreateCategory.vue'
+import DialogColorPicker from '@/components/article/DialogColorPicker.vue'
 import formArticle from '@/mixins/article/form.js'
 
 export default {
   mixins: [formArticle],
   components: {
     Editor,
-    DialogCreateCategory
+    DialogCreateCategory,
+    DialogColorPicker
   },
   head: () => ({
     title: 'Create a new article'
   }),
   data() {
     return {
-      dialog: false,
+      dialogCategory: false,
       toggleDatePicker: false,
+      toggleDialogColorPicker: false,
+      defaultColor: 'primary',
       article: this.newArticleObject()
     }
   },
@@ -165,6 +184,7 @@ export default {
       return {
         title: '',
         category: '',
+        color: '',
         created_at: new Date().toISOString().substr(0, 10),
         reading_time: '',
         image: '',

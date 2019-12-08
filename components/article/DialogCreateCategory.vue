@@ -21,6 +21,9 @@
           </v-row>
         </v-container>
       </v-card-text>
+
+      <v-divider></v-divider>
+
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="blue darken-1" text @click="closeDialog">Đóng</v-btn>
