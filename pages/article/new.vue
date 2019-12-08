@@ -5,9 +5,7 @@
         <v-card ref="form" class="rounded-15">
           <v-toolbar flat color="white">
             <v-icon>mdi-lead-pencil</v-icon>
-            <v-toolbar-title class="font-weight-light ml-2"
-              >Viết bài</v-toolbar-title
-            >
+            <v-toolbar-title class="font-weight-light ml-2">Viết bài</v-toolbar-title>
           </v-toolbar>
 
           <v-divider></v-divider>
@@ -27,15 +25,8 @@
             >
               <template v-slot:append-outer>
                 <!-- button add color -->
-                <v-btn
-                  text
-                  dense
-                  x-small
-                  @click="toggleDialogColorPicker = true"
-                >
-                  <v-icon :color="selectedColor(defaultColor)"
-                    >mdi-circle</v-icon
-                  >
+                <v-btn text dense x-small @click="toggleDialogColorPicker = true">
+                  <v-icon :color="selectedColor(defaultColor)">mdi-circle</v-icon>
                 </v-btn>
 
                 <!-- button add category -->
@@ -58,11 +49,7 @@
             ></v-text-field>
 
             <!-- Created At -->
-            <v-menu
-              v-model="toggleDatePicker"
-              :close-on-content-click="false"
-              max-width="290"
-            >
+            <v-menu v-model="toggleDatePicker" :close-on-content-click="false" max-width="290">
               <template v-slot:activator="{ on }">
                 <v-text-field
                   :value="formatCreatedAt"
@@ -75,10 +62,7 @@
                   class="pb-2"
                 ></v-text-field>
               </template>
-              <v-date-picker
-                v-model="article.created_at"
-                @change="toggleDatePicker = false"
-              ></v-date-picker>
+              <v-date-picker v-model="article.created_at" @change="toggleDatePicker = false"></v-date-picker>
             </v-menu>
 
             <!-- Reading time -->
@@ -95,19 +79,9 @@
             ></v-text-field>
 
             <!-- Image -->
-            <v-text-field
-              v-model="article.image"
-              label="Url ảnh lớn"
-              prepend-icon="mdi-image"
-              class="pb-2"
-            ></v-text-field>
+            <v-text-field v-model="article.image" label="Url ảnh lớn" prepend-icon="mdi-image" class="pb-2"></v-text-field>
 
-            <v-text-field
-              v-model="article.image_thumb"
-              label="Url ảnh nhỏ"
-              prepend-icon="mdi-image-size-select-large"
-              class="pb-2"
-            ></v-text-field>
+            <v-text-field v-model="article.image_thumb" label="Url ảnh nhỏ" prepend-icon="mdi-image-size-select-large" class="pb-2"></v-text-field>
 
             <!-- Description -->
             <v-textarea
@@ -125,14 +99,16 @@
             ></v-textarea>
 
             <!-- Content -->
-            <editor
-              initialValue=""
-              v-model="article.content"
-              @blur="$v.article.content.$touch()"
-              :error-messages="msgContentInvalid"
-            ></editor>
+            <editor initialValue="" v-model="article.content" @blur="$v.article.content.$touch()" :error-messages="msgContentInvalid"></editor>
 
             <div class="d-flex justify-end my-5">
+              <template v-if="$v.$anyError">
+                <p class="error--text">
+                  <v-icon color="error">mdi-alert</v-icon>
+                  Nội dung không hợp lệ. Vui lòng kiểm tra lại.
+                </p>
+                <v-spacer></v-spacer>
+              </template>
               <v-btn class="mr-4">Huỷ bỏ</v-btn>
               <v-btn color="secondary" @click="submitForm">
                 <v-icon>mdi-plus</v-icon>
@@ -144,15 +120,8 @@
       </v-col>
     </v-row>
 
-    <dialog-create-category
-      :dialog="dialogCategory"
-      @click:close="dialogCategory = false"
-    />
-    <dialog-color-picker
-      :dialog="toggleDialogColorPicker"
-      @click:close="toggleDialogColorPicker = false"
-      v-model="article.color"
-    ></dialog-color-picker>
+    <dialog-create-category :dialog="dialogCategory" @click:close="dialogCategory = false" />
+    <dialog-color-picker :dialog="toggleDialogColorPicker" @click:close="toggleDialogColorPicker = false" v-model="article.color"></dialog-color-picker>
   </v-container>
 </template>
 
@@ -201,19 +170,13 @@ export default {
         this.article.color = this.article.color || this.defaultColor
         try {
           // Call Api create article
-          let result = await this.$store.dispatch(
-            'article/createArticle',
-            this.article
-          )
+          let result = await this.$store.dispatch('article/createArticle', this.article)
 
           // Redirect to detail page
           this.$router.push({
             name: 'article-id',
             params: { id: result.id }
           })
-
-          // Clear form
-          this.article = this.newArticleObject()
         } catch (e) {
           alert('Error: Please check console log')
           console.log(e)
