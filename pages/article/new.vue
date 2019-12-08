@@ -53,6 +53,8 @@
               class="pb-2"
               :error-messages="msgTitleInvalid"
               @blur="$v.article.title.$touch()"
+              counter="80"
+              hint="2 dòng (80 ký tự). 3 dòng (108 ký tự)"
             ></v-text-field>
 
             <!-- Created At -->
@@ -117,7 +119,7 @@
               row-height="15"
               hint="Mô tả này sẽ không nằm trong phần nội dung của trang chi tiết"
               class="mb-7"
-              counter="200"
+              counter="145"
               :error-messages="msgDescriptionInvalid"
               @blur="$v.article.description.$touch()"
             ></v-textarea>
@@ -131,10 +133,10 @@
             ></editor>
 
             <div class="d-flex justify-end my-5">
-              <v-btn class="mr-4">Cancel</v-btn>
+              <v-btn class="mr-4">Huỷ bỏ</v-btn>
               <v-btn color="secondary" @click="submitForm">
                 <v-icon>mdi-plus</v-icon>
-                Submit
+                Tạo bài viết
               </v-btn>
             </div>
           </v-card-text>
@@ -196,6 +198,7 @@ export default {
     async submitForm() {
       this.$v.article.$touch()
       if (!this.$v.article.$invalid) {
+        this.article.color = this.article.color || this.defaultColor
         try {
           // Call Api create article
           let result = await this.$store.dispatch(

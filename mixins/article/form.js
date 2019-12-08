@@ -6,7 +6,8 @@ import {
   numeric
 } from 'vuelidate/lib/validators'
 
-const maxLenghtDescription = 200
+const maxLenghtDescription = 145
+const minLengthContent = 100
 export default {
   async asyncData({ store }) {
     const resultCategories = await store.dispatch('category/getCategories')
@@ -27,7 +28,7 @@ export default {
       },
       content: {
         required,
-        minLength: minLength(30)
+        minLength: minLength(minLengthContent)
       }
     }
   },
@@ -64,7 +65,7 @@ export default {
       if (!this.$v.article.content.$error) return
       if (!this.$v.article.content.required) return 'Vui lòng nhập nội dung'
       if (!this.$v.article.content.minLength)
-        return 'Nội dung quá ngắn (tối thiểu 30 ký tự)'
+        return `Nội dung quá ngắn (tối thiểu ${minLengthContent} ký tự)`
     }
   },
   methods: {

@@ -7,7 +7,7 @@
   >
     <v-chip
       class="article-item__category px-5 py-3 font-weight-bold"
-      color="indigo"
+      :color="article.color"
       text-color="white"
     >
       {{ article.category.name }}
@@ -121,6 +121,13 @@ export default {
       bottom: 0;
       z-index: 2;
       background-color: rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  .v-card {
+    &__title {
+      line-height: 1.5rem;
+      font-size: 1.1rem;
     }
   }
 }
