@@ -17,7 +17,7 @@
         class="white--text align-end article-item__image"
         :class="{ 'on-hover': hover }"
         max-height="200px"
-        src="/articles/bg_article_1.jpg"
+        :src="article.image_thumb"
         lazy-src="/bg_lazy.svg"
         color="grey dark-3"
         aspect-ratio="1"
@@ -36,7 +36,7 @@
     <div class="white">
       <v-card-title class="pb-2">{{ article.title }}</v-card-title>
 
-      <v-card-text class="text--primary" v-html="Content"> </v-card-text>
+      <v-card-text class="text--primary">{{ article.description }}</v-card-text>
 
       <v-divider></v-divider>
 
@@ -68,7 +68,6 @@
 
 <script>
 import moment from 'moment'
-import truncate from 'lodash/truncate'
 
 export default {
   props: {
@@ -81,9 +80,6 @@ export default {
     category: null
   }),
   computed: {
-    Content() {
-      return truncate(this.article.content, { length: 50 })
-    },
     CreatedAt() {
       return moment(this.article.created_at).format('MMM D, YYYY')
     }

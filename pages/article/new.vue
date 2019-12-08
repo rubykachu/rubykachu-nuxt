@@ -88,10 +88,32 @@
             <!-- Image -->
             <v-text-field
               v-model="article.image"
-              label="Url hình ảnh"
+              label="Url ảnh lớn"
               prepend-icon="mdi-image"
               class="pb-2"
             ></v-text-field>
+
+            <v-text-field
+              v-model="article.image_thumb"
+              label="Url ảnh nhỏ"
+              prepend-icon="mdi-image-size-select-large"
+              class="pb-2"
+            ></v-text-field>
+
+            <!-- Description -->
+            <v-textarea
+              v-model="article.description"
+              label="Mô tả ngắn"
+              auto-grow
+              prepend-icon="mdi-card-text"
+              rows="1"
+              row-height="15"
+              hint="Mô tả này sẽ không nằm trong phần nội dung của trang chi tiết"
+              class="mb-7"
+              counter="200"
+              :error-messages="msgDescriptionInvalid"
+              @blur="$v.article.description.$touch()"
+            ></v-textarea>
 
             <!-- Content -->
             <editor
@@ -145,7 +167,9 @@ export default {
         category: '',
         created_at: new Date().toISOString().substr(0, 10),
         reading_time: '',
-        image: null,
+        image: '',
+        image_thumb: '',
+        description: '',
         content: ''
       }
     },

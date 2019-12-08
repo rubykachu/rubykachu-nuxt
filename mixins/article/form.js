@@ -1,6 +1,12 @@
 import moment from 'moment'
-import { required, minLength, numeric } from 'vuelidate/lib/validators'
+import {
+  required,
+  minLength,
+  maxLength,
+  numeric
+} from 'vuelidate/lib/validators'
 
+const maxLenghtDescription = 200
 export default {
   async asyncData({ store }) {
     const resultCategories = await store.dispatch('category/getCategories')
@@ -15,6 +21,10 @@ export default {
       category: { required },
       created_at: { required },
       reading_time: { required, numeric },
+      description: {
+        required,
+        maxLength: maxLength(maxLenghtDescription)
+      },
       content: {
         required,
         minLength: minLength(30)
@@ -43,6 +53,12 @@ export default {
         return 'Vui lòng nhập thời gian đọc bài'
       if (!this.$v.article.reading_time.numeric)
         return 'Giá trị nhập vào phải là số nguyên'
+    },
+    msgDescriptionInvalid() {
+      if (!this.$v.article.description.$error) return
+      if (!this.$v.article.description.required) return 'Vui lòng nhập mô tả'
+      if (!this.$v.article.description.maxLength)
+        return `Mô tả quá dài (tối đa ${maxLenghtDescription} ký tự)`
     },
     msgContentInvalid() {
       if (!this.$v.article.content.$error) return
