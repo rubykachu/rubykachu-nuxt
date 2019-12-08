@@ -23,7 +23,7 @@
 
         <v-card class="pa-2" color="transparent" outlined>
           <v-card-text>
-            <v-chip color="primary" class="px-8 font-weight-bold">{{ category.name }}</v-chip>
+            <v-chip color="primary" class="px-8 font-weight-bold">{{ article.category.name }}</v-chip>
             <h1 class="py-5 white--text display-2">
               {{ article.title }}
             </h1>
@@ -88,9 +88,8 @@ export default {
   }),
   async asyncData({ store, params }) {
     try {
-      let article = await store.dispatch('article/getArticle', params.id)
-      let category = await store.dispatch('category/findCategory', article.category_id)
-      return { article, category }
+       const article = await store.dispatch('article/findArticle', params.id)
+       return { article }
     } catch(e) {
       console.log(e)
     }

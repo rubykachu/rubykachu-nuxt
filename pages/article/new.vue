@@ -14,16 +14,16 @@
 
           <v-card-text>
             <!-- Category -->
-            <v-select
-              v-model="article.category_id"
+            <v-combobox
+              v-model="article.category"
               :items="categories"
-              item-text="name"
               item-value="id"
-              prepend-icon="mdi-folder"
+              item-text="name"
               label="Danh mục"
+              prepend-icon="mdi-folder"
               class="pb-2"
               :error-messages="msgSelectCategoryInvalid"
-              @blur="$v.article.category_id.$touch()"
+              @blur="$v.article.category.$touch()"
             >
               <template v-slot:append-outer>
                 <v-btn
@@ -36,7 +36,7 @@
                   <v-icon color="secondary">mdi-plus-circle</v-icon>
                 </v-btn>
               </template>
-            </v-select>
+            </v-combobox>
 
             <!-- Title -->
             <v-text-field
@@ -128,6 +128,9 @@ export default {
     Editor,
     DialogCreateCategory
   },
+  head: () => ({
+    title: 'Create a new article'
+  }),
   data() {
     return {
       dialog: false,
@@ -139,7 +142,7 @@ export default {
     newArticleObject() {
       return {
         title: '',
-        category_id: '',
+        category: '',
         created_at: new Date().toISOString().substr(0, 10),
         reading_time: '',
         image: null,

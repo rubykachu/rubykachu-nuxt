@@ -21,125 +21,34 @@
       "name": "Vue"
     },
     {
-      "name": "Minh",
+      "name": "Astronomy",
       "id": 6
-    },
-    {
-      "name": "OK",
-      "id": 7
-    },
-    {
-      "name": "YU",
-      "id": 8
-    },
-    {
-      "name": "ppp",
-      "id": 9
-    },
-    {
-      "name": "kkk",
-      "id": 10
-    },
-    {
-      "name": "HOHO",
-      "id": 11
-    },
-    {
-      "name": "WOW",
-      "id": 12
-    },
-    {
-      "name": "ddd",
-      "id": 13
-    },
-    {
-      "name": "rrr",
-      "id": 14
     }
   ],
   "articles": [
     {
-      "title": "",
-      "category_id": "",
-      "created_at": "2019-12-05",
-      "reading_time": "",
-      "tags": [
-        {},
-        {}
-      ],
+      "title": "Mars is the fourth planet from the Sun",
+      "category": {
+        "id": 2,
+        "name": "Ruby on Rails"
+      },
+      "created_at": "2019-12-08",
+      "reading_time": "15",
       "image": null,
-      "content": "",
+      "content": "<p><strong>Mars&nbsp;</strong>is the fourth planet from the Sun and the second-smallest planet in the Solar System after Mercury .</p>\n<p>In English, Mars carries a name of the Roman god of war , and is often referred to as the&nbsp;<strong>&ldquo;<em>Red Planet</em>&ldquo;</strong>&nbsp;because the iron oxide prevalent on its surface gives it a reddish appearance that is distinctive among the astronomical bodies visible to the naked eye. &nbsp;</p>\n<p><strong>Mars&nbsp;</strong>is a terrestrial planet with a thin atmosphere , having surface features reminiscent both of the impact craters of the Moon and the valleys, deserts, and polar ice caps of Earth .</p>",
       "id": 1
     },
     {
-      "title": "",
-      "category_id": "",
-      "created_at": "2019-12-05",
-      "reading_time": "",
-      "tags": [
-        {}
-      ],
+      "title": "The spectacle before us was indeed sublime",
+      "category": {
+        "id": 3,
+        "name": "Javascript"
+      },
+      "created_at": "2019-12-09",
+      "reading_time": "12",
       "image": null,
-      "content": "",
+      "content": "<p>Welcome, it&rsquo;s great to have you here.</p>\n<p>We know that first impressions are important, so we&rsquo;ve populated your new site with some initial&nbsp;<strong>getting started</strong>&nbsp;posts that will help you get familiar with everything in no time. This is the first one!</p>\n<p><strong>A few things you should know upfront</strong>:</p>\n<ol>\n<li>Ghost is designed for ambitious, professional publishers who want to actively build a business around their content. That&rsquo;s who it works best for.</li>\n<li>The entire platform can be modified and customised to suit your needs. It&rsquo;s very powerful, but does require some knowledge of code. Ghost is not necessarily a good platform for beginners or people who just want a simple personal blog.</li>\n<li>For the best experience we recommend downloading the&nbsp;<a href=\"https://ghost.org/downloads/\">Ghost Desktop App</a>&nbsp;for your computer, which is the best way to access your Ghost site on a desktop device.</li>\n</ol>\n<figure class=\"wp-block-image\"><img class=\"wp-image-126 loaded\" src=\"http://estudiopatagon.com/themes/wordpress/breek/wp-content/uploads/2019/06/BACKGROUND-02-1024x682.jpg\" sizes=\"(max-width: 1024px) 100vw, 1024px\" srcset=\"http://estudiopatagon.com/themes/wordpress/breek/wp-content/uploads/2019/06/BACKGROUND-02-1024x682.jpg 1024w, http://estudiopatagon.com/themes/wordpress/breek/wp-content/uploads/2019/06/BACKGROUND-02-300x200.jpg 300w, http://estudiopatagon.com/themes/wordpress/breek/wp-content/uploads/2019/06/BACKGROUND-02-768x512.jpg 768w, http://estudiopatagon.com/themes/wordpress/breek/wp-content/uploads/2019/06/BACKGROUND-02-100x67.jpg 100w, http://estudiopatagon.com/themes/wordpress/breek/wp-content/uploads/2019/06/BACKGROUND-02-675x450.jpg 675w, http://estudiopatagon.com/themes/wordpress/breek/wp-content/uploads/2019/06/BACKGROUND-02.jpg 1600w\" alt=\"\" data-lazy=\"true\" />\n<figcaption>This is a example caption</figcaption>\n</figure>",
       "id": 2
-    },
-    {
-      "title": "",
-      "category_id": "",
-      "created_at": "2019-12-05",
-      "reading_time": "",
-      "tags": [
-        {},
-        {}
-      ],
-      "image": null,
-      "content": "",
-      "id": 3
-    },
-    {
-      "title": "WOWWOWWOWWOW",
-      "category_id": 2,
-      "created_at": "2019-12-05",
-      "reading_time": "10phut",
-      "image": null,
-      "content": "<p>WOWWOWWOWWOWWOWWOWWOWWOWWOWWOWWOWWOWWOWWOWWOWWOWWOWWOWWOW</p>",
-      "id": 4
-    },
-    {
-      "title": "Jonathan Doe",
-      "category_id": 1,
-      "created_at": "2019-12-05",
-      "reading_time": "15",
-      "image": "http://estudiopatagon.com/themes/wordpress/breek/wp-content/uploads/2019/06/480016-PGKTGR-852-950x500.jpg",
-      "content": "<header>\n<div class=\"meta\">\n<p class=\"title no-thumb large bold\"><strong style=\"font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\">Mars </strong><span style=\"font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\">is the fourth planet from the Sun and the second-smallest planet in the Solar System after Mercury</span></p>\n</div>\n</header>\n<section class=\"post-content\">\n<div class=\"text\">\n<p>In English, Mars carries a name of the Roman god of war , and is often referred to as the&nbsp;<strong>&ldquo;<em>Red Planet</em>&ldquo;</strong>&nbsp;because the iron oxide prevalent on its surface gives it a reddish appearance that is distinctive among the astronomical bodies visible to the naked eye. &nbsp;</p>\n<p><strong>Mars&nbsp;</strong>is a terrestrial planet with a thin atmosphere , having surface features reminiscent both of the impact craters of the Moon and the valleys, deserts, and polar ice caps of Earth&nbsp;</p>\n</div>\n</section>",
-      "id": 5
-    },
-    {
-      "title": "Mars is the fourth planet from the Sun",
-      "category_id": 2,
-      "created_at": "2019-12-05",
-      "reading_time": "5",
-      "image": "http://estudiopatagon.com/themes/wordpress/breek/wp-content/uploads/2019/06/480016-PGKTGR-852-950x500.jpg",
-      "content": "<p><strong>Mars&nbsp;</strong>is the fourth planet from the Sun and the second-smallest planet in the Solar System after Mercury .</p>\n<p>In English, Mars carries a name of the Roman god of war , and is often referred to as the&nbsp;<strong>&ldquo;<em>Red Planet</em>&ldquo;</strong>&nbsp;because the iron oxide prevalent on its surface gives it a reddish appearance that is distinctive among the astronomical bodies visible to the naked eye. &nbsp;</p>\n<p><strong>Mars&nbsp;</strong>is a terrestrial planet with a thin atmosphere , having surface features reminiscent both of the impact craters of the Moon and the valleys, deserts, and polar ice caps of Earth .</p>\n<ul class=\"wp-block-gallery columns-3 is-cropped\">\n<li class=\"blocks-gallery-item\">&nbsp;</li>\n</ul>",
-      "id": 6
-    },
-    {
-      "title": "Good job bad job ",
-      "category_id": 3,
-      "created_at": "2019-12-05",
-      "reading_time": "20",
-      "image": "http://estudiopatagon.com/themes/wordpress/breek/wp-content/uploads/2019/06/473345-PGN38C-938-1024x683.jpg",
-      "content": "<p><img src=\"http://estudiopatagon.com/themes/wordpress/breek/wp-content/uploads/2019/06/473345-PGN38C-938-1024x683.jpg\" alt=\"\" /></p>",
-      "id": 7
-    },
-    {
-      "title": "hfghfghgfhgfh",
-      "category_id": 12,
-      "created_at": "2019-12-06",
-      "reading_time": "5",
-      "image": null,
-      "content": "<p>You are running Vue in development mode.<br />Make sure to turn on production mode when deploying for production.<br />See more tips at https://vuejs.org/guide/deployment.html<br />client.js?e0ba:95 [HMR] connected<br />new:1 A cookie associated with a cross-site resource at http://www.tiny.cloud/ was set without the `SameSite` attribute. A future release of Chrome will only deliver cookies with cross-site requests if they are set with `SameSite=None` and `Secure`. You can review cookies in developer tools under Application&gt;Storage&gt;Cookies and see more details at https://www.chromestatus.com/feature/5088147346030592 and https://www.chromestatus.com/feature/5633521622188032.<br />new:1 A cookie associated with a cross-site resource at http://spelling.tiny.cloud/ was set without the `SameSite` attribute. A future release of Chrome will only deliver cookies with cross-site requests if they are set with `SameSite=None` and `Secure`. You can review cookies in developer tools under Application&gt;Storage&gt;Cookies and see more details at https://www.chromestatus.com/feature/5088147346030592 and https://www.chromestatus.com/feature/5633521622188032.<br />new:1 A cookie associated with a cross-site resource at http://tiny.cloud/ was set without the `SameSite` attribute. A future release of Chrome will only deliver cookies with cross-site requests if they are set with `SameSite=None` and `Secure`. You can review cookies in developer tools under Application&gt;Storage&gt;Cookies and see more details at https://www.chromestatus.com/feature/5088147346030592 and https://www.chromestatus.com/feature/5633521622188032.</p>",
-      "id": 8
     }
   ]
 }

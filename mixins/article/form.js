@@ -12,7 +12,7 @@ export default {
         required,
         minLength: minLength(10)
       },
-      category_id: { required },
+      category: { required },
       created_at: { required },
       reading_time: { required, numeric },
       content: {
@@ -28,8 +28,8 @@ export default {
         : ''
     },
     msgSelectCategoryInvalid() {
-      if (!this.$v.article.category_id.$error) return
-      if (!this.$v.article.category_id.required) return 'Vui lòng chọn danh mục'
+      if (!this.$v.article.category.$error) return
+      if (!this.$v.article.category.required) return 'Vui lòng chọn danh mục'
     },
     msgTitleInvalid() {
       if (!this.$v.article.title.$error) return
