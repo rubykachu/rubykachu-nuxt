@@ -27,13 +27,28 @@
   ],
   "articles": [
     {
-      "title": "A meteor shower was observed during last night",
-      "category_id": 6,
-      "created_at": "2019-12-06",
+      "title": "Mars is the fourth planet from the Sun",
+      "category": {
+        "id": 2,
+        "name": "Ruby on Rails"
+      },
+      "created_at": "2019-12-08",
       "reading_time": "15",
       "image": null,
-      "content": "<p>A&nbsp;<strong>meteor shower</strong>&nbsp;is a celestial event in which a number of meteors are observed to radiate, or originate, from one point in the night sky. These meteors are caused by streams of cosmic debris called meteoroids entering Earth&rsquo;s atmosphere at extremely high speeds on parallel trajectories.</p>\n<p><strong>Most meteors</strong>&nbsp;are smaller than a grain of sand, so almost all of them disintegrate and never hit the&nbsp;<strong>Earth&rsquo;s surface</strong>. Very intense or unusual meteor showers are known as meteor outbursts and meteor storms, which produce at least 1,000 meteors an hour, most notably from the Leonids.</p>\n<figure class=\"wp-block-image\"><img class=\"wp-image-12 loaded\" src=\"http://estudiopatagon.com/themes/wordpress/breek/wp-content/uploads/2019/06/480016-PGKTGR-852-1024x683.jpg\" sizes=\"(max-width: 1024px) 100vw, 1024px\" srcset=\"http://estudiopatagon.com/themes/wordpress/breek/wp-content/uploads/2019/06/480016-PGKTGR-852-1024x683.jpg 1024w, http://estudiopatagon.com/themes/wordpress/breek/wp-content/uploads/2019/06/480016-PGKTGR-852-300x200.jpg 300w, http://estudiopatagon.com/themes/wordpress/breek/wp-content/uploads/2019/06/480016-PGKTGR-852-768x512.jpg 768w, http://estudiopatagon.com/themes/wordpress/breek/wp-content/uploads/2019/06/480016-PGKTGR-852-100x67.jpg 100w, http://estudiopatagon.com/themes/wordpress/breek/wp-content/uploads/2019/06/480016-PGKTGR-852-675x450.jpg 675w, http://estudiopatagon.com/themes/wordpress/breek/wp-content/uploads/2019/06/480016-PGKTGR-852-1600x1067.jpg 1600w\" alt=\"\" data-lazy=\"true\" />\n<figcaption>Example Caption</figcaption>\n</figure>\n<blockquote class=\"wp-block-quote\">\n<p><em>The&nbsp;</em><strong>Meteor Data Centre</strong><em>&nbsp;lists over 900 suspected meteor showers of which about 100 are well established. Several organizations point to viewing opportunities on the Internet.</em></p>\n</blockquote>\n<h2 id=\"historical-developments\">Historical developments</h2>\n<p>The first great meteor storm in the modern era was the Leonids of November 1833. One estimate is a peak rate of over one hundred thousand meteors an hour,[4] but another, done as the storm abated, estimated in excess of two hundred thousand meteors during the 9 hours of storm, over the entire region of North America east of the Rocky Mountains.</p>\n<p>American Denison Olmsted&nbsp;<strong>(1791&ndash;1859)&nbsp;</strong>explained the event most accurately. After spending the last weeks of&nbsp;<strong>1833&nbsp;</strong>collecting information, he presented his findings in January&nbsp;<strong>1834&nbsp;</strong>to the American Journal of Science and Arts, published in January&ndash;April&nbsp;<strong>1834</strong>, and January&nbsp;<strong>1836</strong>.</p>",
+      "content": "<p><strong>Mars&nbsp;</strong>is the fourth planet from the Sun and the second-smallest planet in the Solar System after Mercury .</p>\n<p>In English, Mars carries a name of the Roman god of war , and is often referred to as the&nbsp;<strong>&ldquo;<em>Red Planet</em>&ldquo;</strong>&nbsp;because the iron oxide prevalent on its surface gives it a reddish appearance that is distinctive among the astronomical bodies visible to the naked eye. &nbsp;</p>\n<p><strong>Mars&nbsp;</strong>is a terrestrial planet with a thin atmosphere , having surface features reminiscent both of the impact craters of the Moon and the valleys, deserts, and polar ice caps of Earth .</p>",
       "id": 1
+    },
+    {
+      "title": "The spectacle before us was indeed sublime",
+      "category": {
+        "id": 3,
+        "name": "Javascript"
+      },
+      "created_at": "2019-12-09",
+      "reading_time": "12",
+      "image": null,
+      "content": "<p>Welcome, it&rsquo;s great to have you here.</p>\n<p>We know that first impressions are important, so we&rsquo;ve populated your new site with some initial&nbsp;<strong>getting started</strong>&nbsp;posts that will help you get familiar with everything in no time. This is the first one!</p>\n<p><strong>A few things you should know upfront</strong>:</p>\n<ol>\n<li>Ghost is designed for ambitious, professional publishers who want to actively build a business around their content. That&rsquo;s who it works best for.</li>\n<li>The entire platform can be modified and customised to suit your needs. It&rsquo;s very powerful, but does require some knowledge of code. Ghost is not necessarily a good platform for beginners or people who just want a simple personal blog.</li>\n<li>For the best experience we recommend downloading the&nbsp;<a href=\"https://ghost.org/downloads/\">Ghost Desktop App</a>&nbsp;for your computer, which is the best way to access your Ghost site on a desktop device.</li>\n</ol>\n<figure class=\"wp-block-image\"><img class=\"wp-image-126 loaded\" src=\"http://estudiopatagon.com/themes/wordpress/breek/wp-content/uploads/2019/06/BACKGROUND-02-1024x682.jpg\" sizes=\"(max-width: 1024px) 100vw, 1024px\" srcset=\"http://estudiopatagon.com/themes/wordpress/breek/wp-content/uploads/2019/06/BACKGROUND-02-1024x682.jpg 1024w, http://estudiopatagon.com/themes/wordpress/breek/wp-content/uploads/2019/06/BACKGROUND-02-300x200.jpg 300w, http://estudiopatagon.com/themes/wordpress/breek/wp-content/uploads/2019/06/BACKGROUND-02-768x512.jpg 768w, http://estudiopatagon.com/themes/wordpress/breek/wp-content/uploads/2019/06/BACKGROUND-02-100x67.jpg 100w, http://estudiopatagon.com/themes/wordpress/breek/wp-content/uploads/2019/06/BACKGROUND-02-675x450.jpg 675w, http://estudiopatagon.com/themes/wordpress/breek/wp-content/uploads/2019/06/BACKGROUND-02.jpg 1600w\" alt=\"\" data-lazy=\"true\" />\n<figcaption>This is a example caption</figcaption>\n</figure>",
+      "id": 2
     }
   ]
 }

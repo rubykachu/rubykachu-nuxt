@@ -5,7 +5,7 @@
       color="indigo"
       text-color="white"
     >
-      Ruby on Rails
+      {{ article.category.name }}
     </v-chip>
     <v-hover v-slot:default="{ hover }">
       <v-img
@@ -72,6 +72,9 @@ export default {
       type: Object
     }
   },
+  data: () => ({
+    category: null
+  }),
   computed: {
     Content() {
       return truncate(this.article.content, { length: 50 })
