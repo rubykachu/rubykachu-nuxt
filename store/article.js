@@ -20,6 +20,11 @@ export const mutations = {
 export const actions = {
   async createArticle({ commit }, article) {
     try {
+      // Random number 1 - 6
+      let number = Math.floor(Math.random() * 6) + 1
+      article.image = article.image || `/articles/bg_article_${number}.jpg`
+      article.image_thumb = article.image_thumb || `/articles/bg_article_${number}.jpg`
+
       const result = await ApiArticle.create(article)
       commit('ADD_ARTICLE', result)
       return result.data

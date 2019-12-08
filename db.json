@@ -27,62 +27,63 @@
   ],
   "articles": [
     {
-      "title": "A meteor shower was observed during last night",
+      "title": "asdsadsasa",
       "category": {
-        "id": 5,
-        "name": "Vue"
+        "id": 1,
+        "name": "Ruby"
       },
-      "color": "#AA1DC7",
+      "color": "primary",
       "created_at": "2019-12-08",
-      "reading_time": "13",
-      "image": "http://estudiopatagon.com/themes/wordpress/breek/wp-content/uploads/2019/06/480016-PGKTGR-852-1024x683.jpg",
-      "image_thumb": "http://estudiopatagon.com/themes/wordpress/breek/wp-content/uploads/2019/06/480016-PGKTGR-852-1024x683.jpg",
-      "description": "The first great meteor storm in the modern era was the Leonids of November 1833. One estimate is a peak rate of over one hundred thousand meteors an",
-      "content": "<p>A&nbsp;<strong>meteor shower</strong>&nbsp;is a celestial event in which a number of meteors are observed to radiate, or originate, from one point in the night sky. These meteors are caused by streams of cosmic debris called meteoroids entering Earth&rsquo;s atmosphere at extremely high speeds on parallel trajectories.</p>\n<p><strong>Most meteors</strong>&nbsp;are smaller than a grain of sand, so almost all of them disintegrate and never hit the&nbsp;<strong>Earth&rsquo;s surface</strong>. Very intense or unusual meteor showers are known as meteor outbursts and meteor storms, which produce at least 1,000 meteors an hour, most notably from the Leonids.</p>",
+      "reading_time": "5",
+      "image": "/articles/bg_article_5.jpg",
+      "image_thumb": "/articles/bg_article_5.jpg",
+      "description": "sadasdsadsads",
+      "content": "<h2 id=\"historical-developments\">Historical developments</h2>\n<p>The first great meteor storm in the modern era was the Leonids of November 1833. One estimate is a peak rate of over one hundred thousand meteors an hour,[4] but another, done as the storm abated, estimated in excess of two hundred thousand meteors during the 9 hours of storm, over the entire region of North America east of the Rocky Mountains.</p>\n<p>American Denison Olmsted&nbsp;<strong>(1791&ndash;1859)&nbsp;</strong>explained the event most accurately. After spending the last weeks of&nbsp;<strong>1833&nbsp;</strong>collecting information, he presented his findings in January&nbsp;<strong>1834&nbsp;</strong>to the American Journal of Science and Arts, published in January&ndash;April&nbsp;<strong>1834</strong>, and January&nbsp;<strong>1836</strong>.</p>",
       "id": 1
     },
     {
-      "title": "A meteor shower is a celestial event in which a number of meteors are observed to radiate, or originate, from one point in the night sky. These meteors are caused by streams of cosmic debris called meteoroids entering Earth’s atmosphere at extremely high speeds on parallel trajectories.",
+      "title": "ghfghfghgfh",
       "category": {
         "id": 3,
         "name": "Javascript"
       },
       "color": "primary",
-      "created_at": "2019-12-13",
+      "created_at": "2019-12-08",
       "reading_time": "6",
-      "image": "",
-      "image_thumb": "",
-      "description": "A meteor shower is a celestial event in which a number of meteors are observed to radiate, or originate, from one point in the night sky.",
-      "content": "<p>A&nbsp;<strong>meteor shower</strong>&nbsp;is a celestial event in which a number of meteors are observed to radiate, or originate, from one point in the night sky. These meteors are caused by streams of cosmic debris called meteoroids entering Earth&rsquo;s atmosphere at extremely high speeds on parallel trajectories.</p>\n<p><strong>Most meteors</strong>&nbsp;are smaller than a grain of sand, so almost all of them disintegrate and never hit the&nbsp;<strong>Earth&rsquo;s surface</strong>. Very intense or unusual meteor showers are known as meteor outbursts and meteor storms, which produce at least 1,000 meteors an hour, most notably from the Leonids.</p>",
+      "image": "/articles/bg_article_4.jpg",
+      "image_thumb": "/articles/bg_article_4.jpg",
+      "description": "Historical developments\nThe first great meteor storm in the modern era was the Leonids of November 1833. O",
+      "content": "<h2 id=\"historical-developments\">Historical developments</h2>\n<p>The first great meteor storm in the modern era was the Leonids of November 1833. One estimate is a peak rate of over one hundred thousand meteors an hour,[4] but another, done as the storm abated, estimated in excess of two hundred thousand meteors during the 9 hours of storm, over the entire region of North America east of the Rocky Mountains.</p>\n<p>American Denison Olmsted&nbsp;<strong>(1791&ndash;1859)&nbsp;</strong>explained the event most accurately. After spending the last weeks of&nbsp;<strong>1833&nbsp;</strong>collecting information, he presented his findings in January&nbsp;<strong>1834&nbsp;</strong>to the American Journal of Science and Arts, published in January&ndash;April&nbsp;<strong>1834</strong>, and January&nbsp;<strong>1836</strong>.</p>",
       "id": 2
     },
     {
-      "title": "Bringing samples back is a considerable challenge",
+      "title": "787878787hjjhjhjhj",
       "category": {
-        "name": "Astronomy",
-        "id": 6
+        "id": 2,
+        "name": "Ruby on Rails"
       },
+      "color": "#4CAF50",
       "created_at": "2019-12-08",
-      "reading_time": "6",
-      "image": "",
-      "image_thumb": "",
-      "description": "Bringing samples back is a considerable challenge",
-      "content": "<h2 id=\"historical-developments\">Historical developments</h2>\n<p>The first great meteor storm in the modern era was the Leonids of November 1833. One estimate is a peak rate of over one hundred thousand meteors an hour,[4] but another, done as the storm abated, estimated in excess of two hundred thousand meteors during the 9 hours of storm, over the entire region of North America east of the Rocky Mountains.</p>\n<p>American Denison Olmsted&nbsp;<strong>(1791&ndash;1859)&nbsp;</strong>explained the event most accurately. After spending the last weeks of&nbsp;<strong>1833&nbsp;</strong>collecting information, he presented his findings in January&nbsp;<strong>1834&nbsp;</strong>to the American Journal of Science and Arts, published in January&ndash;April&nbsp;<strong>1834</strong>, and January&nbsp;<strong>1836</strong>.</p>",
+      "reading_time": "8",
+      "image": "/articles/bg_article_6.jpg",
+      "image_thumb": "/articles/bg_article_6.jpg",
+      "description": "Historical developments\nThe first great meteor storm in the modern era was the Leonids o",
+      "content": "<h2 id=\"historical-developments\">Historical developments</h2>\n<p>The first great meteor storm in the modern era was the Leonids of November 1833. One estimate is a peak rate of over one hundred thousand meteors an hour,[4] but another, done as the storm abated, estimated in excess of two hundred thousand meteors during the 9 hours of storm, over the entire region of North America east of the Rocky Mountains.</p>\n<p>American Denison Olmsted&nbsp;<strong>(1791&ndash;1859)&nbsp;</strong>explained the event most accurately. After spending the last weeks of&nbsp;<strong>1833&nbsp;</strong>collecting information, he presented his findings in January&nbsp;<strong>1834&nbsp;</strong>to the American Journal of Science and Arts, published in January&ndash;April&nbsp;<strong>1834</strong>, and January&nbsp;<strong>1836</strong>.</p>\n<h2 id=\"historical-developments\">Historical developments</h2>\n<p>The first great meteor storm in the modern era was the Leonids of November 1833. One estimate is a peak rate of over one hundred thousand meteors an hour,[4] but another, done as the storm abated, estimated in excess of two hundred thousand meteors during the 9 hours of storm, over the entire region of North America east of the Rocky Mountains.</p>\n<p>American Denison Olmsted&nbsp;<strong>(1791&ndash;1859)&nbsp;</strong>explained the event most accurately. After spending the last weeks of&nbsp;<strong>1833&nbsp;</strong>collecting information, he presented his findings in January&nbsp;<strong>1834&nbsp;</strong>to the American Journal of Science and Arts, published in January&ndash;April&nbsp;<strong>1834</strong>, and January&nbsp;<strong>1836</strong>.</p>",
       "id": 3
     },
     {
-      "title": "jhgjhgjhgjhjghjjhgg",
+      "title": "dfsdfsfsdfdsfdsf",
       "category": {
         "id": 3,
         "name": "Javascript"
       },
       "color": "primary",
       "created_at": "2019-12-08",
-      "reading_time": "6",
-      "image": "",
-      "image_thumb": "",
-      "description": "fgfgfgfgfgfgg",
-      "content": "<p>gtgtrgtrgtrgtrgtrgtrgtr</p>",
+      "reading_time": "7",
+      "image": "http://estudiopatagon.com/themes/wordpress/breek/wp-content/uploads/2019/06/BACKGROUND-02-1024x682.jpg",
+      "image_thumb": "http://estudiopatagon.com/themes/wordpress/breek/wp-content/uploads/2019/06/BACKGROUND-02-1024x682.jpg",
+      "description": "business around their content. That’s who it works best for.\nThe entire platform can be modified and customised to suit you",
+      "content": "<ol>\n<li>business around their content. That&rsquo;s who it works best for.</li>\n<li>The entire platform can be modified and customised to suit your needs. It&rsquo;s very powerful, but does require some knowledge of code. Ghost is not necessarily a good platform for beginners or people who just want a simple personal blog.</li>\n<li>For the best experience we recommend download</li>\n</ol>",
       "id": 4
     }
   ]

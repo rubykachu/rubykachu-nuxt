@@ -23,7 +23,7 @@
 
         <v-card class="pa-2" color="transparent" outlined>
           <v-card-text>
-            <v-chip color="primary" class="px-8 font-weight-bold">{{ article.category.name }}</v-chip>
+            <v-chip :color="article.color" class="px-8 white--text font-weight-bold">{{ article.category.name }}</v-chip>
             <h1 class="py-5 white--text display-2">
               {{ article.title }}
             </h1>
