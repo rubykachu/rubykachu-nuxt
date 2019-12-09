@@ -50,9 +50,10 @@
             background-color="grey lighten-4"
             append-icon="mdi-content-copy"
             label="Copy link and share article"
-            @click:append=""
+            @click:append="copyToClipboard"
             class="text-field-copy-link"
             :value="articleLink"
+            id="copy-link-article"
           ></v-text-field>
         </v-col>
       </v-row>
@@ -105,6 +106,16 @@ export default {
     },
     featureImage() {
       return this.article.image ? this.article.image : '/bg_default_post_detail_1600x500.jpg'
+    }
+  },
+  methods: {
+    copyToClipboard() {
+      const el = document.getElementById('copy-link-article');
+      el.value = this.articleLink;
+      el.select();
+      document.execCommand('copy');
+
+      this.$store.dispatch('toast/show', 'Đã coppy liên kết bài viết vào Clipboard')
     }
   }
 }

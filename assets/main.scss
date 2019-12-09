@@ -9,6 +9,12 @@ a {
   text-decoration: unset;
 }
 
+::selection {
+  background: $primary-color--light !important;
+  color: white !important;
+  text-shadow: none !important;
+}
+
 // Transition
 .page-enter-active,
 .page-leave-active {
