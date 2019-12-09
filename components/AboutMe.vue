@@ -7,7 +7,7 @@
     <v-list three-line>
       <v-list-item @click="" class="px-0">
         <v-list-item-avatar size="90" class="mr-3 mt-0" color="grey darken-3">
-          <v-img src="http://estudiopatagon.com/themes/wordpress/breek/wp-content/uploads/2019/06/avatar-op2.jpg"></v-img>
+          <v-img src="/avatar.jpg"></v-img>
         </v-list-item-avatar>
 
         <v-list-item-content>

@@ -2,12 +2,15 @@ import ApiArticle from '@/apis/ApiArticle.js'
 
 export const state = () => ({
   articles: [],
+  recentArticles: [],
   article: {},
-  totalArticles: 0,
-  limitPerPageArticle: 2
+  totalArticles: 0
 })
 
 export const mutations = {
+  SET_RECENT_ARTICLES(state, recentArticles) {
+    state.recentArticles = recentArticles
+  },
   ADD_ARTICLE(state, article) {
     state.articles.push(article)
   },
@@ -46,11 +49,20 @@ export const actions = {
       throw e
     }
   },
-  async getArticles({ commit, state }, page) {
+  async getArticles({ commit }, page) {
     try {
-      const articles = await ApiArticle.get(page, state.limitPerPageArticle)
+      const articles = await ApiArticle.get(page, process.env.PERPAGE)
       commit('SET_ARTICLES', articles.data)
       commit('SET_TOTAL_PAGE', parseInt(articles.headers['x-total-count']))
+      return articles.data
+    } catch (e) {
+      throw e
+    }
+  },
+  async getRecentArticles({ commit }) {
+    try {
+      const articles = await ApiArticle.get(1, 3)
+      commit('SET_RECENT_ARTICLES', articles.data)
       return articles.data
     } catch (e) {
       throw e

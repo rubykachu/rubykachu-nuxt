@@ -1,10 +1,5 @@
-import moment from 'moment'
-import {
-  required,
-  minLength,
-  maxLength,
-  numeric
-} from 'vuelidate/lib/validators'
+import { formatDate } from '@/mixins/helper.js'
+import { required, minLength, maxLength, numeric } from 'vuelidate/lib/validators'
 
 const maxLenghtDescription = 145
 const minLengthContent = 100
@@ -34,9 +29,7 @@ export default {
   },
   computed: {
     formatCreatedAt() {
-      return this.article.created_at
-        ? moment(this.article.created_at).format('MMM D, YYYY')
-        : ''
+      return formatDate(this.article.created_at)
     },
     msgSelectCategoryInvalid() {
       if (!this.$v.article.category.$error) return
@@ -45,27 +38,22 @@ export default {
     msgTitleInvalid() {
       if (!this.$v.article.title.$error) return
       if (!this.$v.article.title.required) return 'Vui lòng nhập tiêu đề'
-      if (!this.$v.article.title.minLength)
-        return 'Tiêu đề quá ngắn (tối thiểu 10 ký tự)'
+      if (!this.$v.article.title.minLength) return 'Tiêu đề quá ngắn (tối thiểu 10 ký tự)'
     },
     msgReadingTimeInvalid() {
       if (!this.$v.article.reading_time.$error) return
-      if (!this.$v.article.reading_time.required)
-        return 'Vui lòng nhập thời gian đọc bài'
-      if (!this.$v.article.reading_time.numeric)
-        return 'Giá trị nhập vào phải là số nguyên'
+      if (!this.$v.article.reading_time.required) return 'Vui lòng nhập thời gian đọc bài'
+      if (!this.$v.article.reading_time.numeric) return 'Giá trị nhập vào phải là số nguyên'
     },
     msgDescriptionInvalid() {
       if (!this.$v.article.description.$error) return
       if (!this.$v.article.description.required) return 'Vui lòng nhập mô tả'
-      if (!this.$v.article.description.maxLength)
-        return `Mô tả quá dài (tối đa ${maxLenghtDescription} ký tự)`
+      if (!this.$v.article.description.maxLength) return `Mô tả quá dài (tối đa ${maxLenghtDescription} ký tự)`
     },
     msgContentInvalid() {
       if (!this.$v.article.content.$error) return
       if (!this.$v.article.content.required) return 'Vui lòng nhập nội dung'
-      if (!this.$v.article.content.minLength)
-        return `Nội dung quá ngắn (tối thiểu ${minLengthContent} ký tự)`
+      if (!this.$v.article.content.minLength) return `Nội dung quá ngắn (tối thiểu ${minLengthContent} ký tự)`
     }
   },
   methods: {

@@ -51,13 +51,13 @@ export default {
       return `?page=${this.page - 1}`
     },
     hasNextPage() {
-      return this.article.totalArticles > this.article.limitPerPageArticle * this.page
+      return this.article.totalArticles > process.env.PERPAGE * this.page
     },
     hasPrevPage() {
       return this.page != 1
     },
     totalOfPage() {
-      let total = Math.ceil(this.article.totalArticles / this.article.limitPerPageArticle)
+      let total = Math.ceil(this.article.totalArticles / process.env.PERPAGE)
       return `Trang ${this.page} / ${total}`
     }
   }

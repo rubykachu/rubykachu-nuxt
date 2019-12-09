@@ -47,7 +47,7 @@ export default {
       categories: []
     }
   },
-  async beforeMount() {
+  async beforeCreate() {
     try {
       this.categories = await this.$store.dispatch('category/getCategories')
     } catch (e) {
