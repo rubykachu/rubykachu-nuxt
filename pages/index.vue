@@ -7,14 +7,14 @@
     </v-row>
 
     <v-row justify="center" align="center" class="pagination">
-      <v-btn color="primary" rounded class="px-5">
+      <v-btn color="primary" rounded class="px-5" :to="linkPrevPage" nuxt v-if="hasPrevPage">
         <v-icon class="pr-1">mdi-arrow-left-circle</v-icon>
         Quay lại
       </v-btn>
 
-      <span class="white--text mx-3">Trang 2 / 2</span>
+      <span class="white--text mx-3">{{ totalOfPage }}</span>
 
-      <v-btn color="primary" rounded class="px-5">
+      <v-btn color="primary" rounded class="px-5" :to="linkNextPage" nuxt v-if="hasNextPage">
         Kế tiếp
         <v-icon class="pl-1">mdi-arrow-right-circle</v-icon>
       </v-btn>
@@ -23,18 +23,42 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import ArticleItem from '@/components/article/ArticleItem.vue'
 export default {
   components: {
     ArticleItem
   },
-  async asyncData({ store }) {
+  watchQuery: ['page'],
+  async asyncData({ store, route }) {
+    let page = parseInt(route.query.page || 1)
     try {
-      const articles = await store.dispatch('article/getArticles')
+      const articles = await store.dispatch('article/getArticles', page)
       return { articles }
     } catch (e) {
-      alert('Error: Please check console log')
       console.log(e)
+    }
+  },
+  computed: {
+    ...mapState(['article']),
+    page() {
+      return parseInt(this.$route.query.page || 1)
+    },
+    linkNextPage() {
+      return `?page=${this.page + 1}`
+    },
+    linkPrevPage() {
+      return `?page=${this.page - 1}`
+    },
+    hasNextPage() {
+      return this.article.totalArticles > this.article.limitPerPageArticle * this.page
+    },
+    hasPrevPage() {
+      return this.page != 1
+    },
+    totalOfPage() {
+      let total = Math.ceil(this.article.totalArticles / this.article.limitPerPageArticle)
+      return `Trang ${this.page} / ${total}`
     }
   }
 }

@@ -1,8 +1,8 @@
 import ApiClient from '~/apis/ApiClient'
 
 export default {
-  get() {
-    return ApiClient.get('/articles')
+  get(page = 1, perpage) {
+    return ApiClient.get(`/articles?&_page=${page}&_limit=${perpage}`)
   },
   find(id) {
     return ApiClient.get('/articles/' + id)

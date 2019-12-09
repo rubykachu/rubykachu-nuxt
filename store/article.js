@@ -2,7 +2,9 @@ import ApiArticle from '@/apis/ApiArticle.js'
 
 export const state = () => ({
   articles: [],
-  article: {}
+  article: {},
+  totalArticles: 0,
+  limitPerPageArticle: 2
 })
 
 export const mutations = {
@@ -14,6 +16,9 @@ export const mutations = {
   },
   SET_ARTICLES(state, articles) {
     state.articles = articles
+  },
+  SET_TOTAL_PAGE(state, total) {
+    state.totalArticles = total
   }
 }
 
@@ -41,10 +46,11 @@ export const actions = {
       throw e
     }
   },
-  async getArticles({ commit }) {
+  async getArticles({ commit, state }, page) {
     try {
-      const articles = await ApiArticle.get()
+      const articles = await ApiArticle.get(page, state.limitPerPageArticle)
       commit('SET_ARTICLES', articles.data)
+      commit('SET_TOTAL_PAGE', parseInt(articles.headers['x-total-count']))
       return articles.data
     } catch (e) {
       throw e
