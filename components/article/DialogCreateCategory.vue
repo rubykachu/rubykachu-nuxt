@@ -82,6 +82,7 @@ export default {
           this.category = ''
         } catch (e) {
           console.log(e)
+          store.dispatch('toast/show')
         }
       } else {
         this.msgCategoryInvalid = 'Vui lòng nhập danh mục'

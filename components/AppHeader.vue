@@ -52,6 +52,7 @@ export default {
       this.categories = await this.$store.dispatch('category/getCategories')
     } catch (e) {
       console.log(e)
+      store.dispatch('toast/show')
     }
   }
 }

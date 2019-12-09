@@ -37,6 +37,7 @@ export default {
       return { articles }
     } catch (e) {
       console.log(e)
+      store.dispatch('toast/show')
     }
   },
   computed: {

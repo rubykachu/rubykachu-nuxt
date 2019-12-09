@@ -34,6 +34,7 @@ export default {
       return { articles, category, color }
     } catch (e) {
       console.log(e)
+      store.dispatch('toast/show')
     }
   }
 }

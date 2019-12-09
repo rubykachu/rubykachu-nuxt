@@ -15,6 +15,8 @@
           </v-row>
         </v-container>
       </footer>
+
+      <error-snackbar></error-snackbar>
     </v-container>
   </v-app>
 </template>
@@ -23,12 +25,14 @@
 import AppHeader from '@/components/AppHeader.vue'
 import RecentPosts from '@/components/RecentPosts.vue'
 import AboutMe from '@/components/AboutMe.vue'
+import ErrorSnackbar from '@/components/ErrorSnackbar.vue'
 
 export default {
   components: {
     AppHeader,
     RecentPosts,
-    AboutMe
+    AboutMe,
+    ErrorSnackbar
   }
 }
 </script>

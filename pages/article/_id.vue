@@ -92,6 +92,7 @@ export default {
        return { article }
     } catch(e) {
       console.log(e)
+      store.dispatch('toast/show')
     }
   },
   mounted() {

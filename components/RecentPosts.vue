@@ -34,6 +34,7 @@ export default {
       this.articles = await this.$store.dispatch('article/getRecentArticles')
     } catch (e) {
       console.log(e)
+      store.dispatch('toast/show')
     }
   },
   methods: {
