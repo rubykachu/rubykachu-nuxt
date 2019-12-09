@@ -1,15 +1,6 @@
 <template>
-  <v-card
-    class="mx-auto article-item"
-    hover
-    :to="`/article/` + article.id"
-    nuxt
-  >
-    <v-chip
-      class="article-item__category px-5 py-3 font-weight-bold"
-      :color="article.color"
-      text-color="white"
-    >
+  <v-card class="mx-auto article-item" hover :to="`/article/` + article.id" nuxt min-height="387px">
+    <v-chip class="article-item__category px-5 py-3 font-weight-bold" :color="article.color" text-color="white">
       {{ article.category.name }}
     </v-chip>
     <v-hover v-slot:default="{ hover }">
@@ -24,19 +15,18 @@
       >
         <template v-slot:placeholder>
           <v-row class="fill-height ma-0" align="center" justify="center">
-            <v-progress-circular
-              indeterminate
-              color="grey lighten-5"
-            ></v-progress-circular>
+            <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
           </v-row>
         </template>
       </v-img>
     </v-hover>
 
     <div class="white">
-      <v-card-title class="pb-2">{{ article.title }}</v-card-title>
+      <div class="article-item__content">
+        <v-card-title class="pb-2">{{ article.title }}</v-card-title>
 
-      <v-card-text class="text--primary">{{ article.description }}</v-card-text>
+        <v-card-text class="text--primary">{{ article.description }}</v-card-text>
+      </div>
 
       <v-divider></v-divider>
 
@@ -55,9 +45,7 @@
             <span class="subheading">{{ CreatedAt }}</span>
           </div>
           <div>
-            <v-icon color="primary" class="icon-size"
-              >mdi-circle-slice-5</v-icon
-            >
+            <v-icon color="primary" class="icon-size">mdi-circle-slice-5</v-icon>
             {{ article.reading_time }} phút
           </div>
         </div>
@@ -93,6 +81,10 @@ export default {
   border-radius: 15px !important;
   border: 0 !important;
   background-color: unset;
+
+  &__content {
+    min-height: 130px;
+  }
 
   &__image {
     border-radius: 15px 15px 0 0 !important;
