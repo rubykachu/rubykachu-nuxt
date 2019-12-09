@@ -13,15 +13,9 @@
           </v-list-item-avatar>
 
           <v-list-item-content>
-            <v-list-item-subtitle
-              v-html="item.subtitle"
-              class="pb-1 white--text"
-            ></v-list-item-subtitle>
+            <v-list-item-subtitle v-html="item.subtitle" class="pb-1 white--text"></v-list-item-subtitle>
 
-            <v-list-item-title
-              v-html="item.title"
-              class="font-weight-bold hover-link"
-            ></v-list-item-title>
+            <v-list-item-title v-html="item.title" class="font-weight-bold hover-link"></v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </template>

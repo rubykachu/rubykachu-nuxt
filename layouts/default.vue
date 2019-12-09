@@ -8,11 +8,12 @@
       </v-content>
 
       <footer class="app-footer">
-        <v-row>
-          <v-col cols="md-5" lg="4" sm="12"><recent-posts /></v-col>
-          <v-col cols="md-3" lg="4" sm="12"><tag-cloud /></v-col>
-          <v-col cols="md-4" lg="4" sm="12"><about-me /></v-col>
-        </v-row>
+        <v-container>
+          <v-row>
+            <v-col cols="md-8" sm="12"><recent-posts /></v-col>
+            <v-col cols="md-4" sm="12"><about-me /></v-col>
+          </v-row>
+        </v-container>
       </footer>
     </v-container>
   </v-app>
@@ -21,14 +22,12 @@
 <script>
 import AppHeader from '@/components/AppHeader.vue'
 import RecentPosts from '@/components/RecentPosts.vue'
-import TagCloud from '@/components/TagCloud.vue'
 import AboutMe from '@/components/AboutMe.vue'
 
 export default {
   components: {
     AppHeader,
     RecentPosts,
-    TagCloud,
     AboutMe
   }
 }
