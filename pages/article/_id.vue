@@ -64,7 +64,7 @@
         <div class="section__avatar">
           <v-avatar size="80">
             <img
-              src="http://estudiopatagon.com/themes/wordpress/breek/wp-content/uploads/2019/06/avatar-op2.jpg"
+              src="/avatar.jpg"
               alt="Minh Tang Q."
             ></img>
           </v-avatar>

@@ -16,7 +16,7 @@
         </v-container>
       </footer>
 
-      <error-snackbar></error-snackbar>
+      <toast></toast>
     </v-container>
   </v-app>
 </template>
@@ -25,14 +25,14 @@
 import AppHeader from '@/components/AppHeader.vue'
 import RecentPosts from '@/components/RecentPosts.vue'
 import AboutMe from '@/components/AboutMe.vue'
-import ErrorSnackbar from '@/components/ErrorSnackbar.vue'
+import Toast from '@/components/Toast.vue'
 
 export default {
   components: {
     AppHeader,
     RecentPosts,
     AboutMe,
-    ErrorSnackbar
+    Toast
   }
 }
 </script>
