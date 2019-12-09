@@ -20,7 +20,7 @@
           </template>
 
           <v-list color="white">
-            <v-list-item v-for="(category, index) in categories" :key="index" @click="" href="/" dense>
+            <v-list-item v-for="(category, index) in categories" :key="index" dense :to="`/categories/${category.id}`" nuxt>
               <v-list-item-title>{{ category.name }}</v-list-item-title>
             </v-list-item>
           </v-list>

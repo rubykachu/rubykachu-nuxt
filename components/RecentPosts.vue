@@ -1,7 +1,7 @@
 <template>
   <div class="app-footer__recent-posts">
     <div class="mb-7">
-      <p class="headline white--text">Recent posts</p>
+      <p class="headline white--text">Bài viết mới</p>
       <div class="app-border"></div>
     </div>
 

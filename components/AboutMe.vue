@@ -1,7 +1,7 @@
 <template>
   <div class="app-footer__about-me">
     <div class="mb-5">
-      <p class="headline white--text">About me</p>
+      <p class="headline white--text">Tác giả</p>
       <div class="app-border"></div>
     </div>
     <v-list three-line>

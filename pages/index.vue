@@ -58,7 +58,7 @@ export default {
     },
     totalOfPage() {
       let total = Math.ceil(this.article.totalArticles / process.env.PERPAGE)
-      return `Trang ${this.page} / ${total}`
+      return total != 1 ? `Trang ${this.page} / ${total}` : ''
     }
   }
 }

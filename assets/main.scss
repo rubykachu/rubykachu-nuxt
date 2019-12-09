@@ -14,7 +14,7 @@ a {
 .page-leave-active {
   transition-property: 1;
   transition-timing-function: ease-in-out;
-  transition-duration: 800ms;
+  transition-duration: 720ms;
 }
 
 .page-enter,
@@ -38,37 +38,15 @@ a {
     height: 100%;
     height: 100vh;
 
-    @include background-gradient(
-      linear,
-      left top,
-      right bottom,
-      from(#6d327c),
-      color-stop(#485da6),
-      color-stop(#00a1ba),
-      color-stop(#01b18e),
-      to(#32b37b)
-    );
+    @include background-gradient(linear, left top, right bottom, from(#6d327c), color-stop(#485da6), color-stop(#00a1ba), color-stop(#01b18e), to(#32b37b));
 
-    @include background-linear-gradient(
-      to right bottom,
-      #6d327c,
-      #485da6,
-      #00a1ba,
-      #01b18e,
-      #32b37b
-    );
+    @include background-linear-gradient(to right bottom, #6d327c, #485da6, #00a1ba, #01b18e, #32b37b);
   }
 }
 
 .hover-link a {
   @include transition(all ease 0.3s);
-  @include background-gradient(
-    linear,
-    left top,
-    right top,
-    from(#00bec1),
-    to(#00bec1)
-  );
+  @include background-gradient(linear, left top, right top, from(#00bec1), to(#00bec1));
   @include background-linear-gradient(to right, #00bec1 0%, #00bec1 100%);
   background-size: 0px 4px;
   background-repeat: no-repeat;
@@ -159,10 +137,7 @@ a {
       background-color: $secondary-color--light;
       padding: 5px 25px;
       @include border-radius(25px);
-      @include box-shadow(
-        0 3px 12px -1px rgba(7, 10, 25, 0.05),
-        0 22px 27px -20px rgba(7, 10, 25, 0.05)
-      );
+      @include box-shadow(0 3px 12px -1px rgba(7, 10, 25, 0.05), 0 22px 27px -20px rgba(7, 10, 25, 0.05));
 
       .v-icon:hover {
         @include transform(translateY(-3px));
@@ -203,6 +178,30 @@ a {
   }
 }
 
+// Article category page
+.article-category-page {
+  .v-card {
+    position: relative;
+  }
+  &__icon {
+    position: absolute;
+    top: -42.5px;
+    width: 85px;
+    height: 85px;
+    background-color: $secondary-color;
+    color: white;
+    @include border-radius(100%);
+    @include transform(translateX(-42.5px));
+  }
+
+  &__subject {
+    padding-top: 64px;
+    font-size: 35px;
+    letter-spacing: 2px;
+  }
+}
+
+// Style Common (bio author)
 .section {
   padding: 30px;
   position: relative;

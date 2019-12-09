@@ -9,5 +9,8 @@ export default {
   },
   create(article) {
     return ApiClient.post('/articles', article)
+  },
+  where(query) {
+    return ApiClient.get(`/articles?${query}`)
   }
 }

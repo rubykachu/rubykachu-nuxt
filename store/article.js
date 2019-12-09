@@ -3,6 +3,7 @@ import ApiArticle from '@/apis/ApiArticle.js'
 export const state = () => ({
   articles: [],
   recentArticles: [],
+  articlesByCategory: [],
   article: {},
   totalArticles: 0
 })
@@ -22,6 +23,9 @@ export const mutations = {
   },
   SET_TOTAL_PAGE(state, total) {
     state.totalArticles = total
+  },
+  SET_ARTICLES_BY_CATEGORY(state, articles) {
+    state.articlesByCategory = articles
   }
 }
 
@@ -63,6 +67,15 @@ export const actions = {
     try {
       const articles = await ApiArticle.get(1, 3)
       commit('SET_RECENT_ARTICLES', articles.data)
+      return articles.data
+    } catch (e) {
+      throw e
+    }
+  },
+  async getArticlesByCategory({ commit }, category_id) {
+    try {
+      const articles = await ApiArticle.where(`category.id=${category_id}`)
+      commit('SET_ARTICLES_BY_CATEGORY', articles.data)
       return articles.data
     } catch (e) {
       throw e
