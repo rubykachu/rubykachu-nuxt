@@ -27,9 +27,7 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="blue darken-1" text @click="closeDialog">Đóng</v-btn>
-        <v-btn color="blue darken-1" text @click="createCategory"
-          >Tạo danh mục</v-btn
-        >
+        <v-btn color="blue darken-1" text @click="createCategory">Tạo danh mục</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -83,7 +81,7 @@ export default {
           this.msgCreateSuccessCategory = '* Tạo danh mục thành công'
           this.category = ''
         } catch (e) {
-          alert('Error: Please check console log')
+          console.log(e)
         }
       } else {
         this.msgCategoryInvalid = 'Vui lòng nhập danh mục'

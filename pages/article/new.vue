@@ -178,7 +178,6 @@ export default {
             params: { id: result.id }
           })
         } catch (e) {
-          alert('Error: Please check console log')
           console.log(e)
         }
       }

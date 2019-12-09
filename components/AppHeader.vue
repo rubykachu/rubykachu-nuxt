@@ -12,14 +12,7 @@
       <v-btn to="/" nuxt text color="white">Trang chủ</v-btn>
 
       <div>
-        <v-menu
-          open-on-hover
-          bottom
-          offset-y
-          light
-          min-width="200"
-          max-width="280"
-        >
+        <v-menu open-on-hover bottom offset-y light min-width="200" max-width="280">
           <template v-slot:activator="{ on }">
             <v-btn text color="white" v-on="on">
               Danh mục
@@ -27,13 +20,8 @@
           </template>
 
           <v-list color="white">
-            <v-list-item
-              v-for="(item, index) in items"
-              :key="index"
-              @click=""
-              href="/"
-            >
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            <v-list-item v-for="(category, index) in categories" :key="index" @click="" href="/" dense>
+              <v-list-item-title>{{ category.name }}</v-list-item-title>
             </v-list-item>
           </v-list>
         </v-menu>
@@ -54,13 +42,17 @@
 <script>
 export default {
   name: 'AppHeader',
-  data: () => ({
-    items: [
-      { title: 'Click Me' },
-      { title: 'Click Me' },
-      { title: 'Click Me' },
-      { title: 'Click Me 2' }
-    ]
-  })
+  data() {
+    return {
+      categories: []
+    }
+  },
+  async beforeMount() {
+    try {
+      this.categories = await this.$store.dispatch('category/getCategories')
+    } catch (e) {
+      console.log(e)
+    }
+  }
 }
 </script>

@@ -1,4 +1,4 @@
-import ApiClient from '~/apis/ApiClient'
+import ApiClient from './ApiClient.js'
 
 export default {
   get(page = 1, perpage) {
