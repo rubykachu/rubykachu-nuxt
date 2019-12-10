@@ -25,6 +25,11 @@ export default {
   components: {
     ArticleItem
   },
+  head() {
+    return {
+      title: this.category.name
+    }
+  },
   async asyncData({ store, route }) {
     try {
       let category_id = parseInt(route.params.id)

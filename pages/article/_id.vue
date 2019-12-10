@@ -82,8 +82,17 @@
 
 <script>
 import moment from 'moment'
+import { removeLineBreak } from '@/mixins/helper'
 
 export default {
+  head() {
+    return {
+      title: this.article.title,
+      meta: [
+        { hid: 'description', name: 'description', content: removeLineBreak(this.article.description) }
+      ]
+    }
+  },
   data: () => ({
     articleLink: ''
   }),

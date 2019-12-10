@@ -6,15 +6,25 @@ export default {
    ** Headers of the page
    */
   head: {
-    titleTemplate: '%s - ' + process.env.npm_package_name,
-    title: process.env.npm_package_name || '',
+    titleTemplate: '%s - ' + 'Rubykachu',
+    title: 'Hãy cho đi rồi nhận lại',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || ''
+        content: 'Chia sẽ kiến thức lập trình sau bao nhiêu năm đi làm. Không xem thì hơi phí'
+      },
+      {
+        hid: 'keyword',
+        name: 'keyword',
+        content: 'công nghệ, làm lại từ đầu, hướng dẫn, tutorial'
+      },
+      {
+        hid: 'copyright',
+        name: 'copyright',
+        content: 'Copyright © 2019 by Rubykachu'
       }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
