@@ -25,7 +25,7 @@
             >
               <template v-slot:append-outer>
                 <!-- button add color -->
-                <v-icon :color="article.category.color">mdi-circle</v-icon>
+                <v-icon :color="color">mdi-circle</v-icon>
 
                 <!-- button add category -->
                 <v-btn @click="dialogCategory = true" x-small dense text>
@@ -145,6 +145,11 @@ export default {
       toggleDatePicker: false,
       toggleDialogColorPicker: false,
       article: this.newArticleObject()
+    }
+  },
+  computed: {
+    color() {
+      return this.article.category && this.article.category.color
     }
   },
   methods: {
