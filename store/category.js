@@ -18,7 +18,9 @@ export const mutations = {
 }
 
 export const actions = {
-  async getCategories({ commit }) {
+  async getCategories({ commit, state }) {
+    if (state.categories.length > 0) return state.categories
+
     try {
       const result = await ApiCategory.fsGet()
       commit('SET_CATEGORIES', result)
@@ -29,9 +31,9 @@ export const actions = {
   },
   async createCategory({ commit }, category) {
     try {
-      const result = await ApiCategory.create(category)
-      commit('ADD_CATEGORY', result.data)
-      return result.data
+      const result = await ApiCategory.fsCreate(category)
+      commit('ADD_CATEGORY', result)
+      return result
     } catch (e) {
       throw e
     }
