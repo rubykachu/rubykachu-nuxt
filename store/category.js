@@ -46,9 +46,9 @@ export const actions = {
         return category
       }
 
-      const result = await ApiCategory.find(id)
-      commit('SET_CATEGORY', result.data)
-      return result.data
+      const result = await ApiCategory.fsFind(id)
+      commit('SET_CATEGORY', result)
+      return result
     } catch (e) {
       throw e
     }

@@ -12,7 +12,7 @@
     </v-row>
 
     <v-row>
-      <v-col class="mb-8" cols="md-4" sm="6" v-for="article in articles" :key="article.id">
+      <v-col class="mb-8" cols="md-4" sm="6" v-for="article in articles" :key="article.id" v-if="articles">
         <article-item :article="article" />
       </v-col>
     </v-row>
@@ -34,7 +34,7 @@ export default {
     try {
       let category_id = route.params.id
       const articles = await store.dispatch('article/getArticlesByCategory', category_id)
-      const category = articles[0].category
+      const category = await store.dispatch('category/findCategory', category_id)
       return { articles, category }
     } catch (e) {
       console.log(e)

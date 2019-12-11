@@ -11,6 +11,12 @@ export default {
     this.fsUpdate(category)
     return category
   },
+  fsFind(id) {
+    return fs
+      .collection('categories')
+      .doc(id)
+      .get()
+  },
   fsUpdate(category) {
     return fs
       .collection('categories')
