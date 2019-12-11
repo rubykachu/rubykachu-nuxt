@@ -82,7 +82,7 @@
 
 <script>
 import moment from 'moment'
-import { removeLineBreak } from '@/mixins/helper'
+import { removeLineBreak, formatDate } from '@/mixins/helper'
 
 export default {
   head() {
@@ -110,8 +110,7 @@ export default {
   },
   computed: {
     formatCreatedAt() {
-      let created_at = this.article.created_at
-      return created_at ? moment(created_at).format('MMM D, YYYY') : ''
+      return formatDate(this.article.created_at)
     },
     featureImage() {
       return this.article.image ? this.article.image : '/bg_default_post_detail_1600x500.jpg'

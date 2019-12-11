@@ -1,7 +1,7 @@
 import moment from 'moment'
 
-export const formatDate = date => {
-  return date ? moment(date).format('MMM D, YYYY') : ''
+export const formatDate = dateString => {
+  return dateString ? moment(new Date(dateString)).format('MMM D, YYYY') : ''
 }
 
 export const removeLineBreak = str => {

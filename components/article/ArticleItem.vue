@@ -56,6 +56,7 @@
 
 <script>
 import moment from 'moment'
+import { formatDate } from '@/mixins/helper.js'
 
 export default {
   props: {
@@ -69,7 +70,7 @@ export default {
   }),
   computed: {
     CreatedAt() {
-      return moment(this.article.created_at).format('MMM D, YYYY')
+      return formatDate(this.article.created_at)
     }
   }
 }
