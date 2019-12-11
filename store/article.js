@@ -78,9 +78,9 @@ export const actions = {
   },
   async getArticlesByCategory({ commit }, category_id) {
     try {
-      const articles = await ApiArticle.where(`category.id=${category_id}`)
-      commit('SET_ARTICLES_BY_CATEGORY', articles.data)
-      return articles.data
+      const articles = await ApiArticle.fsGet({ where: ['category_id', '==', category_id] })
+      commit('SET_ARTICLES_BY_CATEGORY', articles)
+      return articles
     } catch (e) {
       throw e
     }
