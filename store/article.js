@@ -2,16 +2,11 @@ import ApiArticle from '@/apis/ApiArticle.js'
 
 export const state = () => ({
   articles: [],
-  recentArticles: [],
-  articlesByCategory: [],
   article: {},
   totalArticles: 0
 })
 
 export const mutations = {
-  SET_RECENT_ARTICLES(state, recentArticles) {
-    state.recentArticles = recentArticles
-  },
   ADD_ARTICLE(state, article) {
     state.articles.push(article)
   },
@@ -23,9 +18,6 @@ export const mutations = {
   },
   SET_TOTAL_PAGE(state, total) {
     state.totalArticles = total
-  },
-  SET_ARTICLES_BY_CATEGORY(state, articles) {
-    state.articlesByCategory = articles
   }
 }
 
@@ -69,19 +61,17 @@ export const actions = {
       throw e
     }
   },
-  async getRecentArticles({ commit }) {
+  async getRecentArticles() {
     try {
       const articles = await ApiArticle.fsGet({ order: { created_at: 'desc' }, limit: 3, returnData: true })
-      commit('SET_RECENT_ARTICLES', articles)
       return articles
     } catch (e) {
       throw e
     }
   },
-  async getArticlesByCategory({ commit }, category_id) {
+  async getArticlesByCategory({}, category_id) {
     try {
       const articles = await ApiArticle.fsGet({ where: ['category_id', '==', category_id], returnData: true })
-      commit('SET_ARTICLES_BY_CATEGORY', articles)
       return articles
     } catch (e) {
       throw e
