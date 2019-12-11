@@ -29,7 +29,7 @@ export default {
    * @param where args: ['column', 'operator', 'value']
    * @param startAfter args: DocumentRef
    */
-  async fsGet(args = { order: null, limit: null, where: null, startAfter: null, returnData: true }) {
+  async fsGet(args = {}) {
     let ref = fs.collection('articles')
 
     // Set Where

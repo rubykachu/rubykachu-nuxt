@@ -7,8 +7,8 @@
     </v-row>
 
     <v-row justify="center" align="center" class="pagination">
-      <v-btn color="primary" rounded class="px-5">
-        <v-icon class="pr-1">mdi-arrow-left-circle</v-icon>
+      <v-btn class="mx-2" fab color="secondary">
+        <v-icon>mdi-plus</v-icon>
       </v-btn>
     </v-row>
   </v-container>

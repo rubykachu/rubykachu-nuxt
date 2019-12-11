@@ -60,17 +60,8 @@ export const actions = {
   },
   async getArticles({ commit }) {
     try {
-      const articles = await ApiArticle.fsGet({ limit: 2 })
+      const articles = await ApiArticle.fsGet({ limit: 2, returnData: true })
 
-      commit('SET_ARTICLES', articles)
-      return articles
-    } catch (e) {
-      throw e
-    }
-  },
-  async nextArticles({ commit }, article) {
-    try {
-      const articles = await ApiArticle.fsGet({ limit: 2, startAfter: article })
       commit('SET_ARTICLES', articles)
       return articles
     } catch (e) {
@@ -79,7 +70,7 @@ export const actions = {
   },
   async getRecentArticles({ commit }) {
     try {
-      const articles = await ApiArticle.fsGet({ order: { created_at: 'desc' }, limit: 3 })
+      const articles = await ApiArticle.fsGet({ order: { created_at: 'desc' }, limit: 3, returnData: true })
       commit('SET_RECENT_ARTICLES', articles)
       return articles
     } catch (e) {
