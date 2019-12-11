@@ -52,8 +52,9 @@ export const actions = {
   async findArticle({ commit }, id) {
     try {
       const article = await ApiArticle.fsFind(id)
-      commit('SET_ARTICLE', article.data())
-      return article.data()
+      const data = article.data()
+      commit('SET_ARTICLE', data)
+      return data
     } catch (e) {
       throw e
     }
@@ -79,7 +80,7 @@ export const actions = {
   },
   async getArticlesByCategory({ commit }, category_id) {
     try {
-      const articles = await ApiArticle.fsGet({ where: ['category_id', '==', category_id] })
+      const articles = await ApiArticle.fsGet({ where: ['category_id', '==', category_id], returnData: true })
       commit('SET_ARTICLES_BY_CATEGORY', articles)
       return articles
     } catch (e) {
