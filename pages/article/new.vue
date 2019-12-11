@@ -25,9 +25,7 @@
             >
               <template v-slot:append-outer>
                 <!-- button add color -->
-                <v-btn text dense x-small @click="toggleDialogColorPicker = true">
-                  <v-icon :color="selectedColor(defaultColor)">mdi-circle</v-icon>
-                </v-btn>
+                <v-icon :color="article.category.color">mdi-circle</v-icon>
 
                 <!-- button add category -->
                 <v-btn @click="dialogCategory = true" x-small dense text>
@@ -146,7 +144,6 @@ export default {
       dialogCategory: false,
       toggleDatePicker: false,
       toggleDialogColorPicker: false,
-      defaultColor: 'primary',
       article: this.newArticleObject()
     }
   },
@@ -155,7 +152,6 @@ export default {
       return {
         title: '',
         category: '',
-        color: '',
         created_at: new Date().toISOString().substr(0, 10),
         reading_time: '',
         image: '',
@@ -167,7 +163,6 @@ export default {
     async submitForm() {
       this.$v.article.$touch()
       if (!this.$v.article.$invalid) {
-        this.article.color = this.article.color || this.defaultColor
         try {
           // Call Api create article
           let result = await this.$store.dispatch('article/createArticle', this.article)

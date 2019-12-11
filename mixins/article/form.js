@@ -5,8 +5,8 @@ const maxLenghtDescription = 145
 const minLengthContent = 100
 export default {
   async asyncData({ store }) {
-    const resultCategories = await store.dispatch('category/getCategories')
-    return { categories: resultCategories }
+    const categories = await store.dispatch('category/getCategories')
+    return { categories }
   },
   validations: {
     article: {
@@ -54,11 +54,6 @@ export default {
       if (!this.$v.article.content.$error) return
       if (!this.$v.article.content.required) return 'Vui lòng nhập nội dung'
       if (!this.$v.article.content.minLength) return `Nội dung quá ngắn (tối thiểu ${minLengthContent} ký tự)`
-    }
-  },
-  methods: {
-    selectedColor(defaultColor) {
-      return this.article.color ? this.article.color : defaultColor
     }
   }
 }

@@ -19,6 +19,12 @@
               ></v-text-field>
             </v-col>
           </v-row>
+
+          <v-row>
+            <v-col cols="12">
+              <v-color-picker v-model="color" light flat hide-canvas show-swatches hide-mode-switch mode="hexa" width="600px"></v-color-picker>
+            </v-col>
+          </v-row>
         </v-container>
       </v-card-text>
 
@@ -46,6 +52,7 @@ export default {
   },
   data() {
     return {
+      color: '#EC407A',
       toggleDialog: this.dialog,
       msgCategoryInvalid: '',
       msgCreateSuccessCategory: '',
@@ -76,7 +83,8 @@ export default {
       if (!this.$v.category.$invalid) {
         try {
           await this.$store.dispatch('category/createCategory', {
-            name: this.category
+            name: this.category,
+            color: this.color
           })
           this.msgCreateSuccessCategory = '* Tạo danh mục thành công'
           this.category = ''

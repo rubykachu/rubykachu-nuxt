@@ -10,7 +10,7 @@
       <footer class="app-footer">
         <v-container>
           <v-row>
-            <v-col cols="md-8" sm="12"><recent-posts /></v-col>
+            <!-- <v-col cols="md-8" sm="12"><recent-posts /></v-col> -->
             <v-col cols="md-4" sm="12"><about-me /></v-col>
           </v-row>
         </v-container>

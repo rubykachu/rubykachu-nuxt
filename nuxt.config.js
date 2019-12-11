@@ -90,6 +90,7 @@ export default {
    ** Build configuration
    */
   build: {
+    devtools: true,
     /*
      ** You can extend webpack config here
      */
