@@ -1,4 +1,3 @@
-import ApiClient from './ApiClient.js'
 import fs from '~/plugins/firebase'
 
 export default {

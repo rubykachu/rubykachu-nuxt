@@ -32,12 +32,16 @@ export const mutations = {
 export const actions = {
   async createArticle({ commit }, article) {
     try {
-      // Random number 1 - 6
+      // Set default Image with random from 1 to 6
       let number = Math.floor(Math.random() * 6) + 1
       article.image = article.image || `/articles/bg_article_${number}.jpg`
       article.image_thumb = article.image_thumb || `/articles/bg_article_${number}.jpg`
       article.created_at = `${article.created_at} ${new Date().toLocaleTimeString()}`
 
+      // Set category_id
+      article.category_id = article.category.id
+
+      // Save
       const result = await ApiArticle.fsCreate(article)
       commit('ADD_ARTICLE', result)
       return article
