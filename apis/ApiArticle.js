@@ -1,6 +1,9 @@
 import fs from '../plugins/firebase'
 
 export default {
+  fsCollection() {
+    return fs.collection('articles').get()
+  },
   async fsCreate(article) {
     const result = await fs.collection('articles').add(article)
     article.id = result.id
@@ -20,12 +23,13 @@ export default {
       .get()
   },
   /**
-   * @params args
+   * @params args optional
    * @param order args: { column: 'desc | asc'}. Default order_by created_at DESC
    * @param limit args: Number
    * @param where args: ['column', 'operator', 'value']
+   * @param startAfter args: DocumentRef
    */
-  async fsGet(args = { order: null, limit: null, where: null }) {
+  async fsGet(args = { order: null, limit: null, where: null, startAfter: null, returnData: true }) {
     let ref = fs.collection('articles')
 
     // Set Where
@@ -42,12 +46,22 @@ export default {
       ref = ref.orderBy('created_at', 'desc')
     }
 
+    // Set StartAfter
+    if (args.startAfter) {
+      ref = ref.startAfter(args.startAfter)
+    }
+
     // Set Limit
     if (args.limit) {
       ref = ref.limit(args.limit)
     }
 
     const snapshot = await ref.get()
-    return snapshot.docs.map(doc => doc.data())
+
+    if (args.returnData) {
+      return snapshot.docs.map(doc => doc.data())
+    } else {
+      return snapshot
+    }
   }
 }

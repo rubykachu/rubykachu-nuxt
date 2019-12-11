@@ -7,16 +7,8 @@
     </v-row>
 
     <v-row justify="center" align="center" class="pagination">
-      <v-btn color="primary" rounded class="px-5" :to="linkPrevPage" nuxt v-if="hasPrevPage">
+      <v-btn color="primary" rounded class="px-5">
         <v-icon class="pr-1">mdi-arrow-left-circle</v-icon>
-        Quay lại
-      </v-btn>
-
-      <span class="white--text mx-3">{{ totalOfPage }}</span>
-
-      <v-btn color="primary" rounded class="px-5" :to="linkNextPage" nuxt v-if="hasNextPage">
-        Kế tiếp
-        <v-icon class="pl-1">mdi-arrow-right-circle</v-icon>
       </v-btn>
     </v-row>
   </v-container>
@@ -33,9 +25,9 @@ export default {
   async asyncData({ store, route }) {
     try {
       const articles = await store.dispatch('article/getArticles')
-      return { articles }
+      const total = await store.dispatch('article/getTotalArticle')
+      return { articles, total }
     } catch (e) {
-      console.log(e)
       store.dispatch('toast/show')
     }
   },
@@ -44,20 +36,13 @@ export default {
     page() {
       return parseInt(this.$route.query.page || 1)
     },
-    linkNextPage() {
-      return `?page=${this.page + 1}`
-    },
-    linkPrevPage() {
-      return `?page=${this.page - 1}`
-    },
     hasNextPage() {
-      return this.article.totalArticles > process.env.PERPAGE * this.page
-    },
-    hasPrevPage() {
-      return this.page != 1
+      // return this.total > process.env.PERPAGE * this.page
+      return this.total > 2 * this.page
     },
     totalOfPage() {
-      let total = Math.ceil(this.article.totalArticles / process.env.PERPAGE)
+      // let total = Math.ceil(this.total / process.env.PERPAGE)
+      let total = Math.ceil(this.total / 2)
       return total > 1 ? `Trang ${this.page} / ${total}` : ''
     }
   }

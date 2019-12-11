@@ -60,7 +60,17 @@ export const actions = {
   },
   async getArticles({ commit }) {
     try {
-      const articles = await ApiArticle.fsGet()
+      const articles = await ApiArticle.fsGet({ limit: 2 })
+
+      commit('SET_ARTICLES', articles)
+      return articles
+    } catch (e) {
+      throw e
+    }
+  },
+  async nextArticles({ commit }, article) {
+    try {
+      const articles = await ApiArticle.fsGet({ limit: 2, startAfter: article })
       commit('SET_ARTICLES', articles)
       return articles
     } catch (e) {
@@ -81,6 +91,16 @@ export const actions = {
       const articles = await ApiArticle.fsGet({ where: ['category_id', '==', category_id] })
       commit('SET_ARTICLES_BY_CATEGORY', articles)
       return articles
+    } catch (e) {
+      throw e
+    }
+  },
+  async getTotalArticle({ commit }) {
+    try {
+      const articles = await ApiArticle.fsCollection()
+      const length = articles.docs.length
+      commit('SET_TOTAL_PAGE', length)
+      return length
     } catch (e) {
       throw e
     }
