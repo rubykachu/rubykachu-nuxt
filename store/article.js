@@ -3,7 +3,8 @@ import ApiArticle from '@/apis/ApiArticle.js'
 export const state = () => ({
   articles: [],
   article: {},
-  totalArticles: 0
+  totalArticles: 0,
+  idLastArticle: ''
 })
 
 export const mutations = {
@@ -18,6 +19,9 @@ export const mutations = {
   },
   SET_TOTAL_PAGE(state, total) {
     state.totalArticles = total
+  },
+  SET_REF_ID_LAST_ARTICLE(state, id) {
+    state.idLastArticle = id
   }
 }
 
@@ -53,10 +57,28 @@ export const actions = {
   },
   async getArticles({ commit }) {
     try {
-      const articles = await ApiArticle.fsGet({ limit: 2, returnData: true })
+      const snapshots = await ApiArticle.fsGet({ limit: 2 })
+      commit('SET_REF_ID_LAST_ARTICLE', snapshots.docs[snapshots.docs.length - 1].id)
 
+      const articles = snapshots.docs.map(doc => doc.data())
       commit('SET_ARTICLES', articles)
       return articles
+    } catch (e) {
+      throw e
+    }
+  },
+  async loadMore({ commit, state }) {
+    try {
+      const refArticle = await ApiArticle.fsFind(state.idLastArticle)
+      const snapshots = await ApiArticle.fsGet({ limit: 2, startAfter: refArticle })
+
+      commit('SET_REF_ID_LAST_ARTICLE', snapshots.docs[snapshots.docs.length - 1].id)
+
+      let articles = snapshots.docs.map(doc => doc.data())
+      let newArticles = state.articles.concat(articles)
+
+      commit('SET_ARTICLES', newArticles)
+      return newArticles
     } catch (e) {
       throw e
     }
