@@ -20,9 +20,9 @@ export const mutations = {
 export const actions = {
   async getCategories({ commit }) {
     try {
-      const result = await ApiCategory.get()
-      commit('SET_CATEGORIES', result.data)
-      return result.data
+      const result = await ApiCategory.fsGet()
+      commit('SET_CATEGORIES', result)
+      return result
     } catch (e) {
       throw e
     }

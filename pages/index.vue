@@ -31,9 +31,10 @@ export default {
   },
   watchQuery: ['page'],
   async asyncData({ store, route }) {
-    let page = parseInt(route.query.page || 1)
     try {
-      const articles = await store.dispatch('article/getArticles', page)
+      const articles = await store.dispatch('article/getArticles')
+      console.log(articles)
+
       return { articles }
     } catch (e) {
       console.log(e)

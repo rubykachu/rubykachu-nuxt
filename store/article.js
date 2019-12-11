@@ -37,28 +37,27 @@ export const actions = {
       article.image = article.image || `/articles/bg_article_${number}.jpg`
       article.image_thumb = article.image_thumb || `/articles/bg_article_${number}.jpg`
 
-      const result = await ApiArticle.create(article)
+      const result = await ApiArticle.fsCreate(article)
       commit('ADD_ARTICLE', result)
-      return result.data
+      return article
     } catch (e) {
       throw e
     }
   },
   async findArticle({ commit }, id) {
     try {
-      const article = await ApiArticle.find(id)
-      commit('SET_ARTICLE', article.data)
-      return article.data
+      const article = await ApiArticle.fsFind(id)
+      commit('SET_ARTICLE', article.data())
+      return article.data()
     } catch (e) {
       throw e
     }
   },
-  async getArticles({ commit }, page) {
+  async getArticles({ commit }) {
     try {
-      const articles = await ApiArticle.get(page, process.env.PERPAGE)
-      commit('SET_ARTICLES', articles.data)
-      commit('SET_TOTAL_PAGE', parseInt(articles.headers['x-total-count']))
-      return articles.data
+      const articles = await ApiArticle.fsGet()
+      commit('SET_ARTICLES', articles)
+      return articles
     } catch (e) {
       throw e
     }
