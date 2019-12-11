@@ -33,8 +33,6 @@ export default {
   async asyncData({ store, route }) {
     try {
       const articles = await store.dispatch('article/getArticles')
-      console.log(articles)
-
       return { articles }
     } catch (e) {
       console.log(e)
@@ -60,8 +58,6 @@ export default {
     },
     totalOfPage() {
       let total = Math.ceil(this.article.totalArticles / process.env.PERPAGE)
-      console.log(total)
-
       return total > 1 ? `Trang ${this.page} / ${total}` : ''
     }
   }

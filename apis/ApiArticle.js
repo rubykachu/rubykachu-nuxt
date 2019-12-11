@@ -32,8 +32,26 @@ export default {
       .doc(id)
       .get()
   },
-  async fsGet() {
-    const snapshot = await fs.collection('articles').get()
+  /**
+   *
+   * @param {order} args: { column: 'desc | asc'}. Default order_by created_at DESC
+   * @params {limit} args: Number
+   */
+  async fsGet(args = { order: null, limit: null }) {
+    let ref = fs.collection('articles')
+
+    if (args.order) {
+      let col = Object.keys(args.order)[0]
+      let val = args.order[col]
+      ref = ref.orderBy(col, val)
+    } else {
+      ref = ref.orderBy('created_at', 'desc')
+    }
+
+    if (args.limit) {
+      ref = ref.limit(args.limit)
+    }
+    const snapshot = await ref.get()
     return snapshot.docs.map(doc => doc.data())
   }
 }

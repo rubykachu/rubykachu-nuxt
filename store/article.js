@@ -36,6 +36,7 @@ export const actions = {
       let number = Math.floor(Math.random() * 6) + 1
       article.image = article.image || `/articles/bg_article_${number}.jpg`
       article.image_thumb = article.image_thumb || `/articles/bg_article_${number}.jpg`
+      article.created_at = `${article.created_at} ${new Date().toLocaleTimeString()}`
 
       const result = await ApiArticle.fsCreate(article)
       commit('ADD_ARTICLE', result)
@@ -64,9 +65,9 @@ export const actions = {
   },
   async getRecentArticles({ commit }) {
     try {
-      const articles = await ApiArticle.get(1, 3)
-      commit('SET_RECENT_ARTICLES', articles.data)
-      return articles.data
+      const articles = await ApiArticle.fsGet({ order: { created_at: 'desc' }, limit: 3 })
+      commit('SET_RECENT_ARTICLES', articles)
+      return articles
     } catch (e) {
       throw e
     }
