@@ -1,4 +1,5 @@
 import colors from 'vuetify/es5/util/colors'
+import ApiArticle from './apis/ApiArticle.js'
 
 export default {
   mode: 'universal',
@@ -95,5 +96,13 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {}
+  },
+  generate: {
+    async routes() {
+      const res = await ApiArticle.fsGet()
+      return res.map(article => {
+        return '/article/' + article.id
+      })
+    }
   }
 }
