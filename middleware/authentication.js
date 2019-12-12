@@ -1,8 +1,11 @@
-export default function({ store, redirect }) {
-  console.log(store.getters['user/isAuthenticated'])
-  console.log(store.state.user.currentUser)
+export default function({ store, route, redirect }) {
+  console.log('Is Auth', store.getters['auth/isAuthenticated'])
 
-  if (!store.getters['user/isAuthenticated']) {
+  if (!store.getters['auth/isAuthenticated']) {
     redirect('/login')
+  }
+
+  if (store.getters['auth/isAuthenticated'] && route.name == 'login') {
+    redirect('/')
   }
 }
