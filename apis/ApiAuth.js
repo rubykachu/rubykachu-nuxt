@@ -1,9 +1,7 @@
-import fs from '../plugins/firebase'
+import { auth } from '../plugins/firebase'
 
 export default {
   fsAuthenticate(credential) {
-    console.log(fs.collection('categories'))
-
-    return fs.auth().signInWithEmailAndPassword(credential.email, credential.password)
+    return auth.signInWithEmailAndPassword(credential.email, credential.password)
   }
 }
