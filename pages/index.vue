@@ -6,7 +6,7 @@
       </v-col>
     </v-row>
 
-    <v-row justify="center" align="center" class="pagination">
+    <v-row justify="center" align="center" class="pagination" v-if="hasLoadMore">
       <v-btn class="mx-2" fab color="secondary" @click="loadMore">
         <v-icon>mdi-plus</v-icon>
       </v-btn>
@@ -34,14 +34,8 @@ export default {
     page() {
       return parseInt(this.$route.query.page || 1)
     },
-    hasNextPage() {
-      // return this.total > process.env.PERPAGE * this.page
-      return this.total > 2 * this.page
-    },
-    totalOfPage() {
-      // let total = Math.ceil(this.total / process.env.PERPAGE)
-      let total = Math.ceil(this.total / 2)
-      return total > 1 ? `Trang ${this.page} / ${total}` : ''
+    hasLoadMore() {
+      return this.total > this.$store.state.article.articles.length
     }
   },
   methods: {

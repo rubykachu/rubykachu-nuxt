@@ -1,5 +1,7 @@
 import ApiArticle from '@/apis/ApiArticle.js'
 
+const LIMIT = parseInt(process.env.PERPAGE)
+
 export const state = () => ({
   articles: [],
   article: {},
@@ -57,7 +59,7 @@ export const actions = {
   },
   async getArticles({ commit }) {
     try {
-      const snapshots = await ApiArticle.fsGet({ limit: 2 })
+      const snapshots = await ApiArticle.fsGet({ limit: LIMIT })
       commit('SET_REF_ID_LAST_ARTICLE', snapshots.docs[snapshots.docs.length - 1].id)
 
       const articles = snapshots.docs.map(doc => doc.data())
@@ -70,7 +72,7 @@ export const actions = {
   async loadMore({ commit, state }) {
     try {
       const refArticle = await ApiArticle.fsFind(state.idLastArticle)
-      const snapshots = await ApiArticle.fsGet({ limit: 2, startAfter: refArticle })
+      const snapshots = await ApiArticle.fsGet({ limit: LIMIT, startAfter: refArticle })
 
       commit('SET_REF_ID_LAST_ARTICLE', snapshots.docs[snapshots.docs.length - 1].id)
 
