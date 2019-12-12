@@ -27,7 +27,7 @@
         </v-menu>
       </div>
 
-      <v-btn to="/article/new" nuxt text color="white">Viết bài</v-btn>
+      <v-btn to="/article/new" nuxt text color="white" v-if="checkIsLocal">Viết bài</v-btn>
       <v-btn to="" nuxt text color="white" class="ml-2">Về tôi / CV</v-btn>
 
       <v-avatar color="pink" class="ml-2">
@@ -40,6 +40,8 @@
 </template>
 
 <script>
+import { isLocal } from '@/mixins/helper.js'
+
 export default {
   name: 'AppHeader',
   data() {
@@ -53,6 +55,11 @@ export default {
     } catch (e) {
       console.log(e)
       store.dispatch('toast/show')
+    }
+  },
+  computed: {
+    checkIsLocal() {
+      return isLocal()
     }
   }
 }
