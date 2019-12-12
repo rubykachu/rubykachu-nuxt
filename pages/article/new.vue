@@ -130,6 +130,7 @@ import DialogColorPicker from '@/components/article/DialogColorPicker.vue'
 import formArticle from '@/mixins/article/form.js'
 
 export default {
+  middleware: 'authentication',
   mixins: [formArticle],
   components: {
     Editor,

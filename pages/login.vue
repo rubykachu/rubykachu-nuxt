@@ -34,8 +34,14 @@ export default {
   }),
   methods: {
     async login() {
-      const token = await this.$store.dispatch('user/login', this.credential)
-      console.log(token)
+      const logined = await this.$store.dispatch('user/login', this.credential)
+      if (logined) {
+        this.$router.push({
+          name: 'article-new'
+        })
+      } else {
+        alert('failed')
+      }
     }
   }
 }

@@ -1,25 +1,37 @@
-import ApiAuth from '@/apis/ApiAuth.js'
+import { auth } from '../plugins/firebase.js'
 
 export const state = () => ({
-  token: null
+  currentUser: null
 })
 
 export const mutations = {
-  SET_TOKEN(state, token) {
-    state.toekn = token
+  SET_USER(state, user) {
+    state.currentUser = user
   }
 }
 
 export const actions = {
   async login({ commit }, credential) {
     try {
-      console.log(credential)
-      const auth = await ApiAuth.fsAuthenticate(credential)
-      console.log('AUTH', auth)
+      const firebaseAuth = await auth.signInWithEmailAndPassword(credential.email, credential.password)
+      auth.signInAndRetrieveDataWithCredential(firebaseAuth).then(a => {
+        console.log('A', a)
+      })
+      auth.currentUser.getIdToken(false).then(idToken => {
+        console.log('TOKEN', idToken)
+      })
+      console.log(auth.currentUser)
 
-      debugger
+      commit('SET_USER', firebaseAuth.user.refreshToken)
+      return firebaseAuth.user.refreshToken
     } catch (e) {
       throw e
     }
+  }
+}
+
+export const getters = {
+  isAuthenticated(state) {
+    return !!state.currentUser
   }
 }
