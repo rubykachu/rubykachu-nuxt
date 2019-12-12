@@ -17,9 +17,8 @@ export const actions = {
       const idToken = await auth.currentUser.getIdToken(true /* force refresh Token */)
 
       sessionStorage.setItem('_rubykachuToken', idToken)
-      console.log('TOKEN', sessionStorage.getItem('_rubykachuToken'))
-
       commit('SET_TOKEN', idToken)
+
       return idToken
     } catch (e) {
       throw e
