@@ -28,7 +28,7 @@
       </div>
 
       <v-btn to="/article/new" nuxt text color="white" v-if="checkIsLocal">Viết bài</v-btn>
-      <v-btn to="" nuxt text color="white" class="ml-2">Về tôi / CV</v-btn>
+      <v-btn to="/login" nuxt text color="white" class="ml-2">Về tôi / CV</v-btn>
 
       <v-avatar color="pink" class="ml-2">
         <v-icon dark>mdi-account-circle</v-icon>
