@@ -35,6 +35,7 @@ export default {
       let category_id = route.params.id
       const articles = await store.dispatch('article/getArticlesByCategory', category_id)
       const category = await store.dispatch('category/findCategory', category_id)
+
       return { articles, category }
     } catch (e) {
       console.log(e)

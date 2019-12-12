@@ -1,5 +1,6 @@
 import colors from 'vuetify/es5/util/colors'
 import ApiArticle from './apis/ApiArticle.js'
+import ApiCategory from './apis/ApiCategory.js'
 
 export default {
   mode: 'universal',
@@ -99,10 +100,19 @@ export default {
   },
   generate: {
     async routes() {
-      const res = await ApiArticle.fsGet()
-      return res.map(article => {
+      let routes = []
+
+      const resArticles = await ApiArticle.fsGet({ returnData: true })
+      let articles = resArticles.map(article => {
         return '/article/' + article.id
       })
+
+      const resCategories = await ApiCategory.fsGet()
+      let categories = resCategories.map(cate => {
+        return '/categories/' + cate.id
+      })
+
+      return routes.concat(articles).concat(categories)
     }
   }
 }

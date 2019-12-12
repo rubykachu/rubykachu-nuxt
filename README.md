@@ -1,6 +1,28 @@
-# Structure
+# Config FireStore
 
-- Use firestore to save data
+- Tạo Project và config firebase trong file firebase.js
+- Tạo database firestore
+- Setting Rules cho database
+
+```js
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}
+```
+
+- Tạo collection `categories`. Tạo 1 record đầu tiên với `id là DocRef`, `color`, `name`
+- Tạo index:
+```
+CollectionID: articles
+Fileds indexed: category_id Ascending created_at Descending
+Query Scope: Collection
+Status: Enabled
+```
 
 ## Build Setup
 
