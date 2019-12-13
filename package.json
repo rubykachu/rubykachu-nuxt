@@ -23,11 +23,11 @@
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "nuxt": "^2.0.0",
-    "vuelidate": "^0.7.4"
+    "vuelidate": "^0.7.4",
+    "cross-env": "^6.0.3"
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.0.0",
-    "cross-env": "^6.0.3",
     "eslint-config-prettier": "^4.1.0",
     "eslint-plugin-prettier": "^3.0.1",
     "prettier": "^1.16.4"
