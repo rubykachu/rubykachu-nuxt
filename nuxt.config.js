@@ -42,7 +42,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/vuelidate', '~/plugins/axios', '~/plugins/firebase'],
+  plugins: ['~/plugins/vuelidate', '~/plugins/axios'],
   /*
    ** Nuxt.js dev-modules
    */
@@ -56,6 +56,12 @@ export default {
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv'
   ],
+  /**
+   * Router settings
+   */
+  router: {
+    middleware: ['authenticated']
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options

@@ -79,7 +79,12 @@
             <!-- Image -->
             <v-text-field v-model="article.image" label="Url ảnh lớn" prepend-icon="mdi-image" class="pb-2"></v-text-field>
 
-            <v-text-field v-model="article.image_thumb" label="Url ảnh nhỏ" prepend-icon="mdi-image-size-select-large" class="pb-2"></v-text-field>
+            <v-text-field
+              v-model="article.image_thumb"
+              label="Url ảnh nhỏ"
+              prepend-icon="mdi-image-size-select-large"
+              class="pb-2"
+            ></v-text-field>
 
             <!-- Description -->
             <v-textarea
@@ -97,7 +102,12 @@
             ></v-textarea>
 
             <!-- Content -->
-            <editor initialValue="" v-model="article.content" @blur="$v.article.content.$touch()" :error-messages="msgContentInvalid"></editor>
+            <editor
+              initialValue=""
+              v-model="article.content"
+              @blur="$v.article.content.$touch()"
+              :error-messages="msgContentInvalid"
+            ></editor>
 
             <div class="d-flex justify-end my-5">
               <template v-if="$v.$anyError">
@@ -119,7 +129,11 @@
     </v-row>
 
     <dialog-create-category :dialog="dialogCategory" @click:close="dialogCategory = false" />
-    <dialog-color-picker :dialog="toggleDialogColorPicker" @click:close="toggleDialogColorPicker = false" v-model="article.color"></dialog-color-picker>
+    <dialog-color-picker
+      :dialog="toggleDialogColorPicker"
+      @click:close="toggleDialogColorPicker = false"
+      v-model="article.color"
+    ></dialog-color-picker>
   </v-container>
 </template>
 
@@ -130,7 +144,6 @@ import DialogColorPicker from '@/components/article/DialogColorPicker.vue'
 import formArticle from '@/mixins/article/form.js'
 
 export default {
-  middleware: 'authentication',
   mixins: [formArticle],
   components: {
     Editor,

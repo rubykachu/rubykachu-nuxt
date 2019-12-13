@@ -1,26 +1,35 @@
-import { auth } from '../plugins/firebase.js'
-import { longStackSupport } from 'q'
+import { auth } from '../services/firebase.js'
+import Cookie from 'js-cookie'
 
 export const state = () => ({
-  token: ''
+  user: null
 })
 
 export const mutations = {
-  SET_TOKEN(state, token) {
-    state.token = token
+  SET_USER(state, credential) {
+    state.user = credential
   }
 }
 
 export const actions = {
+  setUser({ commit }, credential) {
+    commit('SET_USER', credential)
+  },
   async login({ commit }, credential) {
     try {
+      // Login the user
       await auth.signInWithEmailAndPassword(credential.email, credential.password)
-      const idToken = await auth.currentUser.getIdToken(true /* force refresh Token */)
 
-      sessionStorage.setItem('_rubykachuToken', idToken)
-      commit('SET_TOKEN', idToken)
+      // Get JWT from Firebase
+      const token = await auth.currentUser.getIdToken()
+      const { email, uid } = auth.currentUser
+      console.log(email, uid, token)
 
-      return idToken
+      // Set JWT to the cookie
+      Cookie.set('access_token', token)
+
+      // Set the user locally
+      commit('SET_USER', { email, uid })
     } catch (e) {
       throw e
     }
@@ -28,19 +37,10 @@ export const actions = {
   async logout({ commit }) {
     try {
       await auth.signOut()
-      sessionStorage.clear()
-      commit('SET_TOKEN', '')
-      return true
+      await Cookie.remove('access_token')
+      commit('SET_USER', null)
     } catch (e) {
       throw e
-    }
-  }
-}
-
-export const getters = {
-  isAuthenticated(state) {
-    if (process.browser) {
-      return !!state.token || !!sessionStorage.getItem('_rubykachuToken')
     }
   }
 }

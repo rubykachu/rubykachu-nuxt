@@ -1,4 +1,4 @@
-import { fs } from '../plugins/firebase'
+import { fs } from '../services/firebase'
 
 export default {
   async fsGet() {

@@ -28,6 +28,9 @@
       </div>
 
       <v-btn to="/article/new" nuxt text color="white">Viết bài</v-btn>
+      <v-btn color="secondary" depressed small fab class="ml-3" @click="logout">
+        <v-icon>mdi-logout</v-icon>
+      </v-btn>
     </v-app-bar>
 
     <div class="app-header__border"></div>
@@ -50,6 +53,18 @@ export default {
     } catch (e) {
       console.log(e)
       store.dispatch('toast/show')
+    }
+  },
+  methods: {
+    async logout() {
+      try {
+        await this.$store.dispatch('auth/logout')
+        this.$store.dispatch('toast/show', 'Đăng xuất thành công!')
+        location.href = '/'
+      } catch (e) {
+        console.log(e)
+        this.$store.dispatch('toast/show', 'Đăng xuất không thành công. Xin thử lại!')
+      }
     }
   }
 }

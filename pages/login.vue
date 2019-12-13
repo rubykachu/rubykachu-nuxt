@@ -34,7 +34,7 @@
 
           <v-card-actions>
             <v-spacer />
-            <v-btn color="secondary" dark @click="login" :loading="loading">Đăng nhập</v-btn>
+            <v-btn color="secondary" light @click="login" :disabled="loading">Đăng nhập</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -46,7 +46,6 @@
 import { required } from 'vuelidate/lib/validators'
 
 export default {
-  middleware: 'authentication',
   data: () => ({
     loading: false,
     credential: {
@@ -76,7 +75,7 @@ export default {
       this.$v.credential.$touch()
       if (!this.$v.credential.$invalid) {
         try {
-          const res = await this.$store.dispatch('auth/login', this.credential)
+          await this.$store.dispatch('auth/login', this.credential)
           this.$store.dispatch('toast/show', 'Đăng nhập thành công!')
           this.$router.push({ name: 'article-new' })
         } catch (e) {
