@@ -81,7 +81,6 @@
 </template>
 
 <script>
-import moment from 'moment'
 import { removeLineBreak, formatDate } from '@/mixins/helper'
 
 export default {

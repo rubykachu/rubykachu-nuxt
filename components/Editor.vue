@@ -1,11 +1,8 @@
 <template>
   <div>
-    <div
-      class="editor-wrapper"
-      :class="{ error: errorMessages ? 'error' : '' }"
-    >
+    <div class="editor-wrapper" :class="{ error: errorMessages ? 'error' : '' }">
       <vue-mce
-        api-key="no-api-key"
+        api-key="lwq5yuf334878gwfu3wgzkuc17y2w8l8ptjjo25zwcvmlpfc"
         :initialValue="initialValue"
         :init="config"
         @input="handleInput"
@@ -31,8 +28,7 @@ import VueMce from '@tinymce/tinymce-vue'
 const config = {
   height: 500,
   inline: false,
-  fontsize_formats:
-    '8px 10px 12px 14px 16px 18px 20px 22px 24px 26px 28px 30px 34px 38px 42px 48px 54px 60px',
+  fontsize_formats: '8px 10px 12px 14px 16px 18px 20px 22px 24px 26px 28px 30px 34px 38px 42px 48px 54px 60px',
   plugins: [
     'advlist autolink lists link image charmap print preview anchor',
     'searchreplace visualblocks code fullscreen',
