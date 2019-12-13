@@ -44,3 +44,9 @@ export const actions = {
     }
   }
 }
+
+export const getters = {
+  isLogged(state) {
+    return !!state.user
+  }
+}

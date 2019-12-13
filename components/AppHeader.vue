@@ -28,7 +28,7 @@
       </div>
 
       <v-btn to="/article/new" nuxt text color="white">Viết bài</v-btn>
-      <v-btn color="secondary" depressed small fab class="ml-3" @click="logout">
+      <v-btn color="secondary" depressed small fab class="ml-3" @click="logout" v-if="isLogged">
         <v-icon>mdi-logout</v-icon>
       </v-btn>
     </v-app-bar>
@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import { mapGetters, mapState } from 'vuex'
 import { isLocal } from '@/mixins/helper.js'
 
 export default {
@@ -55,6 +56,7 @@ export default {
       store.dispatch('toast/show')
     }
   },
+  computed: mapGetters('auth', ['isLogged']),
   methods: {
     async logout() {
       try {

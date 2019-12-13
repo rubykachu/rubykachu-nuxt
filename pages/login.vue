@@ -1,7 +1,7 @@
 <template>
   <v-container class="panel">
     <v-row align="center" justify="center">
-      <v-col cols="12" sm="8">
+      <v-col cols="12" sm="6">
         <v-card ref="form" class="rounded-15">
           <v-toolbar color="secondary" dark flat>
             <v-toolbar-title>Đăng nhập tài khoản</v-toolbar-title>
