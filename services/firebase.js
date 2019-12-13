@@ -3,6 +3,8 @@ import 'firebase/firestore'
 import 'firebase/auth'
 // import 'firebase/database'
 
+console.log('Mode:', process.env.NODE_ENV)
+
 let firebaseConfig
 if (process.env.NODE_ENV == 'production') {
   firebaseConfig = {

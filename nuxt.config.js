@@ -1,9 +1,16 @@
 import colors from 'vuetify/es5/util/colors'
 import ApiArticle from './apis/ApiArticle.js'
 import ApiCategory from './apis/ApiCategory.js'
+/*
+ ** Config file env
+ */
+
+let envFilename = process.env.NODE_ENV === 'production' ? '.env.prod' : '.env.local'
+const env = require('dotenv').config({ path: envFilename })
 
 export default {
   mode: 'universal',
+  env: env.parsed,
   /*
    ** Headers of the page
    */

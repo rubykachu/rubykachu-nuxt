@@ -56,7 +56,9 @@ export default {
       store.dispatch('toast/show')
     }
   },
-  computed: mapGetters('auth', ['isLogged']),
+  computed: {
+    ...mapGetters('auth', ['isLogged'])
+  },
   methods: {
     async logout() {
       try {
