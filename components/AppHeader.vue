@@ -27,12 +27,7 @@
         </v-menu>
       </div>
 
-      <v-btn to="/article/new" nuxt text color="white" v-if="checkIsLocal">Viết bài</v-btn>
-      <v-btn to="/login" nuxt text color="white" class="ml-2">Về tôi / CV</v-btn>
-
-      <v-avatar color="pink" class="ml-2">
-        <v-icon dark>mdi-account-circle</v-icon>
-      </v-avatar>
+      <v-btn to="/article/new" nuxt text color="white">Viết bài</v-btn>
     </v-app-bar>
 
     <div class="app-header__border"></div>
@@ -55,11 +50,6 @@ export default {
     } catch (e) {
       console.log(e)
       store.dispatch('toast/show')
-    }
-  },
-  computed: {
-    checkIsLocal() {
-      return isLocal()
     }
   }
 }

@@ -1,4 +1,5 @@
 import { auth } from '../plugins/firebase.js'
+import { longStackSupport } from 'q'
 
 export const state = () => ({
   token: ''
@@ -23,12 +24,22 @@ export const actions = {
     } catch (e) {
       throw e
     }
+  },
+  async logout({ commit }) {
+    try {
+      await auth.signOut()
+      sessionStorage.clear()
+      commit('SET_TOKEN', '')
+      return true
+    } catch (e) {
+      throw e
+    }
   }
 }
 
 export const getters = {
   isAuthenticated(state) {
-    if (process.client) {
+    if (process.browser) {
       return !!state.token || !!sessionStorage.getItem('_rubykachuToken')
     }
   }
