@@ -23,7 +23,6 @@ export const actions = {
       // Get JWT from Firebase
       const token = await auth.currentUser.getIdToken()
       const { email, uid } = auth.currentUser
-      console.log(email, uid, token)
 
       // Set JWT to the cookie
       Cookie.set('access_token', token)
@@ -37,7 +36,7 @@ export const actions = {
   async logout({ commit }) {
     try {
       await auth.signOut()
-      await Cookie.remove('access_token')
+      Cookie.remove('access_token')
       commit('SET_USER', null)
     } catch (e) {
       throw e

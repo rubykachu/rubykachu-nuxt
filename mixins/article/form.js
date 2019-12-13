@@ -1,12 +1,10 @@
-import { formatDate, isLocal } from '@/mixins/helper.js'
+import { formatDate } from '@/mixins/helper.js'
 import { required, minLength, maxLength, numeric } from 'vuelidate/lib/validators'
 
 const maxLenghtDescription = 145
 const minLengthContent = 100
 export default {
-  async asyncData({ store, redirect }) {
-    if (!isLocal()) return redirect('/404')
-
+  async asyncData({ store }) {
     const categories = await store.dispatch('category/getCategories')
     return { categories }
   },

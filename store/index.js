@@ -1,6 +1,7 @@
 // Tutorial: https://www.youtube.com/watch?v=_-_bz5lH_fI
 // Code: https://github.com/Eckhardt-D/nuxt-fire-auth/blob/master/nuxt.config.js
 
+// Only running on universal
 import JWTDecode from 'jwt-decode'
 import cookieParser from 'cookieparser'
 

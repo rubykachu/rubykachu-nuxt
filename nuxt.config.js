@@ -9,7 +9,7 @@ let envFilename = process.env.NODE_ENV === 'production' ? '.env.prod' : '.env.lo
 const env = require('dotenv').config({ path: envFilename })
 
 export default {
-  mode: 'universal',
+  mode: 'spa',
   env: env.parsed,
   /*
    ** Headers of the page

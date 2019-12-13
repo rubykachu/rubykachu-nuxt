@@ -39,7 +39,6 @@
 
 <script>
 import { mapGetters, mapState } from 'vuex'
-import { isLocal } from '@/mixins/helper.js'
 
 export default {
   name: 'AppHeader',

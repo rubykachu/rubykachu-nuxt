@@ -7,7 +7,3 @@ export const formatDate = dateString => {
 export const removeLineBreak = str => {
   return str.replace(/\r?\n|\r/g, ' ')
 }
-
-export const isLocal = () => {
-  return process.env.NODE_ENV == 'local'
-}
