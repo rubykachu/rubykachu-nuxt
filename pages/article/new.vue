@@ -17,6 +17,7 @@
               :items="categories"
               item-value="id"
               item-text="name"
+              autocomplete
               label="Danh mục"
               prepend-icon="mdi-folder"
               class="pb-2"

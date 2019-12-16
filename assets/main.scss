@@ -9,6 +9,10 @@ a {
   text-decoration: unset;
 }
 
+.break-work {
+  word-break: break-word !important;
+}
+
 ::selection {
   background: $primary-color--light !important;
   color: white !important;
