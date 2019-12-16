@@ -2,7 +2,7 @@
   <v-container class="panel">
     <v-row justify="center">
       <v-col cols="12" sm="10" md="10">
-        <v-card ref="form" class="rounded-15">
+        <v-card class="rounded-15">
           <v-toolbar flat color="white">
             <v-icon>mdi-lead-pencil</v-icon>
             <v-toolbar-title class="font-weight-light ml-2">Viết bài</v-toolbar-title>
@@ -95,7 +95,7 @@
               prepend-icon="mdi-card-text"
               rows="1"
               row-height="15"
-              hint="Mô tả này sẽ không nằm trong phần nội dung của trang chi tiết"
+              hint="Mô tả sẽ không có trong nội dung của bài viết. 2 dòng (100 ký tự)"
               class="mb-7"
               counter="145"
               :error-messages="msgDescriptionInvalid"
@@ -118,8 +118,8 @@
                 </p>
                 <v-spacer></v-spacer>
               </template>
-              <v-btn class="mr-4">Huỷ bỏ</v-btn>
-              <v-btn color="secondary" @click="submitForm">
+              <v-btn class="mr-4" to="/" nuxt>Huỷ bỏ</v-btn>
+              <v-btn color="secondary" @click="submitForm" :disabled="disabledSubmit">
                 <v-icon>mdi-plus</v-icon>
                 Tạo bài viết
               </v-btn>
@@ -159,6 +159,7 @@ export default {
       dialogCategory: false,
       toggleDatePicker: false,
       toggleDialogColorPicker: false,
+      disabledSubmit: false,
       article: this.newArticleObject()
     }
   },
@@ -184,6 +185,7 @@ export default {
       this.$v.article.$touch()
       if (!this.$v.article.$invalid) {
         try {
+          this.disabledSubmit = true
           // Call Api create article
           let result = await this.$store.dispatch('article/createArticle', this.article)
 
@@ -193,6 +195,7 @@ export default {
             params: { id: result.id }
           })
         } catch (e) {
+          this.disabledSubmit = false
           console.log(e)
           store.dispatch('toast/show')
         }

@@ -120,7 +120,7 @@ export default {
   .v-card {
     &__title {
       line-height: 1.5rem;
-      font-size: 1.1rem;
+      font-size: 1rem;
     }
   }
 }
