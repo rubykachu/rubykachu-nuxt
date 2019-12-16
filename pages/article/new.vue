@@ -44,10 +44,18 @@
               @blur="$v.article.title.$touch()"
               counter="80"
               hint="2 dòng (80 ký tự). 3 dòng (108 ký tự)"
+              :loading="$v.article.title.$pending"
             ></v-text-field>
 
             <!-- Slug -->
-            <v-text-field :value="fullPath + slug" label="Đường dẫn bài viết" prepend-icon="mdi-link" class="pb-2" readonly disabled></v-text-field>
+            <v-text-field
+              :value="fullPath + slug"
+              label="Đường dẫn bài viết"
+              prepend-icon="mdi-link"
+              class="pb-2"
+              readonly
+              disabled
+            ></v-text-field>
 
             <!-- Created At -->
             <v-menu v-model="toggleDatePicker" :close-on-content-click="false" max-width="290">
@@ -173,7 +181,7 @@ export default {
     newArticleObject() {
       return {
         title: '',
-
+        slug: '',
         category: '',
         created_at: new Date().toISOString().substr(0, 10),
         reading_time: '',

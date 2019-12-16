@@ -22,6 +22,21 @@ export default {
       .doc(id)
       .get()
   },
+  async fsFindSlug(slug, args = {}) {
+    try {
+      let snapshot = await fs
+        .collection('articles')
+        .where('slug', '==', slug)
+        .get()
+
+      if (args.returnData) {
+        return snapshot.docs[0].data()
+      }
+      return snapshot
+    } catch (e) {
+      throw 'slug_not_exist'
+    }
+  },
   /**
    * @params args optional
    * @param order args: { column: 'desc | asc'}. Default order_by created_at DESC

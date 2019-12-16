@@ -12,7 +12,22 @@ export default {
     article: {
       title: {
         required,
-        minLength: minLength(10)
+        minLength: minLength(10),
+        async isUnique(value) {
+          if (value == '') return
+          if (!this.$v.article.title.minLength || !this.$v.article.title.required) return
+          let isUniq = await new Promise(resolve => {
+            setTimeout(async () => {
+              try {
+                await this.$store.dispatch('article/findSlug', this.slug)
+                resolve(false)
+              } catch (e) {
+                resolve(true)
+              }
+            }, 850)
+          })
+          return Boolean(isUniq)
+        }
       },
       category: { required },
       created_at: { required },
@@ -41,10 +56,16 @@ export default {
       if (!this.$v.article.category.$error) return
       if (!this.$v.article.category.required) return 'Vui lòng chọn danh mục'
     },
-    msgTitleInvalid() {
-      if (!this.$v.article.title.$error) return
-      if (!this.$v.article.title.required) return 'Vui lòng nhập tiêu đề'
-      if (!this.$v.article.title.minLength) return 'Tiêu đề quá ngắn (tối thiểu 10 ký tự)'
+    msgTitleInvalid: {
+      get() {
+        if (!this.$v.article.title.$error) return
+        if (!this.$v.article.title.required) return 'Vui lòng nhập tiêu đề'
+        if (!this.$v.article.title.minLength) return 'Tiêu đề quá ngắn (tối thiểu 10 ký tự)'
+        if (!this.$v.article.title.isUnique) return 'Tiêu đề này đã tồn tại. Hãy nhập tiêu đề khác'
+      },
+      set(value) {
+        this.msgArticleAlreadyExist = value
+      }
     },
     msgReadingTimeInvalid() {
       if (!this.$v.article.reading_time.$error) return
