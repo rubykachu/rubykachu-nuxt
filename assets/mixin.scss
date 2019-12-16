@@ -19,6 +19,13 @@
   box-shadow: $parameters;
 }
 
+@mixin text-shadow($parameters...) {
+  -webkit-text-shadow: $parameters;
+  -moz-text-shadow: $parameters;
+  -ms-text-shadow: $parameters;
+  text-shadow: $parameters;
+}
+
 @mixin border-radius($parameters) {
   -webkit-border-radius: $parameters;
   -moz-border-radius: $parameters;
