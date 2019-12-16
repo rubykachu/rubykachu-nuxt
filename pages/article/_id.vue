@@ -1,6 +1,7 @@
 <template>
-  <v-container fluid class="article-page">
+  <v-container fluid class="article-page px-0">
     <v-row>
+      <v-col cols="12">
       <v-card
         class="d-flex align-start flex-column rounded-15"
         color="grey"
@@ -30,10 +31,12 @@
           </v-card-text>
         </v-card>
       </v-card>
+      </v-col>
+
     </v-row>
 
 
-    <div class="article-page__content-wrapper mt-12 mb-20 pa-7">
+    <div class="article-page__content-wrapper mt-12 mb-20 pa-4">
       <v-row>
         <v-col cols="12">
           <div v-html="article.content"></div>
@@ -81,6 +84,14 @@
 </template>
 
 <script>
+import Prism from 'prismjs'
+import 'prismjs/themes/prism-okaidia.css'
+import 'prismjs/components/prism-ruby.min.js'
+import 'prismjs/components/prism-python.min.js'
+import 'prismjs/components/prism-sql.min.js'
+import 'prismjs/components/prism-yaml.min.js'
+import 'prismjs/components/prism-bash.min.js'
+
 import { removeLineBreak, formatDate } from '@/mixins/helper'
 
 export default {
@@ -93,7 +104,7 @@ export default {
     }
   },
   data: () => ({
-    articleLink: ''
+    articleLink: '',
   }),
   async asyncData({ store, params }) {
     try {
@@ -105,6 +116,7 @@ export default {
     }
   },
   mounted() {
+    Prism.highlightAll()
     this.articleLink = this.$el.baseURI
   },
   computed: {

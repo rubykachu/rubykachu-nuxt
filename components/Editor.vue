@@ -38,6 +38,16 @@ const config = {
     'undo redo | formatselect | bold italic strikethrough forecolor backcolor | \
            link codesample| alignleft aligncenter alignright alignjustify | \
            bullist numlist | removeformat code |',
+  codesample_languages: [
+    { text: 'HTML/XML', value: 'markup' },
+    { text: 'JavaScript', value: 'javascript' },
+    { text: 'CSS', value: 'css' },
+    { text: 'Ruby', value: 'ruby' },
+    { text: 'YAML', value: 'yaml' },
+    { text: 'Python', value: 'python' },
+    { text: 'SQL', value: 'sql' },
+    { text: 'Bash', value: 'bash' }
+  ],
   image_advtab: false,
   menubar: true
 }
@@ -55,6 +65,11 @@ export default {
   data: () => ({
     config
   }),
+  watch: {
+    editor(f, t) {
+      console.log(f)
+    }
+  },
   methods: {
     handleInput(editor) {
       this.$emit('input', editor)
