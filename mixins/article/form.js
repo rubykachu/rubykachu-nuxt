@@ -1,4 +1,4 @@
-import { formatDate } from '@/mixins/helper.js'
+import { formatDate, sanitizeTitle, fullPath } from '@/mixins/helper.js'
 import { required, minLength, maxLength, numeric } from 'vuelidate/lib/validators'
 
 const maxLenghtDescription = 145
@@ -28,6 +28,12 @@ export default {
     }
   },
   computed: {
+    fullPath() {
+      return fullPath('/article/')
+    },
+    slug() {
+      return sanitizeTitle(this.article.title)
+    },
     formatCreatedAt() {
       return formatDate(this.article.created_at)
     },
