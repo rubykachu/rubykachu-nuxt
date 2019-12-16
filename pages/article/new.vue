@@ -156,11 +156,26 @@ export default {
   }),
   data() {
     return {
+      dialogLeavePage: false,
       dialogCategory: false,
       toggleDatePicker: false,
       toggleDialogColorPicker: false,
       disabledSubmit: false,
+      formSubmitted: false,
       article: this.newArticleObject()
+    }
+  },
+  beforeRouteLeave(to, from, next) {
+    console.log(to)
+    if (to.params.leftPage) {
+      next()
+    } else {
+      const answer = window.confirm('Hãy chắc chắn rằng bạn đang muốn rời khỏi trang!')
+      if (answer) {
+        next()
+      } else {
+        next(false)
+      }
     }
   },
   computed: {
@@ -192,7 +207,7 @@ export default {
           // Redirect to detail page
           this.$router.push({
             name: 'article-id',
-            params: { id: result.id }
+            params: { id: result.id, leftPage: true }
           })
         } catch (e) {
           this.disabledSubmit = false

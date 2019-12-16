@@ -86,6 +86,8 @@ export default {
             this.$store.dispatch('toast/show', 'Có lỗi xảy ra trong quá trình đăng nhập')
           }
         }
+      } else {
+        this.loading = false
       }
     }
   }
