@@ -47,6 +47,15 @@ export const actions = {
       throw e
     }
   },
+  async findSlug({ commit }, slug) {
+    // Check slug is unique
+    try {
+      let article = await ApiArticle.fsFindSlug(slug, { returnData: true })
+      return article
+    } catch (e) {
+      throw e
+    }
+  },
   async findArticle({ commit }, id) {
     try {
       const article = await ApiArticle.fsFind(id)
