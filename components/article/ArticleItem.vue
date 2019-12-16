@@ -23,7 +23,7 @@
 
     <div class="white">
       <div class="article-item__content">
-        <v-card-title class="pb-2">{{ article.title }}</v-card-title>
+        <v-card-title class="pb-2 break-work">{{ article.title }}</v-card-title>
 
         <v-card-text class="text--primary">{{ article.description }}</v-card-text>
       </div>
@@ -120,7 +120,7 @@ export default {
   .v-card {
     &__title {
       line-height: 1.5rem;
-      font-size: 1.1rem;
+      font-size: 1rem;
     }
   }
 }

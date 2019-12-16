@@ -25,7 +25,7 @@
         <v-card class="pa-2" color="transparent" outlined>
           <v-card-text>
             <v-chip :color="article.category.color" class="px-8 white--text font-weight-bold">{{ article.category.name }}</v-chip>
-            <h1 class="py-5 white--text display-2">
+            <h1 class="pt-5 white--text article-page__title break-work">
               {{ article.title }}
             </h1>
           </v-card-text>

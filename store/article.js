@@ -31,7 +31,7 @@ export const actions = {
   async createArticle({ commit }, article) {
     try {
       // Set default Image with random from 1 to 6
-      let number = Math.floor(Math.random() * 6) + 1
+      let number = Math.floor(Math.random() * 7) + 1
       article.image = article.image || `/articles/bg_article_${number}.jpg`
       article.image_thumb = article.image_thumb || `/articles/bg_article_${number}.jpg`
       article.created_at = `${article.created_at} ${new Date().toLocaleTimeString()}`
