@@ -44,7 +44,7 @@ export default {
   },
   watch: {
     'article.title': function(val) {
-      this.article.slug = fullPath('/article/') + sanitizeTitle(val)
+      this.article.slug = sanitizeTitle(val)
     }
   },
   computed: {
