@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto article-item" hover :to="`/article/` + article.id" nuxt min-height="387px">
+  <v-card class="mx-auto article-item" hover :to="`/article/` + article.slug" nuxt min-height="387px">
     <v-chip class="article-item__category px-5 py-3 font-weight-bold" :color="article.category.color" text-color="white">
       {{ article.category.name }}
     </v-chip>
