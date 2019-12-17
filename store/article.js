@@ -58,10 +58,9 @@ export const actions = {
   },
   async findArticle({ commit }, id) {
     try {
-      const article = await ApiArticle.fsFind(id)
-      const data = article.data()
-      commit('SET_ARTICLE', data)
-      return data
+      const article = await ApiArticle.fsFindSlug(id, { returnData: true })
+      commit('SET_ARTICLE', article)
+      return article
     } catch (e) {
       throw e
     }
