@@ -20,6 +20,10 @@ export const sanitizeTitle = title => {
   slug = slug.replace(/o|ó|ò|õ|ỏ|ọ|ô|ố|ồ|ỗ|ổ|ộ|ơ|ớ|ờ|ỡ|ở|ợ/gi, 'o')
   // Letter "u"
   slug = slug.replace(/u|ú|ù|ũ|ủ|ụ|ư|ứ|ừ|ữ|ử|ự/gi, 'u')
+  // Letter "y"
+  slug = slug.replace(/y|ý|ỳ|ỵ|ỷ/gi, 'y')
+  // Letter "i"
+  slug = slug.replace(/i|í|ì|ị|ỉ/gi, 'i')
   // Letter "d"
   slug = slug.replace(/đ/gi, 'd')
   // Trim the last whitespace
