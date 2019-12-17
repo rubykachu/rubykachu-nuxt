@@ -117,12 +117,12 @@ export default {
 
       const resArticles = await ApiArticle.fsGet({ returnData: true })
       let articles = resArticles.map(article => {
-        return '/article/' + article.id
+        return '/article/' + article.slug
       })
 
       const resCategories = await ApiCategory.fsGet()
       let categories = resCategories.map(cate => {
-        return '/categories/' + cate.id
+        return '/categories/' + cate.slug
       })
 
       return routes.concat(articles).concat(categories)

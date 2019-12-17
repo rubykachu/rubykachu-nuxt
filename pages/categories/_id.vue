@@ -2,9 +2,17 @@
   <v-container class="article-category-page">
     <v-row class="mb-10">
       <v-col cols="12" class="px-0">
-        <v-card class="rounded-15 text-center white--text" color="grey" min-width="100%" height="140px" img="/bg_default_post_detail_1600x500.jpg">
+        <v-card
+          class="rounded-15 text-center white--text"
+          color="grey"
+          min-width="100%"
+          height="140px"
+          img="/bg_default_post_detail_1600x500.jpg"
+        >
           <div>
-            <v-icon class="article-category-page__icon" color="white" size="38" :style="{ backgroundColor: category.color }">mdi-tag-outline</v-icon>
+            <v-icon class="article-category-page__icon" color="white" size="38" :style="{ backgroundColor: category.color }"
+              >mdi-tag-outline</v-icon
+            >
             <h2 class="article-category-page__subject">{{ category.name }}</h2>
           </div>
         </v-card>
@@ -34,7 +42,7 @@ export default {
     try {
       let category_id = route.params.id
       const articles = await store.dispatch('article/getArticlesByCategory', category_id)
-      const category = await store.dispatch('category/findCategory', category_id)
+      const category = await store.dispatch('category/findSlug', category_id)
 
       return { articles, category }
     } catch (e) {

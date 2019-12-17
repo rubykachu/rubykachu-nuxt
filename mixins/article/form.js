@@ -1,4 +1,4 @@
-import { formatDate, sanitizeTitle, fullPath } from '@/mixins/helper.js'
+import { formatDate, sanitizeTitle } from '@/mixins/helper.js'
 import { required, minLength, maxLength, numeric } from 'vuelidate/lib/validators'
 
 const maxLenghtDescription = 145

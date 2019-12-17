@@ -1,4 +1,5 @@
-import ApiArticle from '@/apis/ApiArticle.js'
+import ApiArticle from '~/apis/ApiArticle'
+import ApiCategory from '~/apis/ApiCategory'
 
 const LIMIT = parseInt(process.env.PERPAGE)
 
@@ -58,11 +59,7 @@ export const actions = {
   },
   async findArticle({ commit }, id) {
     try {
-      console.log('slug', id)
-
       const article = await ApiArticle.fsFindSlug(id, { returnData: true })
-      console.log('article', article)
-
       commit('SET_ARTICLE', article)
       return article
     } catch (e) {
@@ -105,9 +102,10 @@ export const actions = {
       throw e
     }
   },
-  async getArticlesByCategory({}, category_id) {
+  async getArticlesByCategory({}, slug) {
     try {
-      const articles = await ApiArticle.fsGet({ where: ['category_id', '==', category_id], returnData: true })
+      const category = await ApiCategory.fsFindSlug(slug, { returnData: true })
+      const articles = await ApiArticle.fsGet({ where: ['category_id', '==', category.id], returnData: true })
       return articles
     } catch (e) {
       throw e

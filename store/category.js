@@ -53,6 +53,15 @@ export const actions = {
     } catch (e) {
       throw e
     }
+  },
+  async findSlug({ commit }, slug) {
+    // Check slug is unique
+    try {
+      let category = await ApiCategory.fsFindSlug(slug, { returnData: true })
+      return category
+    } catch (e) {
+      throw e
+    }
   }
 }
 

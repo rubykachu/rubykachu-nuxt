@@ -17,6 +17,21 @@ export default {
       .doc(id)
       .get()
   },
+  async fsFindSlug(slug, args = {}) {
+    try {
+      let snapshot = await fs
+        .collection('categories')
+        .where('slug', '==', slug)
+        .get()
+
+      if (args.returnData) {
+        return snapshot.docs[0].data()
+      }
+      return snapshot
+    } catch (e) {
+      throw 'slug_not_exist'
+    }
+  },
   fsUpdate(category) {
     return fs
       .collection('categories')
