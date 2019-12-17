@@ -7,7 +7,7 @@
     </v-row>
 
     <v-row justify="center" align="center" class="pagination" v-if="hasLoadMore">
-      <v-btn class="mx-2" fab color="secondary" @click="loadMore">
+      <v-btn class="mx-2" fab depressed color="secondary" @click="loadMore" :loading="loading" :disabled="loading">
         <v-icon>mdi-plus</v-icon>
       </v-btn>
     </v-row>
@@ -20,6 +20,9 @@ export default {
   components: {
     ArticleItem
   },
+  data: () => ({
+    loading: false
+  }),
   async asyncData({ store, route }) {
     try {
       const articles = await store.dispatch('article/getArticles')
@@ -40,7 +43,9 @@ export default {
   },
   methods: {
     async loadMore() {
+      this.loading = true
       this.articles = await this.$store.dispatch('article/loadMore')
+      this.loading = false
     }
   }
 }
