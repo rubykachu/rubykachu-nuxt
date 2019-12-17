@@ -24,7 +24,8 @@
       </v-list-item>
     </v-list>
     <p>
-      We are a team working from Chile. We create some Ghost and Wordpress themes for differents markets, also, we offer live support via our ticket system.
+      Sinh ra và lớn lên tại Đà Nẵng. Đi làm từ năm 2013 đến giờ vẫn chưa có gì ngoài 1 bà vợ và sắp thành cha đứa trẻ thứ 2. Nghĩ thấy
+      loser vl ra. Blog viết bởi tui, ai thích thì đọc, ai không thích thì đọc 😝
     </p>
   </div>
 </template>
