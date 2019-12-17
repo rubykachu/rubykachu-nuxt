@@ -49,14 +49,7 @@
             ></v-text-field>
 
             <!-- Slug -->
-            <v-text-field
-              :value="fullPath + slug"
-              label="Đường dẫn bài viết"
-              prepend-icon="mdi-link"
-              class="pb-2"
-              readonly
-              disabled
-            ></v-text-field>
+            <v-text-field v-model="article.slug" label="Đường dẫn bài viết" prepend-icon="mdi-link" class="pb-2"></v-text-field>
 
             <!-- Created At -->
             <v-menu v-model="toggleDatePicker" :close-on-content-click="false" max-width="290">
@@ -177,7 +170,6 @@ export default {
     }
   },
   beforeRouteLeave(to, from, next) {
-    console.log(to)
     if (to.params.leftPage) {
       next()
     } else {
@@ -214,7 +206,6 @@ export default {
         try {
           this.disabledSubmit = true
           // Call Api create article
-          this.article.slug = this.slug
           let result = await this.$store.dispatch('article/createArticle', this.article)
 
           // Redirect to detail page

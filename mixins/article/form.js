@@ -42,13 +42,12 @@ export default {
       }
     }
   },
+  watch: {
+    'article.title': function(val) {
+      this.article.slug = fullPath('/article/') + sanitizeTitle(val)
+    }
+  },
   computed: {
-    fullPath() {
-      return fullPath('/article/')
-    },
-    slug() {
-      return sanitizeTitle(this.article.title)
-    },
     formatCreatedAt() {
       return formatDate(this.article.created_at)
     },

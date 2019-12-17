@@ -26,6 +26,8 @@ export const sanitizeTitle = title => {
   slug = slug.replace(/\s*$/g, '')
   // Change whitespace to "-"
   slug = slug.replace(/\s+/g, '-')
+  // Trim the : _
+  slug = slug.replace(/[:_]/g, '')
 
   return slug
 }

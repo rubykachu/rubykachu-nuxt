@@ -30,14 +30,13 @@ const config = {
   inline: false,
   fontsize_formats: '8px 10px 12px 14px 16px 18px 20px 22px 24px 26px 28px 30px 34px 38px 42px 48px 54px 60px',
   plugins: [
-    'advlist autolink lists link image charmap print preview anchor',
-    'searchreplace visualblocks code fullscreen',
-    'insertdatetime media table paste code help wordcount codesample'
+    'powerpaste advcode advlist autolink lists link image charmap print preview anchor',
+    'searchreplace visualblocks code fullscreen hr',
+    'insertdatetime media table paste code help wordcount codesample emoticons'
   ],
   toolbar:
-    'undo redo | formatselect | bold italic strikethrough forecolor backcolor | \
-           link codesample| alignleft aligncenter alignright alignjustify | \
-           bullist numlist | removeformat code |',
+    'formatselect| bold italic strikethrough forecolor backcolor removeformat| hr emoticons|\
+           link media image tox codesample| alignleft aligncenter | bullist numlist | fullscreen preview code|',
   codesample_languages: [
     { text: 'HTML/XML', value: 'markup' },
     { text: 'JavaScript', value: 'javascript' },
