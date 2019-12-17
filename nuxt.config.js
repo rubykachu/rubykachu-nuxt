@@ -16,14 +16,14 @@ export default {
    */
   head: {
     titleTemplate: '%s - ' + 'Rubykachu',
-    title: 'Hãy cho đi rồi nhận lại',
+    title: 'Code thần thánh',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
         hid: 'description',
         name: 'description',
-        content: 'Chia sẽ kiến thức lập trình sau bao nhiêu năm đi làm. Không xem thì hơi phí'
+        content: 'Đến thần thánh còn phải còn phải code. Không xem thì hơi phí'
       },
       {
         hid: 'keyword',
