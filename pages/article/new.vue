@@ -211,7 +211,7 @@ export default {
           // Redirect to detail page
           this.$router.push({
             name: 'article-id',
-            params: { id: result.id, leftPage: true }
+            params: { id: result.slug, leftPage: true }
           })
         } catch (e) {
           this.disabledSubmit = false

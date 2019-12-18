@@ -23,15 +23,19 @@
         </v-list-item-content>
       </v-list-item>
     </v-list>
-    <p>
-      Sinh ra và lớn lên tại Đà Nẵng. Đi làm từ năm 2013 đến giờ vẫn chưa có gì ngoài 1 bà vợ và sắp thành cha đứa trẻ thứ 2. Nghĩ thấy
-      loser vl ra. Blog viết bởi tui, ai thích thì đọc, ai không thích thì đọc 😝
-    </p>
+    <p>{{ introduceAuthor }}</p>
   </div>
 </template>
 
 <script>
-export default {}
+import { introduceMysefl } from '@/mixins/helper.js'
+export default {
+  computed: {
+    introduceAuthor() {
+      return introduceMysefl()
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped></style>

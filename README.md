@@ -1,4 +1,6 @@
-# Config FireStore
+# Start App
+
+## Config FireStore
 
 - Tạo Project và config firebase trong file firebase.js
 - Tạo database firestore
@@ -16,8 +18,39 @@ service cloud.firestore {
 }
 ```
 
-- Tạo collection `categories`. Tạo 1 record đầu tiên với `id là DocRef`, `color`, `name`
-- Tạo index:
+** Collection Articles **
+```json
+{
+  "category": {
+    "color": "",
+    "id": "",
+    "name": "",
+    "slug": ""
+  },
+  "id": "DocumentRef",
+  "category_id": "",
+  "content": "",
+  "description": "",
+  "title": "",
+  "slug": "",
+  "image": "",
+  "image_thumb": "",
+  "reading_time": "",
+  "created_at": ""
+}
+```
+
+** Collection Categories **
+```json
+{
+  "color": "",
+  "id": "DocumentRef",
+  "name": "",
+  "slug": ""
+}
+```
+
+** Tạo index **
 ```
 CollectionID: articles
 Fileds indexed: category_id Ascending created_at Descending
@@ -25,14 +58,21 @@ Query Scope: Collection
 Status: Enabled
 ```
 
+## Authentication
+
+Tạo user với method là `Email/Password`
+
 ## Build Setup
 
 ``` bash
 # install dependencies
 $ npm run install
 
-# serve with hot reload at localhost:3000
+# Run server with Local environment
 $ npm run dev
+
+# Run server with Production environment
+$ npm run prod
 
 # build for production and launch server
 $ npm run build
@@ -42,5 +82,6 @@ $ npm run start
 $ npm run generate
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+## Deploy
 
+Merge vào nhánh firebase sẽ tự động deploy lên host Netlify

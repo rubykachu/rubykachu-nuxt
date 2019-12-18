@@ -1,9 +1,11 @@
 <template>
   <v-container class="home-page">
     <v-row>
-      <v-col class="mb-8" cols="md-4" sm="6" v-for="article in articles" :key="article.id">
-        <article-item :article="article" />
-      </v-col>
+      <template v-if="articles">
+        <v-col class="mb-8" cols="md-4" sm="6" v-for="article in articles" :key="article.id">
+          <article-item :article="article" />
+        </v-col>
+      </template>
     </v-row>
 
     <v-row justify="center" align="center" class="pagination" v-if="hasLoadMore">
@@ -21,13 +23,13 @@ export default {
     ArticleItem
   },
   data: () => ({
-    loading: false
+    loading: false,
+    articles: []
   }),
   async asyncData({ store, route }) {
     try {
       const articles = await store.dispatch('article/getArticles')
       const total = await store.dispatch('article/getTotalArticle')
-
       return { articles, total }
     } catch (e) {
       store.dispatch('toast/show')
