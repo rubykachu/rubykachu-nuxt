@@ -58,6 +58,10 @@ Query Scope: Collection
 Status: Enabled
 ```
 
+## Authentication
+
+Tạo user với method là `Email/Password`
+
 ## Build Setup
 
 ``` bash
