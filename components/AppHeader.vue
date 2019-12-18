@@ -11,7 +11,7 @@
 
       <v-btn to="/" nuxt text color="white">Trang chủ</v-btn>
 
-      <div>
+      <div v-if="categories.length > 0">
         <v-menu open-on-hover bottom offset-y light min-width="200" max-width="280">
           <template v-slot:activator="{ on }">
             <v-btn text color="white" v-on="on">
@@ -27,9 +27,13 @@
         </v-menu>
       </div>
 
+      <div v-else>
+        <v-btn text color="white">Danh mục</v-btn>
+      </div>
+
       <v-btn to="/article/new" nuxt text color="white">Viết bài</v-btn>
-      <v-btn color="secondary" depressed small fab class="ml-3" @click="logout" v-if="isLogged">
-        <v-icon>mdi-logout</v-icon>
+      <v-btn color="primary" depressed small class="ml-3" @click="logout" v-if="isLogged">
+        Logout
       </v-btn>
     </v-app-bar>
 
