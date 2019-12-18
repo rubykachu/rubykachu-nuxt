@@ -73,10 +73,7 @@
           </v-avatar>
         </div>
         <p class="section__title hover-link"><a class="white--text">Minh Tang Q.</a></p>
-        <p class="section__content">
-          Sinh ra và lớn lên tại Đà Nẵng. Đi làm từ năm 2013 đến giờ vẫn chưa có gì ngoài 1 bà vợ và sắp thành cha đứa trẻ thứ 2. Nghĩ thấy
-      loser vl ra. Blog viết bởi tui, ai thích thì đọc, ai không thích thì đọc 😝
-        </p>
+        <p class="section__content">{{ introduceAuthor }} </p>
       </div>
     </v-row>
   </v-container>
@@ -91,7 +88,7 @@ import 'prismjs/components/prism-sql.min.js'
 import 'prismjs/components/prism-yaml.min.js'
 import 'prismjs/components/prism-bash.min.js'
 
-import { removeLineBreak, formatDate } from '@/mixins/helper'
+import { removeLineBreak, formatDate, introduceMysefl } from '@/mixins/helper'
 
 export default {
   head() {
@@ -119,6 +116,9 @@ export default {
     this.articleLink = this.$el.baseURI
   },
   computed: {
+    introduceAuthor() {
+      return introduceMysefl()
+    },
     formatCreatedAt() {
       return formatDate(this.article.created_at)
     },

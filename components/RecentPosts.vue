@@ -7,7 +7,7 @@
 
     <v-list two-line class="py-0">
       <template v-for="(article, index) in articles">
-        <v-list-item :key="index" class="px-0 mb-3" active-class="inactive" :to="articleDetailLink(article.id)" nuxt>
+        <v-list-item :key="index" class="px-0 mb-3" active-class="inactive" :to="articleDetailLink(article.slug)" nuxt>
           <v-list-item-avatar size="60" class="mr-3 mt-2" color="grey darken-3">
             <v-img :src="article.image_thumb"></v-img>
           </v-list-item-avatar>

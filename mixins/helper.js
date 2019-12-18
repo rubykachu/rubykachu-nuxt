@@ -39,3 +39,8 @@ export const sanitizeTitle = title => {
 export const fullPath = string => {
   return location.protocol + '//' + location.hostname + string
 }
+
+export const introduceMysefl = () => {
+  return `Lớn lên và làm việc tại Đà Nẵng. Đi làm từ năm 2013 đến giờ vẫn chưa có gì ngoài một vợ và sắp có đứa thứ hai. Nghĩ lại thấy
+  thất bại thật. Cho nên tui viết Blog này để lấy cảm hứng, ai thích thì đọc, ai không thích thì đọc. Oke :)`
+}
