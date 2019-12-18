@@ -43,6 +43,15 @@ export default {
    */
   loading: { color: '#00BEC1', throttle: 0, height: '3px' },
   /*
+   ** Loading start app
+   */
+  loadingIndicator: {
+    name: '@/pages/loading.html'
+    // name: 'folding-cube',
+    // color: 'white',
+    // background: '#00bec1'
+  },
+  /*
    ** Global CSS
    */
   css: ['~/assets/main.scss'],
