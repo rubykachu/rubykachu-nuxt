@@ -19,6 +19,10 @@
               >mdi-circle-slice-5</v-icon
             >
             <span class="subheading white--text">{{ article.reading_time }} phút</span>
+
+            <v-btn color="warning" :to="`/article/${article.slug}/update`" nuxt text small class="ml-2" v-if="isLogged">
+              <v-icon class="mr-1">mdi-lead-pencil</v-icon> Chỉnh sửa
+            </v-btn>
           </v-card-text>
         </v-card>
 
@@ -81,6 +85,7 @@
 
 <script>
 import Prism from 'prismjs'
+import { mapGetters } from 'vuex'
 import 'prismjs/themes/prism-okaidia.css'
 import 'prismjs/components/prism-ruby.min.js'
 import 'prismjs/components/prism-python.min.js'
@@ -116,6 +121,7 @@ export default {
     this.articleLink = this.$el.baseURI
   },
   computed: {
+    ...mapGetters('auth', ['isLogged']),
     introduceAuthor() {
       return introduceMysefl()
     },
