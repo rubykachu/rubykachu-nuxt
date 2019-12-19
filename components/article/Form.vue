@@ -131,7 +131,7 @@
               </v-btn>
 
               <v-btn color="secondary" @click="submitUpdateArticle" :disabled="disabledSubmit" v-if="actionType == 'update'">
-                <v-icon class="mr-1">mdi-update</v-icon> Cập nhập bài viết
+                <v-icon class="mr-1">mdi-update</v-icon> Cập nhập
               </v-btn>
             </div>
           </v-card-text>
@@ -198,18 +198,6 @@ export default {
       this.article.slug = sanitizeTitle(val)
     }
   },
-  beforeRouteLeave(to, from, next) {
-    if (to.params.leftPage) {
-      next()
-    } else {
-      const answer = window.confirm('Hãy chắc chắn rằng bạn đang muốn rời khỏi trang!')
-      if (answer) {
-        next()
-      } else {
-        next(false)
-      }
-    }
-  },
   computed: {
     color() {
       return this.article.category && this.article.category.color
@@ -230,7 +218,7 @@ export default {
           // Redirect to detail page
           this.$router.push({
             name: 'article-id',
-            params: { id: result.slug, leftPage: true }
+            params: { id: result.slug }
           })
         } catch (e) {
           this.disabledSubmit = false
@@ -250,7 +238,7 @@ export default {
           // Redirect to detail page
           this.$router.push({
             name: 'article-id',
-            params: { id: result.slug, leftPage: true }
+            params: { id: result.slug }
           })
           this.$store.dispatch('toast/show', 'Cập nhập thành công')
         } catch (e) {

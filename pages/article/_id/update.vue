@@ -1,7 +1,7 @@
 <template>
   <div>
     <form-article action-type="update" :data-article="article">
-      <template v-slot:toolbar-title>Cập nhập bài viết</template>
+      <template v-slot:toolbar-title>Chỉnh sửa bài</template>
     </form-article>
   </div>
 </template>
@@ -14,7 +14,7 @@ export default {
   },
   head() {
     return {
-      title: `Cập nhập bài "${this.article.title}"`
+      title: `Chỉnh sửa bài "${this.article.title}"`
     }
   },
   data: () => ({
@@ -23,6 +23,7 @@ export default {
   async asyncData({ store, route }) {
     try {
       const article = await store.dispatch('article/findSlug', route.params.id)
+      article.created_at = new Date(article.created_at).toISOString().substr(0, 10)
       return { article }
     } catch (e) {
       console.log(e)
