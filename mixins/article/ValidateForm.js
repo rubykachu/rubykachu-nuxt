@@ -1,13 +1,8 @@
-import { formatDate, sanitizeTitle } from '@/mixins/helper.js'
 import { required, minLength, maxLength, numeric } from 'vuelidate/lib/validators'
 
 const maxLenghtDescription = 145
 const minLengthContent = 100
 export default {
-  async asyncData({ store }) {
-    const categories = await store.dispatch('category/getCategories')
-    return { categories }
-  },
   validations: {
     article: {
       title: {
@@ -47,15 +42,7 @@ export default {
       }
     }
   },
-  watch: {
-    'article.title': function(val) {
-      this.article.slug = sanitizeTitle(val)
-    }
-  },
   computed: {
-    formatCreatedAt() {
-      return formatDate(this.article.created_at)
-    },
     msgSelectCategoryInvalid() {
       if (!this.$v.article.category.$error) return
       if (!this.$v.article.category.isObject) return 'Thao tác sai, hãy chọn lại'
