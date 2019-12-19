@@ -5,7 +5,9 @@
         <v-card class="rounded-15">
           <v-toolbar flat color="white">
             <v-icon>mdi-lead-pencil</v-icon>
-            <v-toolbar-title class="font-weight-light ml-2">Viết bài</v-toolbar-title>
+            <v-toolbar-title class="font-weight-light ml-2">
+              <slot name="toolbar-title">Viết bài</slot>
+            </v-toolbar-title>
           </v-toolbar>
 
           <v-divider></v-divider>
@@ -108,8 +110,8 @@
 
             <!-- Content -->
             <editor
-              initialValue=""
               v-model="article.content"
+              :initialValue="article.content"
               @blur="$v.article.content.$touch()"
               :error-messages="msgContentInvalid"
             ></editor>
@@ -129,8 +131,8 @@
                 Tạo bài viết
               </v-btn>
 
-              <v-btn color="secondary" @click="submitCreateArticle" :disabled="disabledSubmit" v-if="actionType == 'update'">
-                <v-icon>mdi-save</v-icon>
+              <v-btn color="secondary" @click="submitUpdateArticle" :disabled="disabledSubmit" v-if="actionType == 'update'">
+                <v-icon>mdi-content-save</v-icon>
                 Cập nhập bài viết
               </v-btn>
             </div>
@@ -180,7 +182,7 @@ export default {
       toggleDialogColorPicker: false,
       disabledSubmit: false,
       formSubmitted: false,
-      article: {},
+      article: this.dataArticle,
       categories: []
     }
   },
@@ -194,9 +196,6 @@ export default {
     }
   },
   watch: {
-    dataArticle() {
-      this.article = value
-    },
     'article.title': function(val) {
       this.article.slug = sanitizeTitle(val)
     }
@@ -235,6 +234,27 @@ export default {
             name: 'article-id',
             params: { id: result.slug, leftPage: true }
           })
+        } catch (e) {
+          this.disabledSubmit = false
+          console.log(e)
+          store.dispatch('toast/show')
+        }
+      }
+    },
+    async submitUpdateArticle() {
+      this.$v.article.$touch()
+      if (!this.$v.article.$invalid) {
+        try {
+          this.disabledSubmit = true
+          // Call Api create article
+          let result = await this.$store.dispatch('article/updateArticle', this.article)
+
+          // Redirect to detail page
+          this.$router.push({
+            name: 'article-id',
+            params: { id: result.slug, leftPage: true }
+          })
+          store.dispatch('toast/show', 'Cập nhập thành công')
         } catch (e) {
           this.disabledSubmit = false
           console.log(e)
