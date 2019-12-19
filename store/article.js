@@ -28,22 +28,34 @@ export const mutations = {
   }
 }
 
+function initData(article) {
+  let number = Math.floor(Math.random() * 7) + 1
+  article.image = article.image || `/articles/bg_article_${number}.jpg`
+  article.image_thumb = article.image_thumb || `/articles/bg_article_${number}.jpg`
+  article.created_at = `${article.created_at} ${new Date().toLocaleTimeString()}`
+
+  // Set category_id
+  article.category_id = article.category.id
+  return article
+}
+
 export const actions = {
+  async updateArticle({ commit }, article) {
+    try {
+      let newArticle = initData(article)
+      const result = await ApiArticle.fsUpdate(newArticle)
+      commit('ADD_ARTICLE', result)
+      return newArticle
+    } catch (e) {
+      throw e
+    }
+  },
   async createArticle({ commit }, article) {
     try {
-      // Set default Image with random from 1 to 6
-      let number = Math.floor(Math.random() * 7) + 1
-      article.image = article.image || `/articles/bg_article_${number}.jpg`
-      article.image_thumb = article.image_thumb || `/articles/bg_article_${number}.jpg`
-      article.created_at = `${article.created_at} ${new Date().toLocaleTimeString()}`
-
-      // Set category_id
-      article.category_id = article.category.id
-
-      // Save
-      const result = await ApiArticle.fsCreate(article)
+      let newArticle = initData(article)
+      const result = await ApiArticle.fsCreate(newArticle)
       commit('ADD_ARTICLE', result)
-      return article
+      return newArticle
     } catch (e) {
       throw e
     }

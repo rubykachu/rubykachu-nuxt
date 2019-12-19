@@ -127,13 +127,11 @@
               <v-btn class="mr-4" to="/" nuxt>Huỷ bỏ</v-btn>
 
               <v-btn color="secondary" @click="submitCreateArticle" :disabled="disabledSubmit" v-if="actionType == 'create'">
-                <v-icon>mdi-plus</v-icon>
-                Tạo bài viết
+                <v-icon>mdi-plus</v-icon> Tạo bài viết
               </v-btn>
 
               <v-btn color="secondary" @click="submitUpdateArticle" :disabled="disabledSubmit" v-if="actionType == 'update'">
-                <v-icon>mdi-content-save</v-icon>
-                Cập nhập bài viết
+                <v-icon class="mr-1">mdi-update</v-icon> Cập nhập bài viết
               </v-btn>
             </div>
           </v-card-text>
@@ -254,11 +252,11 @@ export default {
             name: 'article-id',
             params: { id: result.slug, leftPage: true }
           })
-          store.dispatch('toast/show', 'Cập nhập thành công')
+          this.$store.dispatch('toast/show', 'Cập nhập thành công')
         } catch (e) {
           this.disabledSubmit = false
           console.log(e)
-          store.dispatch('toast/show')
+          this.$store.dispatch('toast/show')
         }
       }
     }
