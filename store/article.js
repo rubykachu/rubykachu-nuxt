@@ -33,9 +33,10 @@ function initData(article) {
   // Neu khong clone ma Parse sang Number thi Object trong Javascript se reference gay ra bug
   const cloneArticle = JSON.parse(JSON.stringify(article))
   let number = Math.floor(Math.random() * 7) + 1
+  let created_at = `${cloneArticle.created_at} ${new Date().toLocaleTimeString()}`
   cloneArticle.image = cloneArticle.image || `/articles/bg_article_${number}.jpg`
   cloneArticle.image_thumb = cloneArticle.image_thumb || `/articles/bg_article_${number}.jpg`
-  cloneArticle.created_at = Number(new Date(cloneArticle.created_at))
+  cloneArticle.created_at = Number(new Date(created_at))
   cloneArticle.reading_time = Number(cloneArticle.reading_time)
 
   // Set category_id
