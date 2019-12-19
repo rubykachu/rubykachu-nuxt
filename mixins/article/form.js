@@ -29,7 +29,12 @@ export default {
           return Boolean(isUniq)
         }
       },
-      category: { required },
+      category: {
+        required,
+        isObject(value) {
+          return Boolean(typeof value == 'object')
+        }
+      },
       created_at: { required },
       reading_time: { required, numeric },
       description: {
@@ -53,7 +58,8 @@ export default {
     },
     msgSelectCategoryInvalid() {
       if (!this.$v.article.category.$error) return
-      if (!this.$v.article.category.required) return 'Vui lòng chọn danh mục'
+      if (!this.$v.article.category.isObject) return 'Thao tác sai, hãy chọn lại'
+      if (!this.$v.article.category.required) return 'Vui lòng nhập danh mục'
     },
     msgTitleInvalid: {
       get() {
