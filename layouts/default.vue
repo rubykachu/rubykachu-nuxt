@@ -13,6 +13,15 @@
             <v-col cols="md-8" sm="12"><recent-posts /></v-col>
             <v-col cols="md-4" sm="12"><about-me /></v-col>
           </v-row>
+
+          <v-row justify="center" class="mt-10">
+            <span class="published">Published with</span>
+            <img
+              src="https://api.netlify.com/api/v1/badges/f914239e-3621-445c-98a4-91d1212d48fe/deploy-status"
+              alt="Netlify"
+              height="20px"
+            />
+          </v-row>
         </v-container>
       </footer>
 

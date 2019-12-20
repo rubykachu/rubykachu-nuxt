@@ -128,9 +128,66 @@ a {
   }
 }
 
+// Article Item
+.article-item {
+  position: relative;
+  border-radius: 15px !important;
+  border: 0 !important;
+  background-color: transparent !important;
+
+  &:focus:before {
+    border-radius: 15px !important;
+  }
+
+  &__content-wrapper {
+    border-radius: 0 0 15px 15px !important;
+  }
+
+  &__content {
+    min-height: 130px;
+  }
+
+  &__image {
+    border-radius: 15px 15px 0 0 !important;
+  }
+
+  &__category {
+    position: absolute !important;
+    z-index: 2;
+    top: -15px;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
+  .icon-size {
+    font-size: 15px;
+  }
+
+  .v-image {
+    position: relative;
+    &.on-hover::after {
+      content: ' ';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 2;
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  .v-card {
+    &__title {
+      line-height: 1.5rem;
+      font-size: 1rem;
+    }
+  }
+}
+
 // App Footer
 .app-footer {
-  padding-bottom: 60px;
+  padding-bottom: 20px;
   &__recent-posts {
     .v-list-item {
       *,
@@ -146,6 +203,13 @@ a {
         opacity: 0 !important;
       }
     }
+  }
+
+  .published {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 13px;
+    padding-right: 10px;
   }
 
   &__about-me {
@@ -271,7 +335,7 @@ a {
   }
 
   &__title {
-    padding-top: 30px;
+    padding-top: 20px;
     font-weight: 600;
     font-size: 24px;
     letter-spacing: 0.6px;
