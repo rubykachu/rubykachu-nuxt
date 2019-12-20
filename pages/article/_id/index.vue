@@ -114,13 +114,14 @@ export default {
     nextArticle: {},
     prevArticle: {}
   }),
-  async asyncData({ store, params }) {
+  async asyncData({ store, params, redirect }) {
     try {
       const article = await store.dispatch('article/findArticle', params.id)
       return { article }
     } catch (e) {
       console.log(e)
       store.dispatch('toast/show')
+      redirect('/404')
     }
   },
   async mounted() {

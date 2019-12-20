@@ -38,7 +38,7 @@ export default {
       title: this.category.name
     }
   },
-  async asyncData({ store, route }) {
+  async asyncData({ store, route, redirect }) {
     try {
       let category_id = route.params.id
       const articles = await store.dispatch('article/getArticlesByCategory', category_id)
@@ -48,6 +48,7 @@ export default {
     } catch (e) {
       console.log(e)
       store.dispatch('toast/show')
+      redirect('/404')
     }
   }
 }
