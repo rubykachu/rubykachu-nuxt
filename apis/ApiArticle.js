@@ -4,6 +4,12 @@ export default {
   fsCollection() {
     return fs.collection('articles').get()
   },
+  async fsDelete(id) {
+    return fs
+      .collection('articles')
+      .doc(id)
+      .delete()
+  },
   async fsCreate(article) {
     const result = await fs.collection('articles').add(article)
     article.id = result.id

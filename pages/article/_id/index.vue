@@ -18,12 +18,12 @@
               <span class="subheading white--text">{{ article.counter || 1 }} lần</span>
 
               <template v-if="isLogged">
-                <v-btn color="warning darken-1" :to="`/article/${article.slug}/update`" nuxt depressed small class="ml-2">
+                <v-btn color="warning" :to="`/article/${article.slug}/update`" nuxt small class="ml-2">
                   <v-icon class="mr-1" small>mdi-lead-pencil</v-icon> Chỉnh sửa
                 </v-btn>
 
-                <v-btn color="error" @click="confirmDelete" nuxt depressed small class="ml-2">
-                  <v-icon class="mr-1" small>mdi-trash-can-outline</v-icon> Xoá bài
+                <v-btn color="error" @click="confirmDelete" nuxt small class="ml-2">
+                  <v-icon class="mr-1" small>mdi-delete</v-icon> Xoá bài
                 </v-btn>
               </template>
             </v-card-text>
@@ -83,7 +83,6 @@
     </div>
 
     <author />
-    <next-prev-link />
   </v-container>
 </template>
 
@@ -158,10 +157,15 @@ export default {
 
       this.$store.dispatch('toast/show', 'Đã coppy liên kết bài viết vào Clipboard')
     },
-    confirmDelete() {
+    async confirmDelete() {
       const answer = confirm('Bạn có muốn xoá bài này không?')
-      if (answer) {
-        this.$router.push('/')
+      try {
+        if (answer) {
+          await this.$store.dispatch('article/deleteArticle', this.article.id)
+          location.href = '/'
+        }
+      } catch (e) {
+        this.$store.dispatch('toast/show', 'Xoá bài viết thất bại')
       }
     }
   }

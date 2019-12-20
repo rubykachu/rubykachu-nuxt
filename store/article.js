@@ -165,5 +165,12 @@ export const actions = {
     } catch (e) {
       throw e
     }
+  },
+  async deleteArticle({}, id) {
+    try {
+      await ApiArticle.fsDelete(id)
+    } catch (e) {
+      throw e
+    }
   }
 }
