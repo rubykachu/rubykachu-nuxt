@@ -17,9 +17,15 @@
               <v-icon color="white" class="icon-size ml-5 mr-1">mdi-read</v-icon>
               <span class="subheading white--text">{{ article.counter || 1 }} lần</span>
 
-              <v-btn color="warning" :to="`/article/${article.slug}/update`" nuxt text small class="ml-2" v-if="isLogged">
-                <v-icon class="mr-1">mdi-lead-pencil</v-icon> Chỉnh sửa
-              </v-btn>
+              <template v-if="isLogged">
+                <v-btn color="warning darken-1" :to="`/article/${article.slug}/update`" nuxt depressed small class="ml-2">
+                  <v-icon class="mr-1" small>mdi-lead-pencil</v-icon> Chỉnh sửa
+                </v-btn>
+
+                <v-btn color="error" @click="confirmDelete" nuxt depressed small class="ml-2">
+                  <v-icon class="mr-1" small>mdi-trash-can-outline</v-icon> Xoá bài
+                </v-btn>
+              </template>
             </v-card-text>
           </v-card>
 
@@ -151,6 +157,12 @@ export default {
       document.execCommand('copy')
 
       this.$store.dispatch('toast/show', 'Đã coppy liên kết bài viết vào Clipboard')
+    },
+    confirmDelete() {
+      const answer = confirm('Bạn có muốn xoá bài này không?')
+      if (answer) {
+        this.$router.push('/')
+      }
     }
   }
 }
