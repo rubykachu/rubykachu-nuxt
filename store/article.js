@@ -145,5 +145,25 @@ export const actions = {
     } catch (e) {
       throw e
     }
+  },
+  async getArticleNextAndPrev({}, article) {
+    try {
+      const next = await ApiArticle.fsGet({
+        where: ['created_at', '>', article.created_at],
+        order: { created_at: 'asc' },
+        limit: 1,
+        returnData: true
+      })
+      const prev = await ApiArticle.fsGet({
+        where: ['created_at', '<', article.created_at],
+        order: { created_at: 'desc' },
+        limit: 1,
+        returnData: true
+      })
+
+      return { next: next[0], prev: prev[0] }
+    } catch (e) {
+      throw e
+    }
   }
 }

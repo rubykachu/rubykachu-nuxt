@@ -38,14 +38,21 @@
     <div class="article-page__content-wrapper mt-12 mb-20 pa-4">
       <v-row>
         <v-col cols="12">
-          <div v-html="article.content"></div>
+          <!-- Content -->
+          <div v-html="article.content" class="mb-5"></div>
 
-          <p class="mb-1">
-            <a><strong>Tiếp theo:</strong> Scope trong Active Record sử dụng như thế nào cho đúng</a>
+          <!-- Link Next Article -->
+          <p class="mb-1" v-if="nextArticle">
+            <nuxt-link :to="`/article/${nextArticle.slug}`" class="orange--text" :title="nextArticle.title">
+              <strong>Tiếp theo:</strong> {{ nextArticle.title }}
+            </nuxt-link>
           </p>
 
-          <p class="">
-            <a><strong>Bài trước:</strong> Hướng dẫn bắt lỗi trong Rails</a>
+          <!-- Link Prev Article -->
+          <p v-if="prevArticle">
+            <nuxt-link :to="`/article/${prevArticle.slug}`" class="orange--text" :title="nextArticle.title">
+              <strong>Bài trước:</strong> {{ prevArticle.title }}
+            </nuxt-link>
           </p>
         </v-col>
       </v-row>
@@ -98,7 +105,9 @@ export default {
     }
   },
   data: () => ({
-    articleLink: ''
+    articleLink: '',
+    nextArticle: {},
+    prevArticle: {}
   }),
   async asyncData({ store, params }) {
     try {
@@ -109,7 +118,7 @@ export default {
       store.dispatch('toast/show')
     }
   },
-  mounted() {
+  async mounted() {
     // Highlight code
     Prism.highlightAll()
 
@@ -121,6 +130,9 @@ export default {
     this.$store.dispatch('article/updateCounter', { id: this.article.id, counter: counter + 1 })
 
     // Get article prev and next
+    let article = await this.$store.dispatch('article/getArticleNextAndPrev', this.article)
+    this.nextArticle = article.next
+    this.prevArticle = article.prev
   },
   computed: {
     ...mapGetters('auth', ['isLogged']),
