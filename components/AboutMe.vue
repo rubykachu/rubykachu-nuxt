@@ -16,9 +16,7 @@
           <v-list-item-subtitle class="py-2">Founder & Editor</v-list-item-subtitle>
 
           <div class="app-footer__about-me__associate">
-            <v-icon color="white" class="px-1">mdi-facebook-box</v-icon>
-            <v-icon color="white" class="px-1">mdi-github-circle</v-icon>
-            <v-icon color="white" class="px-1">mdi-gmail</v-icon>
+            <associate />
           </div>
         </v-list-item-content>
       </v-list-item>
@@ -28,8 +26,12 @@
 </template>
 
 <script>
+import Associate from '@/components/Associate.vue'
 import { introduceMysefl } from '@/mixins/helper.js'
 export default {
+  components: {
+    Associate
+  },
   computed: {
     introduceAuthor() {
       return introduceMysefl()

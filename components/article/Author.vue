@@ -11,15 +11,20 @@
         </div>
         <p class="section__title hover-link"><a class="white--text">Minh Tang Q.</a></p>
         <p class="section__content">{{ introduceAuthor }} </p>
+        <associate />
       </div>
     </v-row>
 </template>
 
 <script>
+import Associate from '@/components/Associate.vue';
 import { introduceMysefl } from '@/mixins/helper'
 export default {
-    computed: {
-      introduceAuthor() {
+  components: {
+    Associate
+  },
+  computed: {
+    introduceAuthor() {
       return introduceMysefl()
     }
   }

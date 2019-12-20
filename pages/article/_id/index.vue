@@ -50,7 +50,7 @@
 
           <!-- Link Prev Article -->
           <p v-if="prevArticle">
-            <nuxt-link :to="`/article/${prevArticle.slug}`" class="orange--text" :title="nextArticle.title">
+            <nuxt-link :to="`/article/${prevArticle.slug}`" class="orange--text" :title="prevArticle.title">
               <strong>Bài trước:</strong> {{ prevArticle.title }}
             </nuxt-link>
           </p>
