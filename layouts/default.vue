@@ -1,6 +1,6 @@
 <template>
   <v-app class="background--gradient">
-    <v-container class="py-0">
+    <v-container class="py-0" v-scroll="onScroll">
       <app-header />
 
       <v-content>
@@ -27,6 +27,10 @@
 
       <toast></toast>
     </v-container>
+
+    <v-btn color="grey darken-4" dark small fixed bottom right fab v-show="goToTop" @click="toTop">
+      <v-icon small>mdi-arrow-up</v-icon>
+    </v-btn>
   </v-app>
 </template>
 
@@ -42,6 +46,19 @@ export default {
     RecentPosts,
     AboutMe,
     Toast
+  },
+  data: () => ({
+    goToTop: false
+  }),
+  methods: {
+    onScroll(e) {
+      if (typeof window === 'undefined') return
+      const top = window.pageYOffset || e.target.scrollTop || 0
+      this.goToTop = top > 100
+    },
+    toTop() {
+      this.$vuetify.goTo(0)
+    }
   }
 }
 </script>
