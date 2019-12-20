@@ -5,10 +5,17 @@
         <v-card class="d-flex align-start flex-column rounded-15" color="grey" min-width="100%" min-height="400" :img="featureImage">
           <v-card class="pa-2 mb-auto" color="transparent" outlined>
             <v-card-text>
+              <!-- Created at -->
               <v-icon color="white" class="icon-size mr-1">mdi-calendar-week</v-icon>
               <span class="subheading white--text">{{ formatCreatedAt }}</span>
+
+              <!-- Reading time -->
               <v-icon color="white" class="icon-size ml-5 mr-1">mdi-circle-slice-5</v-icon>
               <span class="subheading white--text">{{ article.reading_time }} phút</span>
+
+              <!-- Counter -->
+              <v-icon color="white" class="icon-size ml-5 mr-1">mdi-read</v-icon>
+              <span class="subheading white--text">{{ article.counter || 1 }} lần</span>
 
               <v-btn color="warning" :to="`/article/${article.slug}/update`" nuxt text small class="ml-2" v-if="isLogged">
                 <v-icon class="mr-1">mdi-lead-pencil</v-icon> Chỉnh sửa
@@ -103,8 +110,17 @@ export default {
     }
   },
   mounted() {
+    // Highlight code
     Prism.highlightAll()
+
+    // Set link copy
     this.articleLink = this.$el.baseURI
+
+    // Update counter article
+    let counter = Number(this.article.counter || 0)
+    this.$store.dispatch('article/updateCounter', { id: this.article.id, counter: counter + 1 })
+
+    // Get article prev and next
   },
   computed: {
     ...mapGetters('auth', ['isLogged']),

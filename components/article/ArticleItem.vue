@@ -35,14 +35,20 @@
           <img alt="Avatar" src="/avatar-author.svg" />
         </v-avatar>
 
-        <span class="ml-3">Minh Tang Q.</span>
+        <div class="ml-3 text--grey article-item__author">
+          <span class="font-weight-medium">Minh Tang Q.</span>
+          <div class="grey--text text--darken-3">
+            <v-icon color="grey darken-2" class="icon-size">mdi-calendar-week</v-icon>
+            <span>{{ CreatedAt }}</span>
+          </div>
+        </div>
 
         <v-spacer></v-spacer>
 
         <div class="caption">
           <div>
-            <v-icon color="primary" class="icon-size">mdi-calendar-week</v-icon>
-            <span class="subheading">{{ CreatedAt }}</span>
+            <v-icon color="primary" class="icon-size">mdi-read</v-icon>
+            <span class="subheading">{{ article.counter || 0 }} lần</span>
           </div>
           <div>
             <v-icon color="primary" class="icon-size">mdi-circle-slice-5</v-icon>
