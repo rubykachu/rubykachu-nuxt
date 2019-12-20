@@ -13,7 +13,7 @@
         <v-list-item-content>
           <v-list-item-title class="font-weight-bold hover-link"><a class="white--text">Minh Tang Q.</a></v-list-item-title>
 
-          <v-list-item-subtitle class="py-2">Founder & Editor</v-list-item-subtitle>
+          <v-list-item-subtitle class="py-2">Founder &amp; Editor</v-list-item-subtitle>
 
           <div class="app-footer__about-me__associate">
             <associate />
