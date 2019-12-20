@@ -32,11 +32,19 @@
       <v-row>
         <v-col cols="12">
           <div v-html="article.content"></div>
+
+          <p class="mb-1">
+            <a><strong>Tiếp theo:</strong> Scope trong Active Record sử dụng như thế nào cho đúng</a>
+          </p>
+
+          <p class="">
+            <a><strong>Bài trước:</strong> Hướng dẫn bắt lỗi trong Rails</a>
+          </p>
         </v-col>
       </v-row>
 
       <v-row>
-        <v-col sm="4" offset-sm="4" class="my-10">
+        <v-col sm="4" offset-sm="4">
           <v-text-field
             outlined
             dense
@@ -55,6 +63,7 @@
     </div>
 
     <author />
+    <next-prev-link />
   </v-container>
 </template>
 

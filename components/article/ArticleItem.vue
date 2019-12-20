@@ -21,7 +21,7 @@
       </v-img>
     </v-hover>
 
-    <div class="white">
+    <div class="white article-item__content-wrapper">
       <div class="article-item__content">
         <v-card-title class="pb-2 break-work">{{ article.title }}</v-card-title>
 
@@ -75,53 +75,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.article-item {
-  position: relative;
-  border-radius: 15px !important;
-  border: 0 !important;
-  background-color: unset;
-
-  &__content {
-    min-height: 130px;
-  }
-
-  &__image {
-    border-radius: 15px 15px 0 0 !important;
-  }
-
-  &__category {
-    position: absolute;
-    z-index: 2;
-    top: -15px;
-    left: 50%;
-    transform: translate(-50%, 0);
-  }
-
-  .icon-size {
-    font-size: 15px;
-  }
-
-  .v-image {
-    position: relative;
-    &.on-hover::after {
-      content: ' ';
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      z-index: 2;
-      background-color: rgba(0, 0, 0, 0.2);
-    }
-  }
-
-  .v-card {
-    &__title {
-      line-height: 1.5rem;
-      font-size: 1rem;
-    }
-  }
-}
-</style>
