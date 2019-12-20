@@ -187,7 +187,7 @@ a {
 
 // App Footer
 .app-footer {
-  padding-bottom: 60px;
+  padding-bottom: 20px;
   &__recent-posts {
     .v-list-item {
       *,
@@ -203,6 +203,13 @@ a {
         opacity: 0 !important;
       }
     }
+  }
+
+  .published {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 13px;
+    padding-right: 10px;
   }
 
   &__about-me {
