@@ -150,8 +150,10 @@ export default {
     this.articleLink = this.$el.baseURI
 
     // Update counter reading article
-    let counter = Number(this.article.counter || 0)
-    this.$store.dispatch('article/updateCounterReading', { id: this.article.id, counter: counter + 1 })
+    setTimeout(() => {
+      let counter = Number(this.article.counter || 0)
+      this.$store.dispatch('article/updateCounterReading', { id: this.article.id, counter: counter + 1 })
+    }, 25000)
 
     // Get article prev and next
     let article = await this.$store.dispatch('article/getArticleNextAndPrev', this.article)
