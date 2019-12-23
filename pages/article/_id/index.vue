@@ -13,9 +13,13 @@
               <v-icon color="white" class="icon-size ml-5 mr-1">mdi-circle-slice-5</v-icon>
               <span class="subheading white--text">{{ article.reading_time }} phút</span>
 
-              <!-- Counter -->
+              <!-- Counter reading -->
               <v-icon color="white" class="icon-size ml-5 mr-1">mdi-read</v-icon>
-              <span class="subheading white--text">{{ article.counter || 1 }} lần</span>
+              <span class="subheading white--text">{{ article.counter || 1 }} lượt</span>
+
+              <!-- Counter comment -->
+              <v-icon color="white" class="icon-size ml-5 mr-1">mdi-comment-outline</v-icon>
+              <span class="subheading white--text">{{ article.counter_comment || 0 }}</span>
 
               <template v-if="isLogged">
                 <v-btn color="warning" :to="`/article/${article.slug}/update`" nuxt small class="ml-2">
@@ -84,7 +88,13 @@
       <v-row>
         <v-col cols="12">
           <div class="comments">
-            <vue-disqus shortname="route53-xyz" :identifier="article.id" :url="articleLink" :title="article.title"></vue-disqus>
+            <vue-disqus
+              shortname="route53-xyz"
+              :identifier="article.id"
+              :url="articleLink"
+              :title="article.title"
+              @new-comment="increaseCounterComment"
+            ></vue-disqus>
           </div>
         </v-col>
       </v-row>
@@ -140,9 +150,9 @@ export default {
     // Set link copy
     this.articleLink = this.$el.baseURI
 
-    // Update counter article
+    // Update counter reading article
     let counter = Number(this.article.counter || 0)
-    this.$store.dispatch('article/updateCounter', { id: this.article.id, counter: counter + 1 })
+    this.$store.dispatch('article/updateCounterReading', { id: this.article.id, counter: counter + 1 })
 
     // Get article prev and next
     let article = await this.$store.dispatch('article/getArticleNextAndPrev', this.article)
@@ -165,9 +175,6 @@ export default {
     }
   },
   methods: {
-    alertMe() {
-      console.log('WOW')
-    },
     copyToClipboard() {
       const el = document.getElementById('copy-link-article')
       el.value = this.articleLink
@@ -185,6 +192,15 @@ export default {
         }
       } catch (e) {
         this.$store.dispatch('toast/show', 'Xoá bài viết thất bại')
+      }
+    },
+    increaseCounterComment() {
+      try {
+        // increase counter comment article
+        let count = Number(this.article.counter_comment || 0)
+        this.$store.dispatch('article/updateCounterComment', { id: this.article.id, counter_comment: count + 1 })
+      } catch (e) {
+        console.log(e)
       }
     }
   }

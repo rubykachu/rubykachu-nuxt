@@ -138,9 +138,17 @@ export const actions = {
       throw e
     }
   },
-  async updateCounter({}, { id, counter }) {
+  async updateCounterReading({}, { id, counter }) {
     try {
       let article = { id: id, counter: counter }
+      await ApiArticle.fsUpdate(article)
+    } catch (e) {
+      throw e
+    }
+  },
+  async updateCounterComment({}, { id, counter_comment }) {
+    try {
+      let article = { id: id, counter_comment: counter_comment }
       await ApiArticle.fsUpdate(article)
     } catch (e) {
       throw e
