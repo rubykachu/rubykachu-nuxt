@@ -58,7 +58,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/vuelidate', '~/plugins/axios'],
+  plugins: ['~/plugins/vuelidate', '~/plugins/axios', '~/plugins/disqus'],
   /*
    ** Nuxt.js dev-modules
    */

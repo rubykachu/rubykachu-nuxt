@@ -48,14 +48,14 @@
           <div v-html="article.content" class="mb-5"></div>
 
           <!-- Link Next Article -->
-          <p class="mb-1" v-if="nextArticle">
+          <p class="mb-1" v-if="hasNextArticle">
             <nuxt-link :to="`/article/${nextArticle.slug}`" class="orange--text" :title="nextArticle.title">
               <strong>Tiếp theo:</strong> {{ nextArticle.title }}
             </nuxt-link>
           </p>
 
           <!-- Link Prev Article -->
-          <p v-if="prevArticle">
+          <p v-if="hasPrevArticle">
             <nuxt-link :to="`/article/${prevArticle.slug}`" class="orange--text" :title="prevArticle.title">
               <strong>Bài trước:</strong> {{ prevArticle.title }}
             </nuxt-link>
@@ -80,6 +80,14 @@
           ></v-text-field>
         </v-col>
       </v-row>
+
+      <v-row>
+        <v-col cols="12">
+          <div class="comments">
+            <vue-disqus shortname="route53-xyz" :identifier="article.id" :url="articleLink" :title="article.title"></vue-disqus>
+          </div>
+        </v-col>
+      </v-row>
     </div>
 
     <author />
@@ -98,6 +106,7 @@ import 'prismjs/components/prism-yaml.min.js'
 import 'prismjs/components/prism-bash.min.js'
 
 import { removeLineBreak, formatDate } from '@/mixins/helper'
+import { debug } from 'util'
 
 export default {
   components: {
@@ -147,9 +156,18 @@ export default {
     },
     featureImage() {
       return this.article.image ? this.article.image : '/bg_default_post_detail_1600x500.jpg'
+    },
+    hasNextArticle() {
+      return this.nextArticle && Object.keys(this.nextArticle).length !== 0
+    },
+    hasPrevArticle() {
+      return this.prevArticle && Object.keys(this.prevArticle).length !== 0
     }
   },
   methods: {
+    alertMe() {
+      console.log('WOW')
+    },
     copyToClipboard() {
       const el = document.getElementById('copy-link-article')
       el.value = this.articleLink
