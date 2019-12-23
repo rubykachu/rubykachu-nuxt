@@ -13,9 +13,13 @@
               <v-icon color="white" class="icon-size ml-5 mr-1">mdi-circle-slice-5</v-icon>
               <span class="subheading white--text">{{ article.reading_time }} phút</span>
 
-              <!-- Counter -->
+              <!-- Counter reading -->
               <v-icon color="white" class="icon-size ml-5 mr-1">mdi-read</v-icon>
-              <span class="subheading white--text">{{ article.counter || 1 }} lần</span>
+              <span class="subheading white--text">{{ article.counter || 1 }} lượt</span>
+
+              <!-- Counter comment -->
+              <v-icon color="white" class="icon-size ml-5 mr-1">mdi-comment-outline</v-icon>
+              <span class="subheading white--text">{{ article.counter_comment || 0 }}</span>
 
               <template v-if="isLogged">
                 <v-btn color="warning" :to="`/article/${article.slug}/update`" nuxt small class="ml-2">
@@ -48,14 +52,14 @@
           <div v-html="article.content" class="mb-5"></div>
 
           <!-- Link Next Article -->
-          <p class="mb-1" v-if="nextArticle">
+          <p class="mb-1" v-if="hasNextArticle">
             <nuxt-link :to="`/article/${nextArticle.slug}`" class="orange--text" :title="nextArticle.title">
               <strong>Tiếp theo:</strong> {{ nextArticle.title }}
             </nuxt-link>
           </p>
 
           <!-- Link Prev Article -->
-          <p v-if="prevArticle">
+          <p v-if="hasPrevArticle">
             <nuxt-link :to="`/article/${prevArticle.slug}`" class="orange--text" :title="prevArticle.title">
               <strong>Bài trước:</strong> {{ prevArticle.title }}
             </nuxt-link>
@@ -80,6 +84,20 @@
           ></v-text-field>
         </v-col>
       </v-row>
+
+      <v-row>
+        <v-col cols="12">
+          <div class="comments">
+            <vue-disqus
+              shortname="route53-xyz"
+              :identifier="article.id"
+              :url="articleLink"
+              :title="article.title"
+              @new-comment="increaseCounterComment"
+            ></vue-disqus>
+          </div>
+        </v-col>
+      </v-row>
     </div>
 
     <author />
@@ -98,6 +116,7 @@ import 'prismjs/components/prism-yaml.min.js'
 import 'prismjs/components/prism-bash.min.js'
 
 import { removeLineBreak, formatDate } from '@/mixins/helper'
+import { debug } from 'util'
 
 export default {
   components: {
@@ -131,9 +150,9 @@ export default {
     // Set link copy
     this.articleLink = this.$el.baseURI
 
-    // Update counter article
+    // Update counter reading article
     let counter = Number(this.article.counter || 0)
-    this.$store.dispatch('article/updateCounter', { id: this.article.id, counter: counter + 1 })
+    this.$store.dispatch('article/updateCounterReading', { id: this.article.id, counter: counter + 1 })
 
     // Get article prev and next
     let article = await this.$store.dispatch('article/getArticleNextAndPrev', this.article)
@@ -147,6 +166,12 @@ export default {
     },
     featureImage() {
       return this.article.image ? this.article.image : '/bg_default_post_detail_1600x500.jpg'
+    },
+    hasNextArticle() {
+      return this.nextArticle && Object.keys(this.nextArticle).length !== 0
+    },
+    hasPrevArticle() {
+      return this.prevArticle && Object.keys(this.prevArticle).length !== 0
     }
   },
   methods: {
@@ -167,6 +192,15 @@ export default {
         }
       } catch (e) {
         this.$store.dispatch('toast/show', 'Xoá bài viết thất bại')
+      }
+    },
+    increaseCounterComment() {
+      try {
+        // increase counter comment article
+        let count = Number(this.article.counter_comment || 0)
+        this.$store.dispatch('article/updateCounterComment', { id: this.article.id, counter_comment: count + 1 })
+      } catch (e) {
+        console.log(e)
       }
     }
   }

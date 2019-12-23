@@ -38,7 +38,7 @@
         <div class="ml-3 text--grey article-item__author">
           <span class="font-weight-medium">Minh Tang Q.</span>
           <div class="grey--text text--darken-3">
-            <v-icon color="grey darken-2" class="icon-size">mdi-calendar-week</v-icon>
+            <!-- <v-icon color="grey darken-2" class="icon-size">mdi-calendar-week</v-icon> -->
             <span>{{ CreatedAt }}</span>
           </div>
         </div>
@@ -47,11 +47,11 @@
 
         <div class="caption">
           <div>
-            <v-icon color="primary" class="icon-size">mdi-read</v-icon>
-            <span class="subheading">{{ article.counter || 0 }} lần</span>
+            <v-icon color="primary" size="13">mdi-read</v-icon>
+            <span class="subheading">{{ article.counter || 0 }} lượt</span>
           </div>
           <div>
-            <v-icon color="primary" class="icon-size">mdi-circle-slice-5</v-icon>
+            <v-icon color="primary" size="13">mdi-circle-slice-5</v-icon>
             {{ article.reading_time }} phút
           </div>
         </div>
