@@ -116,7 +116,6 @@ import 'prismjs/components/prism-yaml.min.js'
 import 'prismjs/components/prism-bash.min.js'
 
 import { removeLineBreak, formatDate } from '@/mixins/helper'
-import { debug } from 'util'
 
 export default {
   components: {
