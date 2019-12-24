@@ -122,8 +122,10 @@ export default {
     async logout() {
       try {
         await this.$store.dispatch('auth/logout')
-        // this.$store.dispatch('toast/show', 'Đăng xuất thành công!')
-        location.href = '/'
+        this.$store.dispatch('app/setKeyCompAppHeader')
+        this.$store.dispatch('toast/show', 'Đăng xuất thành công!')
+        this.$router.push('/')
+        // location.href = '/'
       } catch (e) {
         console.log(e)
         this.$store.dispatch('toast/show', 'Đăng xuất không thành công. Xin thử lại!')
