@@ -98,8 +98,7 @@ export default {
       items: {
         home: { icon: 'mdi-home-outline', title: 'Trang chủ', to: '/' },
         categories: { icon: 'mdi-file-table-box-multiple-outline', title: 'Danh mục', active: false },
-        addArticle: { icon: 'mdi-pencil-box-outline', title: 'Viết Bài', to: '/article/new' },
-        logout: { icon: 'mdi-login-variant', title: 'Đăng xuất', click: this.logout }
+        addArticle: { icon: 'mdi-pencil-box-outline', title: 'Viết Bài', to: '/article/new' }
       }
     }
   },
@@ -107,6 +106,10 @@ export default {
     try {
       this.categories = await this.$store.dispatch('category/getCategories')
       this.items.categories.items = this.categories
+
+      if (this.isLogged) {
+        this.items.logout = { icon: 'mdi-login-variant', title: 'Đăng xuất', click: this.logout }
+      }
     } catch (e) {
       console.log(e)
       store.dispatch('toast/show')
@@ -119,7 +122,7 @@ export default {
     async logout() {
       try {
         await this.$store.dispatch('auth/logout')
-        this.$store.dispatch('toast/show', 'Đăng xuất thành công!')
+        // this.$store.dispatch('toast/show', 'Đăng xuất thành công!')
         location.href = '/'
       } catch (e) {
         console.log(e)

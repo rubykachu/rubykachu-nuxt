@@ -76,8 +76,9 @@ export default {
       if (!this.$v.credential.$invalid) {
         try {
           await this.$store.dispatch('auth/login', this.credential)
-          this.$store.dispatch('toast/show', 'Đăng nhập thành công!')
-          this.$router.push({ name: 'article-new' })
+          location.href = '/article/new'
+          // this.$store.dispatch('toast/show', 'Đăng nhập thành công!')
+          // this.$router.push({ name: 'article-new' })
         } catch (e) {
           this.loading = false
           if (e.code == 'auth/invalid-email' || e.code == 'auth/wrong-password') {
