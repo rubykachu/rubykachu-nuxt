@@ -76,6 +76,7 @@ export default {
       if (!this.$v.credential.$invalid) {
         try {
           await this.$store.dispatch('auth/login', this.credential)
+          this.$store.dispatch('app/setKeyCompAppHeader')
           this.$store.dispatch('toast/show', 'Đăng nhập thành công!')
           this.$router.push({ name: 'article-new' })
         } catch (e) {

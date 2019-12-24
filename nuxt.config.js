@@ -23,7 +23,7 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: 'Đến thần thánh còn phải còn phải code. Không xem thì hơi phí'
+        content: 'Đến thần thánh còn phải code. Không xem thì hơi phí'
       },
       {
         hid: 'keyword',
