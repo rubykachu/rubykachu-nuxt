@@ -31,11 +31,11 @@
             <v-card-text>
               <v-chip :color="article.category.color" class="px-8 white--text font-weight-bold">{{ article.category.name }}</v-chip>
               <template v-if="isLogged">
-                <v-btn color="warning" :to="`/article/${article.slug}/update`" nuxt small class="ml-1">
+                <v-btn color="yellow darken-1" :to="`/article/${article.slug}/update`" small class="ml-1" depressed dark>
                   <v-icon size="25">mdi-pencil-box-outline</v-icon>
                 </v-btn>
 
-                <v-btn color="error" @click="confirmDelete" nuxt small class="ml-1">
+                <v-btn color="red lighten-1" @click="confirmDelete" small class="ml-1" depressed dark>
                   <v-icon size="25">mdi-delete</v-icon>
                 </v-btn>
               </template>

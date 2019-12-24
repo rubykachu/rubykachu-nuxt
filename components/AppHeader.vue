@@ -49,8 +49,8 @@
     <!-- Drawer mobile -->
     <v-navigation-drawer v-model="drawer" app right>
       <v-list>
-        <template v-for="item in Object.values(items)" :key="item.title">
-          <v-list-item :to="item.to" nuxt @click="item.click" v-if="!item.items">
+        <template v-for="(item, index) in Object.values(items)">
+          <v-list-item :to="item.to" nuxt @click="handleClick(item)" v-if="!item.items">
             <v-list-item-icon>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-item-icon>
@@ -88,6 +88,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { debug } from 'util'
 
 export default {
   name: 'AppHeader',
@@ -129,6 +130,13 @@ export default {
     closeDrawer(item) {
       item.active = !item.active
       this.drawer = !this.drawer
+    },
+    handleClick(item) {
+      if (item.click) {
+        item.click()
+        return
+      }
+      return
     }
   }
 }

@@ -117,23 +117,27 @@
             ></editor>
 
             <div class="d-flex justify-end my-5">
-              <template v-if="$v.$anyError">
-                <p class="error--text">
-                  <v-icon color="error">mdi-alert</v-icon>
-                  Nội dung không hợp lệ. Vui lòng kiểm tra lại.
-                </p>
-                <v-spacer></v-spacer>
-              </template>
-              <v-btn class="mr-4" to="/" nuxt>Huỷ bỏ</v-btn>
+              <v-btn color="red lighten-1" @click="confirmDelete" v-if="actionType == 'update'" dark depressed>
+                <v-icon size="25">mdi-delete</v-icon> Xoá bài
+              </v-btn>
 
-              <v-btn color="secondary" @click="submitCreateArticle" :disabled="disabledSubmit" v-if="actionType == 'create'">
+              <v-spacer></v-spacer>
+
+              <v-btn color="blue-grey lighten-4" class="mr-4" to="/" nuxt depressed>Huỷ bỏ</v-btn>
+
+              <v-btn color="secondary" depressed @click="submitCreateArticle" :disabled="disabledSubmit" v-if="actionType == 'create'">
                 <v-icon>mdi-plus</v-icon> Tạo bài viết
               </v-btn>
 
-              <v-btn color="secondary" @click="submitUpdateArticle" :disabled="disabledSubmit" v-if="actionType == 'update'">
+              <v-btn color="secondary" depressed @click="submitUpdateArticle" :disabled="disabledSubmit" v-if="actionType == 'update'">
                 <v-icon class="mr-1">mdi-update</v-icon> Cập nhập
               </v-btn>
             </div>
+
+            <p class="error--text text-end" v-if="$v.$anyError">
+              <v-icon color="error">mdi-alert</v-icon>
+              Nội dung không hợp lệ. Vui lòng kiểm tra lại.
+            </p>
           </v-card-text>
         </v-card>
       </v-col>
@@ -246,6 +250,17 @@ export default {
           console.log(e)
           this.$store.dispatch('toast/show')
         }
+      }
+    },
+    async confirmDelete() {
+      const answer = confirm('Bạn có muốn xoá bài này không?')
+      try {
+        if (answer) {
+          await this.$store.dispatch('article/deleteArticle', this.article.id)
+          location.href = '/'
+        }
+      } catch (e) {
+        this.$store.dispatch('toast/show', 'Xoá bài viết thất bại')
       }
     }
   }
