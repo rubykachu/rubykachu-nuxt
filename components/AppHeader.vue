@@ -9,8 +9,8 @@
 
       <v-spacer></v-spacer>
 
-      <!-- Desktop class="hidden-sm-and-down" -->
-      <v-toolbar-items>
+      <!-- Desktop -->
+      <v-toolbar-items class="hidden-sm-and-down">
         <v-btn to="/" nuxt text color="white">Trang chủ</v-btn>
         <template v-if="categories.length > 0">
           <v-menu open-on-hover bottom offset-y light min-width="200" max-width="280">
@@ -33,13 +33,56 @@
         </template>
 
         <v-btn to="/article/new" nuxt text color="white">Viết bài</v-btn>
-        <v-btn color="primary" depressed small class="ml-3" @click="logout" v-if="isLogged">
-          Logout
+        <v-btn text color="white" @click="logout" v-if="isLogged">
+          Đăng xuất
         </v-btn>
       </v-toolbar-items>
+
+      <!-- Mobile -->
+      <div class="hidden-md-and-up">
+        <v-app-bar-nav-icon @click.stop="drawer = !drawer" color="white"></v-app-bar-nav-icon>
+      </div>
     </v-toolbar>
 
     <div class="app-header__border"></div>
+
+    <!-- Drawer mobile -->
+    <v-navigation-drawer v-model="drawer" app right>
+      <v-list>
+        <template v-for="item in Object.values(items)" :key="item.title">
+          <v-list-item :to="item.to" nuxt @click="item.click" v-if="!item.items">
+            <v-list-item-icon>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title v-text="item.title"></v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+
+          <!-- Submenu -->
+          <v-list-group v-model="item.active" :prepend-icon="item.icon" no-action v-else>
+            <template v-slot:activator>
+              <v-list-item-content>
+                <v-list-item-title v-text="item.title"></v-list-item-title>
+              </v-list-item-content>
+            </template>
+
+            <v-list-item
+              v-for="subItem in item.items"
+              :key="subItem.slug"
+              :to="`/categories/${subItem.slug}`"
+              nuxt
+              @click="closeDrawer(item)"
+            >
+              <v-list-item-content>
+                <v-list-item-title v-text="subItem.name"></v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list-group>
+        </template>
+      </v-list>
+    </v-navigation-drawer>
   </header>
 </template>
 
@@ -52,18 +95,18 @@ export default {
     return {
       categories: [],
       drawer: false,
-      navItems: {
-        home: { name: 'Trang chủ', link: '/' },
-        categories: { name: 'Danh mục', link: '', submenu: [] },
-        write: { name: 'Viết bài', link: '/article/new' },
-        logout: { name: 'Logout', color: 'primary', depressed: true, size: 'small', click: 'logout' }
+      items: {
+        home: { icon: 'mdi-home-outline', title: 'Trang chủ', to: '/' },
+        categories: { icon: 'mdi-file-table-box-multiple-outline', title: 'Danh mục', active: false },
+        addArticle: { icon: 'mdi-pencil-box-outline', title: 'Viết Bài', to: '/article/new' },
+        logout: { icon: 'mdi-login-variant', title: 'Đăng xuất', click: this.logout }
       }
     }
   },
   async beforeCreate() {
     try {
       this.categories = await this.$store.dispatch('category/getCategories')
-      this.navItems.categories.submenu = this.categories
+      this.items.categories.items = this.categories
     } catch (e) {
       console.log(e)
       store.dispatch('toast/show')
@@ -82,6 +125,10 @@ export default {
         console.log(e)
         this.$store.dispatch('toast/show', 'Đăng xuất không thành công. Xin thử lại!')
       }
+    },
+    closeDrawer(item) {
+      item.active = !item.active
+      this.drawer = !this.drawer
     }
   }
 }
