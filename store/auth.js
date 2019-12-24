@@ -25,7 +25,7 @@ export const actions = {
       const { email, uid } = auth.currentUser
 
       // Set JWT to the cookie
-      Cookie.set('access_token', token)
+      Cookie.set('access_token', token, { expires: 2, sameSite: 'strict' })
 
       // Set the user locally
       commit('SET_USER', { email, uid })
