@@ -3,39 +3,42 @@
     <v-row>
       <v-col cols="12">
         <v-card class="d-flex align-start flex-column rounded-15" color="grey" min-width="100%" min-height="400" :img="featureImage">
-          <v-card class="pa-2 mb-auto" color="transparent" outlined>
+          <v-card class="pa-2 mb-auto" color="transparent" outlined min-width="100%">
             <v-card-text>
-              <!-- Created at -->
-              <v-icon color="white" class="icon-size mr-1">mdi-calendar-week</v-icon>
-              <span class="subheading white--text">{{ formatCreatedAt }}</span>
+              <v-row>
+                <v-col sm="12">
+                  <!-- Created at -->
+                  <v-icon color="white" class="icon-size mr-1">mdi-calendar-week</v-icon>
+                  <span class="subheading white--text">{{ formatCreatedAt }}</span>
 
-              <!-- Reading time -->
-              <v-icon color="white" class="icon-size ml-5 mr-1">mdi-circle-slice-5</v-icon>
-              <span class="subheading white--text">{{ article.reading_time }} phút</span>
+                  <!-- Reading time -->
+                  <v-icon color="white" class="icon-size ml-5 mr-1">mdi-circle-slice-5</v-icon>
+                  <span class="subheading white--text">{{ article.reading_time }} phút</span>
 
-              <!-- Counter reading -->
-              <v-icon color="white" class="icon-size ml-5 mr-1">mdi-read</v-icon>
-              <span class="subheading white--text">{{ article.counter || 1 }} lượt</span>
+                  <!-- Counter reading -->
+                  <v-icon color="white" class="icon-size ml-5 mr-1">mdi-read</v-icon>
+                  <span class="subheading white--text">{{ article.counter || 1 }} lượt</span>
 
-              <!-- Counter comment -->
-              <v-icon color="white" class="icon-size ml-5 mr-1">mdi-comment-outline</v-icon>
-              <span class="subheading white--text">{{ article.counter_comment || 0 }}</span>
-
-              <template v-if="isLogged">
-                <v-btn color="warning" :to="`/article/${article.slug}/update`" nuxt small class="ml-2">
-                  <v-icon class="mr-1" small>mdi-lead-pencil</v-icon> Chỉnh sửa
-                </v-btn>
-
-                <v-btn color="error" @click="confirmDelete" nuxt small class="ml-2">
-                  <v-icon class="mr-1" small>mdi-delete</v-icon> Xoá bài
-                </v-btn>
-              </template>
+                  <!-- Counter comment -->
+                  <v-icon color="white" class="icon-size ml-5 mr-1">mdi-comment-outline</v-icon>
+                  <span class="subheading white--text">{{ article.counter_comment || 0 }}</span>
+                </v-col>
+              </v-row>
             </v-card-text>
           </v-card>
 
-          <v-card class="pa-2" color="transparent" outlined>
+          <v-card class="pa-2" color="transparent" outlined width="100%">
             <v-card-text>
               <v-chip :color="article.category.color" class="px-8 white--text font-weight-bold">{{ article.category.name }}</v-chip>
+              <template v-if="isLogged">
+                <v-btn color="warning" :to="`/article/${article.slug}/update`" nuxt small class="ml-1">
+                  <v-icon size="25">mdi-pencil-box-outline</v-icon>
+                </v-btn>
+
+                <v-btn color="error" @click="confirmDelete" nuxt small class="ml-1">
+                  <v-icon size="25">mdi-delete</v-icon>
+                </v-btn>
+              </template>
               <h1 class="pt-5 white--text article-page__title break-work">
                 {{ article.title }}
               </h1>
