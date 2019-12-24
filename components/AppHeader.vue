@@ -88,7 +88,6 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { debug } from 'util'
 
 export default {
   name: 'AppHeader',
