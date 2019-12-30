@@ -119,6 +119,36 @@ export const actions = {
       throw e
     }
   },
+  async getRelatedArticles({}, { category_id, article_id }) {
+    try {
+      const limit = 5
+      const refNextArticle = await ApiArticle.fsFind(article_id)
+
+      const articles = await ApiArticle.fsGet({
+        order: { created_at: 'asc' },
+        where: ['category_id', '==', category_id],
+        startAfter: refNextArticle,
+        limit: limit,
+        returnData: true
+      })
+
+      // Calc remain articles
+      let remain = limit - articles.length
+      let remainArticles = []
+      if (remain > 0) {
+        remainArticles = await ApiArticle.fsGet({
+          order: { created_at: 'asc' },
+          where: ['category_id', '==', category_id],
+          limit: remain,
+          returnData: true
+        })
+      }
+
+      return [...articles, ...remainArticles]
+    } catch (e) {
+      throw e
+    }
+  },
   async getArticlesByCategory({}, slug) {
     try {
       const category = await ApiCategory.fsFindSlug(slug, { returnData: true })

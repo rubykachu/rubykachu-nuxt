@@ -1,31 +1,26 @@
 <template>
   <v-container fluid class="article-page px-0">
+    <!-- Feature Article -->
     <v-row>
       <v-col cols="12">
         <v-card class="d-flex align-start flex-column rounded-15" color="grey" min-width="100%" min-height="400" :img="featureImage">
           <v-card class="pa-2 mb-auto" color="transparent" outlined min-width="100%">
             <v-card-text>
-              <v-row>
-                <v-col sm="12">
-                  <!-- Created at -->
-                  <v-icon color="white" class="icon-size mr-1">mdi-calendar-week</v-icon>
-                  <span class="subheading white--text">{{ formatCreatedAt }}</span>
+              <!-- Created at -->
+              <v-icon color="white" class="icon-size mr-1">mdi-calendar-week</v-icon>
+              <span class="subheading white--text">{{ formatCreatedAt }}</span>
 
-                  <!-- Reading time -->
-                  <v-icon color="white" class="icon-size ml-5 mr-1">mdi-circle-slice-5</v-icon>
-                  <span class="subheading white--text">{{ article.reading_time }} phút</span>
+              <!-- Reading time -->
+              <v-icon color="white" class="icon-size ml-5 mr-1">mdi-circle-slice-5</v-icon>
+              <span class="subheading white--text">{{ article.reading_time }} phút</span>
 
-                  <!-- Counter reading -->
-                  <v-icon color="white" class="icon-size ml-5 mr-1">mdi-read</v-icon>
-                  <span class="subheading white--text">{{ article.counter || 1 }} lượt</span>
+              <!-- Counter reading -->
+              <v-icon color="white" class="icon-size ml-5 mr-1">mdi-eye-outline</v-icon>
+              <span class="subheading white--text">{{ article.counter || 1 }}</span>
 
-                  <!-- Counter comment -->
-                  <v-icon color="white" class="icon-size ml-5 mr-1">mdi-comment-outline</v-icon>
-                  <span class="subheading white--text">{{ article.counter_comment || 0 }}</span>
-                </v-col>
-              </v-row>
-            </v-card-text>
-          </v-card>
+              <!-- Counter comment -->
+              <v-icon color="white" class="icon-size ml-5 mr-1">mdi-comment-outline</v-icon>
+              <span class="subheading white--text">{{ article.counter_comment || 0 }}</span>
 
           <v-card class="pa-2" color="transparent" outlined width="100%">
             <v-card-text>
@@ -48,9 +43,10 @@
       </v-col>
     </v-row>
 
+    <!-- Content Article -->
     <div class="article-page__content-wrapper mt-12 mb-20 pa-4">
       <v-row>
-        <v-col cols="12">
+        <v-col md="8" cols="12" class="article-page__content">
           <!-- Content -->
           <div v-html="article.content" class="mb-5"></div>
 
@@ -67,37 +63,47 @@
               <strong>Bài trước:</strong> {{ prevArticle.title }}
             </nuxt-link>
           </p>
-        </v-col>
-      </v-row>
 
-      <v-row>
-        <v-col sm="4" offset-sm="4">
-          <v-text-field
-            outlined
-            dense
-            hide-details
-            readonly
-            background-color="grey lighten-4"
-            append-icon="mdi-content-copy"
-            label="Copy link and share article"
-            @click:append="copyToClipboard"
-            class="text-field-copy-link"
-            :value="articleLink"
-            id="copy-link-article"
-          ></v-text-field>
-        </v-col>
-      </v-row>
+          <v-row class="my-3">
+            <v-col sm="8" offset-sm="2">
+              <v-text-field
+                outlined
+                dense
+                hide-details
+                readonly
+                background-color="grey lighten-4"
+                append-icon="mdi-content-copy"
+                label="Copy link and share article"
+                @click:append="copyToClipboard"
+                class="text-field-copy-link"
+                :value="articleLink"
+                id="copy-link-article"
+              ></v-text-field>
+            </v-col>
+          </v-row>
 
-      <v-row>
-        <v-col cols="12">
-          <div class="comments">
-            <vue-disqus
-              shortname="route53-xyz"
-              :identifier="article.id"
-              :url="articleLink"
-              :title="article.title"
-              @new-comment="increaseCounterComment"
-            ></vue-disqus>
+          <v-row>
+            <v-col cols="12">
+              <div class="comments">
+                <vue-disqus
+                  shortname="route53-xyz"
+                  :identifier="article.id"
+                  :url="articleLink"
+                  :title="article.title"
+                  @new-comment="increaseCounterComment"
+                ></vue-disqus>
+              </div>
+            </v-col>
+          </v-row>
+        </v-col>
+
+        <v-col md="4" class="article-page__sidebar pt-0 hidden-sm-and-down">
+          <div class="article-page__sidebar__box">
+            <RelatedArticle :article_id="article.id" :category_id="article.category_id" />
+          </div>
+
+          <div class="article-page__sidebar__box">
+            <CategoriesOfSidebar />
           </div>
         </v-col>
       </v-row>
@@ -111,6 +117,8 @@
 import Prism from 'prismjs'
 import { mapGetters } from 'vuex'
 import Author from '@/components/article/Author.vue'
+import CategoriesOfSidebar from '@/components/sidebar/Categories.vue'
+import RelatedArticle from '@/components/sidebar/RelatedArticle.vue'
 import 'prismjs/themes/prism-okaidia.css'
 import 'prismjs/components/prism-ruby.min.js'
 import 'prismjs/components/prism-python.min.js'
@@ -122,7 +130,9 @@ import { removeLineBreak, formatDate } from '@/mixins/helper'
 
 export default {
   components: {
-    Author
+    Author,
+    CategoriesOfSidebar,
+    RelatedArticle
   },
   head() {
     return {
