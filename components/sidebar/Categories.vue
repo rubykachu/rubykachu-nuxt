@@ -2,7 +2,7 @@
   <div class="sidebar__categories">
     <v-list>
       <v-list-item-title class="sidebar__title">
-        <h4>Categories</h4>
+        <h4>Danh mục</h4>
       </v-list-item-title>
       <v-list-item v-for="cate in categories" :key="index" v-text="cate.name" :to="`/categories/${cate.slug}`" nuxt></v-list-item>
     </v-list>

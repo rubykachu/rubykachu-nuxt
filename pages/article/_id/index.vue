@@ -102,11 +102,11 @@
 
         <v-col md="4" class="article-page__sidebar pt-0">
           <div class="article-page__sidebar__box">
-            <RelatedArticle />
+            <CategoriesOfSidebar />
           </div>
 
           <div class="article-page__sidebar__box">
-            <CategoriesOfSidebar />
+            <RelatedArticle :article_id="article.id" :category_id="article.category_id" />
           </div>
         </v-col>
       </v-row>
