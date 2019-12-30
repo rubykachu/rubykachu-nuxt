@@ -1,7 +1,7 @@
 <template>
   <v-app class="background--gradient">
     <v-container class="py-0" v-scroll="onScroll">
-      <app-header />
+      <app-header :key="keyCompAppHeader" />
 
       <v-content>
         <nuxt />
@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import AppHeader from '@/components/AppHeader.vue'
 import RecentPosts from '@/components/RecentPosts.vue'
 import AboutMe from '@/components/AboutMe.vue'
@@ -50,6 +51,7 @@ export default {
   data: () => ({
     goToTop: false
   }),
+  computed: mapState('app', ['keyCompAppHeader']),
   methods: {
     onScroll(e) {
       if (typeof window === 'undefined') return
