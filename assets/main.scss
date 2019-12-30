@@ -252,18 +252,10 @@ a {
     font-size: 2.5rem;
     font-weight: bold;
   }
+
   &__content-wrapper {
-    @include border-radius(15px);
-    background-color: white;
     font-size: 18px;
     color: $primary-color--text;
-    line-height: 30px;
-    img {
-      max-width: 100%;
-    }
-    p {
-      margin-bottom: 24px;
-    }
 
     .text-field-copy-link {
       .v-text-field__slot {
@@ -275,6 +267,65 @@ a {
       .v-icon {
         color: $primary-color;
         font-size: 17px;
+      }
+    }
+  }
+
+  &__content {
+    @include border-radius(15px);
+    background-color: white;
+    line-height: 30px;
+    padding: 30px 20px 5px;
+
+    img {
+      max-width: 100%;
+    }
+    p {
+      margin-bottom: 24px;
+    }
+  }
+
+  &__sidebar {
+    padding-left: 40px;
+
+    &__box {
+      background-color: white;
+      @include border-radius(15px);
+      padding: 25px;
+      margin-bottom: 30px;
+      margin-right: -15px;
+
+      .sidebar {
+        &__title {
+          font-size: 24px;
+          margin-bottom: 30px;
+          line-height: 1.6;
+          letter-spacing: 0.6px;
+          color: #404040;
+
+          &::after {
+            display: block;
+            content: '';
+            width: 100%;
+            height: 2px;
+            background: #f4f4f4;
+            margin-top: 10px;
+          }
+        }
+
+        &__categories {
+          .v-list-item {
+            padding-left: 0;
+            padding-right: 0;
+            border-bottom: 1px solid #f4f4f4;
+            line-height: 50px;
+            color: #404040 !important;
+
+            &:last-of-type {
+              border-bottom: none;
+            }
+          }
+        }
       }
     }
   }
