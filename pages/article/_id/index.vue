@@ -15,8 +15,8 @@
               <span class="subheading white--text">{{ article.reading_time }} phút</span>
 
               <!-- Counter reading -->
-              <v-icon color="white" class="icon-size ml-5 mr-1">mdi-read</v-icon>
-              <span class="subheading white--text">{{ article.counter || 1 }} lượt</span>
+              <v-icon color="white" class="icon-size ml-5 mr-1">mdi-eye-outline</v-icon>
+              <span class="subheading white--text">{{ article.counter || 1 }}</span>
 
               <!-- Counter comment -->
               <v-icon color="white" class="icon-size ml-5 mr-1">mdi-comment-outline</v-icon>
@@ -49,7 +49,7 @@
     <!-- Content Article -->
     <div class="article-page__content-wrapper mt-12 mb-20 pa-4">
       <v-row>
-        <v-col md="8" class="article-page__content">
+        <v-col md="8" cols="12" class="article-page__content">
           <!-- Content -->
           <div v-html="article.content" class="mb-5"></div>
 
@@ -100,13 +100,13 @@
           </v-row>
         </v-col>
 
-        <v-col md="4" class="article-page__sidebar pt-0">
+        <v-col md="4" class="article-page__sidebar pt-0 hidden-sm-and-down">
           <div class="article-page__sidebar__box">
-            <CategoriesOfSidebar />
+            <RelatedArticle :article_id="article.id" :category_id="article.category_id" />
           </div>
 
           <div class="article-page__sidebar__box">
-            <RelatedArticle :article_id="article.id" :category_id="article.category_id" />
+            <CategoriesOfSidebar />
           </div>
         </v-col>
       </v-row>

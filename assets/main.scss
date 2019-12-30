@@ -278,7 +278,7 @@ a {
     padding: 30px 20px 5px;
 
     img {
-      max-width: 100%;
+      max-width: 90%;
     }
     p {
       margin-bottom: 24px;
@@ -328,6 +328,10 @@ a {
         }
 
         &__related_article {
+          .title_article {
+            font-size: 15px;
+          }
+
           .v-list-item {
             color: #404040 !important;
           }

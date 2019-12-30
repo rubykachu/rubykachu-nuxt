@@ -47,7 +47,7 @@
 
         <div class="caption">
           <div>
-            <v-icon color="primary" size="13">mdi-read</v-icon>
+            <v-icon color="primary" size="13">mdi-eye</v-icon>
             <span class="subheading">{{ article.counter || 0 }} lượt</span>
           </div>
           <div>

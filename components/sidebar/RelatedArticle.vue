@@ -6,14 +6,14 @@
       </v-list-item-title>
       <template v-for="(article, index) in articles">
         <v-list-item :key="index" class="px-0 mb-3" active-class="inactive" :to="articleDetailLink(article.slug)" nuxt>
-          <v-list-item-avatar size="60" class="mr-3 mt-2">
+          <v-list-item-avatar size="50" class="mr-3 mt-2 hidden-md-and-down">
             <v-img :src="article.image_thumb"></v-img>
           </v-list-item-avatar>
 
           <v-list-item-content>
             <v-list-item-subtitle class="pb-1">{{ formatCreatedAt(article.created_at) }}</v-list-item-subtitle>
 
-            <v-list-item-title class="font-weight-medium">{{ article.title }}</v-list-item-title>
+            <v-list-item-title class="font-weight-medium title_article" :title="article.title">{{ article.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </template>
