@@ -102,8 +102,11 @@
 
         <v-col md="4" class="article-page__sidebar pt-0">
           <div class="article-page__sidebar__box">
-            <CategoriesOfSidebar />
+            <RelatedArticle />
+          </div>
 
+          <div class="article-page__sidebar__box">
+            <CategoriesOfSidebar />
           </div>
         </v-col>
       </v-row>
@@ -117,7 +120,8 @@
 import Prism from 'prismjs'
 import { mapGetters } from 'vuex'
 import Author from '@/components/article/Author.vue'
-import CategoriesOfSidebar from '@/components/sidebar/Categories.vue';
+import CategoriesOfSidebar from '@/components/sidebar/Categories.vue'
+import RelatedArticle from '@/components/sidebar/RelatedArticle.vue'
 import 'prismjs/themes/prism-okaidia.css'
 import 'prismjs/components/prism-ruby.min.js'
 import 'prismjs/components/prism-python.min.js'
@@ -130,7 +134,8 @@ import { removeLineBreak, formatDate } from '@/mixins/helper'
 export default {
   components: {
     Author,
-    CategoriesOfSidebar
+    CategoriesOfSidebar,
+    RelatedArticle
   },
   head() {
     return {
