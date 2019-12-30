@@ -21,6 +21,7 @@
               <!-- Counter comment -->
               <v-icon color="white" class="icon-size ml-5 mr-1">mdi-comment-outline</v-icon>
               <span class="subheading white--text">{{ article.counter_comment || 0 }}</span>
+          </v-card>
 
           <v-card class="pa-2" color="transparent" outlined width="100%">
             <v-card-text>
